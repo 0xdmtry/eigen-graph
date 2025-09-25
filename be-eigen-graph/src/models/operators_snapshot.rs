@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
-pub struct OperatorSnapshotVars {
+pub struct OperatorsSnapshotVars {
     pub first: i32,
     pub skip: i32,
     pub order_by: OperatorOrderBy,
