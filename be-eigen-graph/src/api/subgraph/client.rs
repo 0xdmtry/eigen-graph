@@ -1,5 +1,6 @@
 use reqwest::{Client, Url};
 
+#[derive(Clone, Debug)]
 pub struct SubgraphClient {
     http: Client,
     endpoint: Url,
