@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /* --- OperatorsSnapshot: variables --- */
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorsSnapshotVars {
     pub first: i32,
@@ -12,7 +12,7 @@ pub struct OperatorsSnapshotVars {
     pub has_slashing: i32,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub enum OperatorOrderBy {
     Id,
@@ -22,7 +22,7 @@ pub enum OperatorOrderBy {
     LastUpdateBlockTimestamp,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 pub enum OrderDirection {
     #[serde(rename = "asc")]
     Asc,
@@ -32,13 +32,13 @@ pub enum OrderDirection {
 
 /* --- OperatorsSnapshot: response --- */
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorsSnapshotData {
     pub operators: Vec<OperatorDto>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorDto {
     pub id: String,
@@ -52,28 +52,29 @@ pub struct OperatorDto {
     pub strategies: Vec<OperatorStrategyLinkDto>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorSlashingDto {
     pub block_timestamp: String,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorStrategyLinkDto {
     pub total_shares: String,
     pub strategy: StrategyLiteDto,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct StrategyLiteDto {
     pub id: String,
     pub exchange_rate: String,
-    pub token: TokenDto,
+    #[serde(default)]
+    pub token: Option<TokenDto>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TokenDto {
     pub id: String,

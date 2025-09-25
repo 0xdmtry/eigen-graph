@@ -24,19 +24,21 @@ fn map_operator(o: &OperatorDto) -> OperatorRiskRow {
     let positions: Vec<OperatorStrategyPosition> = o
         .strategies
         .iter()
-        .map(|link| {
-            let token = TokenRef {
-                id: TokenId(link.strategy.token.id.clone()),
-                symbol: link.strategy.token.symbol.clone(),
-                decimals: link.strategy.token.decimals as u8,
+        .filter_map(|link| {
+            let Some(t) = link.strategy.token.as_ref() else {
+                return None;
             };
 
-            OperatorStrategyPosition {
+            Some(OperatorStrategyPosition {
                 strategy_id: StrategyId(link.strategy.id.clone()),
-                token,
+                token: TokenRef {
+                    id: TokenId(t.id.clone()),
+                    symbol: t.symbol.clone(),
+                    decimals: t.decimals as u8,
+                },
                 total_shares_atomic: AtomicAmount(link.total_shares.clone()),
                 exchange_rate_atomic: AtomicAmount(link.strategy.exchange_rate.clone()),
-            }
+            })
         })
         .collect();
 
@@ -127,7 +129,6 @@ fn compute_hhi_over_shares(positions: &[OperatorStrategyPosition]) -> f64 {
 }
 
 fn parse_biguint(s: &str) -> Option<BigUint> {
-    // GraphQL returns decimal strings
     if s.is_empty() {
         return None;
     }

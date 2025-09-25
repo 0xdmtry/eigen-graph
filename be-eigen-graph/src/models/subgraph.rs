@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 pub struct GraphQLRequest<'q, V> {
     pub query: &'q str,
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -3,7 +3,7 @@ use crate::models::operator::OperatorRiskRow;
 use crate::models::operators_snapshot::OperatorOrderBy::LastUpdateBlockTimestamp;
 use crate::models::operators_snapshot::OrderDirection::{Asc, Desc};
 use crate::models::operators_snapshot::{OperatorsSnapshotData, OperatorsSnapshotVars};
-use crate::services::mappers::operators_snapshot::map_operators_snapshot;
+use crate::services::operators::operators_mapper::map_operators_snapshot;
 use num_bigint::BigUint;
 use num_traits::Zero;
 
