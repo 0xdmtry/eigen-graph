@@ -1,0 +1,32 @@
+query OperatorsSnapshot(
+    $first: Int!
+    $skip: Int!
+    $orderBy: Operator_orderBy!
+    $orderDirection: OrderDirection!
+    $hasSlashing: Int
+) {
+    operators(
+        first: $first
+        skip: $skip
+        orderBy: $orderBy
+        orderDirection: $orderDirection
+        where: { slashingCount_gte: $hasSlashing }
+    ) {
+        id
+        avsCount
+        strategyCount
+        slashingCount
+        slashings(first: 1, orderBy: blockTimestamp, orderDirection: desc) {
+            blockTimestamp
+        }
+        strategies(first: 100, orderBy: lastUpdateBlockTimestamp, orderDirection: desc) {
+            totalShares
+            strategy {
+                id
+                exchangeRate
+                token { id symbol decimals }
+            }
+        }
+        lastUpdateBlockTimestamp
+    }
+}
