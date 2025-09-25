@@ -1,14 +1,7 @@
-use axum::{Router, response::IntoResponse, routing::get, serve};
+use axum::serve;
+use be_eigen_graph::app::app;
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
-
-async fn ping() -> impl IntoResponse {
-    "pong"
-}
-
-fn app() -> Router {
-    Router::new().route("/", get(ping))
-}
 
 #[tokio::main]
 async fn main() {
