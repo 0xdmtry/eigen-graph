@@ -1,1 +1,1 @@
-mod snapshot;
+pub mod snapshot;
