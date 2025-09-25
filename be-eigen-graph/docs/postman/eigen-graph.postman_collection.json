@@ -9,6 +9,43 @@
 	"item": [
 		{
 			"name": "v1",
+			"item": [
+				{
+					"name": "operator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { operators(first: 5) { id avsCount strategyCount slashingCount } }\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://subgraph.satsuma-prod.com/027e731a6242/eigenlabs/eigen-graph-mainnet/api",
+							"protocol": "https",
+							"host": [
+								"subgraph",
+								"satsuma-prod",
+								"com"
+							],
+							"path": [
+								"027e731a6242",
+								"eigenlabs",
+								"eigen-graph-mainnet",
+								"api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subgraph",
 			"item": []
 		},
 		{
