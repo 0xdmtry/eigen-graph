@@ -1,4 +1,3 @@
-use crate::api::subgraph::client::SubgraphClient;
 use reqwest::Url;
 use std::env;
 use std::str::FromStr;

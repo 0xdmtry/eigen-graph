@@ -25,9 +25,7 @@ fn map_operator(o: &OperatorDto) -> OperatorRiskRow {
         .strategies
         .iter()
         .filter_map(|link| {
-            let Some(t) = link.strategy.token.as_ref() else {
-                return None;
-            };
+            let t = link.strategy.token.as_ref()?;
 
             Some(OperatorStrategyPosition {
                 strategy_id: StrategyId(link.strategy.id.clone()),
