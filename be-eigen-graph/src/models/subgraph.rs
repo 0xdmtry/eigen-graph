@@ -15,7 +15,7 @@ pub struct GraphQLResponse<T> {
     pub errors: Option<Vec<GraphQLError>>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct GraphQLError {
     pub message: String,
     #[serde(default)]
@@ -24,7 +24,7 @@ pub struct GraphQLError {
     pub locations: Option<Vec<GraphQLErrorLocation>>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct GraphQLErrorLocation {
     pub line: i32,
     pub column: i32,
