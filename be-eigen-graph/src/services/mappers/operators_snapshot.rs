@@ -5,7 +5,7 @@ use crate::models::strategy::OperatorStrategyPosition;
 use crate::models::time::BlockTimestamp;
 use crate::models::token::{AtomicAmount, TokenRef, TvlByToken};
 use num_bigint::BigUint;
-use num_traits::Zero;
+use num_traits::{One, Zero};
 use std::collections::HashMap;
 
 pub fn map_operators_snapshot(data: &OperatorsSnapshotData) -> Vec<OperatorRiskRow> {
@@ -17,7 +17,7 @@ fn map_operator(o: &OperatorDto) -> OperatorRiskRow {
 
     let last_slash_at = o
         .slashings
-        .get(0)
+        .first()
         .and_then(|s| s.block_timestamp.parse::<i64>().ok())
         .map(BlockTimestamp);
 
@@ -92,10 +92,6 @@ fn compute_tvl_by_token(positions: &[OperatorStrategyPosition]) -> Vec<TvlByToke
     out
 }
 
-fn pow10(p0: u32) -> _ {
-    todo!()
-}
-
 fn compute_hhi_over_shares(positions: &[OperatorStrategyPosition]) -> f64 {
     let mut shares: Vec<BigUint> = Vec::with_capacity(positions.len());
     for p in positions {
@@ -130,10 +126,23 @@ fn compute_hhi_over_shares(positions: &[OperatorStrategyPosition]) -> f64 {
     hhi.clamp(0.0, 1.0)
 }
 
-fn biguint_to_f64(p0: &BigUint) -> _ {
-    todo!()
+fn parse_biguint(s: &str) -> Option<BigUint> {
+    // GraphQL returns decimal strings
+    if s.is_empty() {
+        return None;
+    }
+    BigUint::parse_bytes(s.as_bytes(), 10)
 }
 
-fn parse_biguint(p0: &String) -> _ {
-    todo!()
+fn pow10(n: u32) -> BigUint {
+    if n == 0 {
+        return BigUint::one();
+    }
+    let ten = BigUint::from(10_u32);
+    (0..n).fold(BigUint::one(), |acc, _| acc * &ten)
+}
+
+fn biguint_to_f64(n: &BigUint) -> f64 {
+    let s = n.to_str_radix(10);
+    s.parse::<f64>().unwrap_or(f64::INFINITY)
 }
