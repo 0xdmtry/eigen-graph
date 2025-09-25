@@ -8,18 +8,23 @@
 	},
 	"item": [
 		{
+			"name": "v1",
+			"item": []
+		},
+		{
 			"name": "ping",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/",
+					"raw": "localhost:8000/v1/ping",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
-						""
+						"v1",
+						"ping"
 					]
 				}
 			},
