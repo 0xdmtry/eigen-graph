@@ -6,6 +6,7 @@ use crate::models::time::BlockTimestamp;
 use crate::models::token::{AtomicAmount, TokenRef, TvlByToken};
 use num_bigint::BigUint;
 use num_traits::Zero;
+use std::collections::HashMap;
 
 pub fn map_operators_snapshot(data: &OperatorsSnapshotData) -> Vec<OperatorRiskRow> {
     data.operators.iter().map(map_operator).collect()
@@ -55,7 +56,43 @@ fn map_operator(o: &OperatorDto) -> OperatorRiskRow {
     }
 }
 
-fn compute_tvl_by_token(p0: &Vec<OperatorStrategyPosition>) -> _ {
+fn compute_tvl_by_token(positions: &[OperatorStrategyPosition]) -> Vec<TvlByToken> {
+    let mut acc: HashMap<String, (TokenRef, BigUint, u32)> = HashMap::new();
+
+    for p in positions {
+        let Some(shares) = parse_biguint(&p.total_shares_atomic.0) else {
+            continue;
+        };
+        let Some(rate) = parse_biguint(&p.exchange_rate_atomic.0) else {
+            continue;
+        };
+
+        if shares.is_zero() || rate.is_zero() {
+            continue;
+        }
+
+        let decimals = p.token.decimals as u32;
+        let scale = pow10(decimals);
+        let num = &shares * &rate;
+        let amount = &num / &scale;
+
+        let entry = acc
+            .entry(p.token.id.0.clone())
+            .or_insert_with(|| (p.token.clone(), BigUint::zero(), decimals));
+        entry.1 += amount;
+    }
+
+    let mut out = Vec::with_capacity(acc.len());
+    for (_k, (token, sum_atomic, _dec)) in acc {
+        out.push(TvlByToken {
+            token,
+            amount_atomic: AtomicAmount(sum_atomic.to_str_radix(10)),
+        });
+    }
+    out
+}
+
+fn pow10(p0: u32) -> _ {
     todo!()
 }
 
