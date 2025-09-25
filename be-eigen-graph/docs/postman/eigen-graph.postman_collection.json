@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "0bc22ef3-3ebd-43cb-867d-b7c130925a4f",
+		"name": "eigen-graph",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7700049",
+		"_collection_link": "https://bckp33.postman.co/workspace/str~69fa7503-6cae-448c-a22e-06876a002add/collection/7700049-0bc22ef3-3ebd-43cb-867d-b7c130925a4f?action=share&source=collection_link&creator=7700049"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
