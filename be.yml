@@ -1,0 +1,40 @@
+services:
+
+  be-eigen-graph:
+    container_name: be-eigen-graph
+    build:
+      context: ./be-eigen-graph
+      dockerfile: Be.dev.dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./be-eigen-graph/src:/be-eigen-graph/src
+      - ./be-eigen-graph/Cargo.toml:/be-eigen-graph/Cargo.toml
+      - ./be-eigen-graph/Cargo.lock:/be-eigen-graph/Cargo.lock
+      - /be-eigen-graph/target
+    depends_on:
+      db-eigen-graph:
+        condition: service_started
+    networks:
+      - be-eigen-graph-net
+
+  db-eigen-graph:
+    container_name: db-eigen-graph
+    image: postgres:17.4
+    restart: always
+    environment:
+      POSTGRES_DB: eigen-graph
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - .dbdata/postgres/dev/be-eigen-graph/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - be-eigen-graph-net
+
+
+networks:
+  be-eigen-graph-net:
+    driver: bridge
