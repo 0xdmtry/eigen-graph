@@ -8,7 +8,9 @@ async fn main() {
     let listener = TcpListener::bind("0.0.0.0:8000")
         .await
         .expect("Cannot bind port 8000");
-    let app = app().into_make_service_with_connect_info::<SocketAddr>();
+    let app = app()
+        .await
+        .into_make_service_with_connect_info::<SocketAddr>();
 
     serve(listener, app).await.expect("Cannot serve");
 }

@@ -5,6 +5,7 @@ use std::str::FromStr;
 #[derive(Debug, Clone)]
 pub struct AppConfig {
     pub subgraph_url: Url,
+    pub database_url: String,
 }
 
 impl AppConfig {
@@ -13,8 +14,12 @@ impl AppConfig {
 
         let subgraph = env::var("SUBGRAPH_URL").unwrap_or_default();
         let subgraph_url = Url::from_str(&subgraph).unwrap();
+        let database_url = env::var("DATABASE_URL").unwrap_or_default();
 
-        Self { subgraph_url }
+        Self {
+            subgraph_url,
+            database_url,
+        }
     }
 
     pub fn from_env_with_custom_file(file_name: &str) -> Self {
