@@ -32,13 +32,13 @@ pub enum OrderDirection {
 
 /* --- OperatorsSnapshot: response --- */
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorsSnapshotData {
     pub operators: Vec<OperatorDto>,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorDto {
     pub id: String,
@@ -52,20 +52,20 @@ pub struct OperatorDto {
     pub strategies: Vec<OperatorStrategyLinkDto>,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorSlashingDto {
     pub block_timestamp: String,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct OperatorStrategyLinkDto {
     pub total_shares: String,
     pub strategy: StrategyLiteDto,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct StrategyLiteDto {
     pub id: String,
@@ -74,7 +74,7 @@ pub struct StrategyLiteDto {
     pub token: Option<TokenDto>,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct TokenDto {
     pub id: String,
