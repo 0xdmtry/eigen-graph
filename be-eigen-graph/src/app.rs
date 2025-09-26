@@ -17,6 +17,11 @@ pub async fn app() -> Router {
         .await
         .expect("failed to connect to Postgres");
 
+    sqlx::migrate!()
+        .run(&db)
+        .await
+        .expect("db migrations failed");
+
     let state = AppState {
         subgraph_client: SubgraphClient::new(config.subgraph_url),
         operators_snapshot: Arc::new(Mutex::new(HashMap::new())),
