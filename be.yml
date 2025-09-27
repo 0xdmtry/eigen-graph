@@ -9,10 +9,11 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./be-eigen-graph/src:/be-eigen-graph/src
-      - ./be-eigen-graph/Cargo.toml:/be-eigen-graph/Cargo.toml
-      - ./be-eigen-graph/Cargo.lock:/be-eigen-graph/Cargo.lock
-      - /be-eigen-graph/target
+      - ./be-eigen-graph/src:/app/src
+      - ./be-eigen-graph/migrations:/app/migrations
+      - ./be-eigen-graph/Cargo.toml:/app/Cargo.toml
+      - ./be-eigen-graph/Cargo.lock:/app/Cargo.lock
+      - /app/target
     depends_on:
       db-eigen-graph:
         condition: service_healthy
@@ -35,7 +36,7 @@ services:
       timeout: 3s
       retries: 10
     volumes:
-      - .dbdata/postgres/dev/be-eigen-graph/:/var/lib/postgresql/data
+      - .dbdata/postgres/dev/db-eigen-graph/:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
