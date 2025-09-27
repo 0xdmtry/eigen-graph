@@ -1,5 +1,6 @@
 pub mod ids;
 pub mod operator;
+pub mod operators_aggr;
 pub mod operators_snapshot;
 pub mod strategy;
 pub mod subgraph;
