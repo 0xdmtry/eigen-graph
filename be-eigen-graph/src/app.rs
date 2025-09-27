@@ -3,10 +3,13 @@ use crate::config::AppConfig;
 use crate::routes::v1;
 use crate::state::AppState;
 use axum::Router;
+use axum::http::Method;
 use sqlx::postgres::PgPoolOptions;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
+use tower_http::cors::Any;
+use tower_http::cors::CorsLayer;
 
 pub async fn app() -> Router {
     let config = AppConfig::from_env();
@@ -28,5 +31,19 @@ pub async fn app() -> Router {
         db,
     };
 
-    Router::new().nest("/v1", v1::routes()).with_state(state)
+    let cors = CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods([
+            Method::GET,
+            Method::POST,
+            Method::PUT,
+            Method::DELETE,
+            Method::OPTIONS,
+        ])
+        .allow_headers(Any);
+
+    Router::new()
+        .nest("/v1", v1::routes())
+        .layer(cors)
+        .with_state(state)
 }
