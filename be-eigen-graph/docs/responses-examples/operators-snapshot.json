@@ -1,0 +1,3789 @@
+{
+  "operators": [
+    {
+      "id": "0xfed49df40df262e4f506a268009813cd81e3c049",
+      "avsCount": 0,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758923423",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0x86ccab8e46a6fe62bd1ff48b16a70a88354bb9cc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd0ec028a3d21533fdd200838f39c85b03679285d",
+              "symbol": "NEWT",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x74c3e0779283f14107d66961278b5f0a7e4974f1",
+      "avsCount": 0,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758923135",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0x86ccab8e46a6fe62bd1ff48b16a70a88354bb9cc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd0ec028a3d21533fdd200838f39c85b03679285d",
+              "symbol": "NEWT",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x2e118e3ec174958db2013012cc51956c08a994aa",
+      "avsCount": 0,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758912755",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1000000000000000000000",
+          "strategy": {
+            "id": "0x86ccab8e46a6fe62bd1ff48b16a70a88354bb9cc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd0ec028a3d21533fdd200838f39c85b03679285d",
+              "symbol": "NEWT",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xc98a78990803d9c7254b2bf85c722c3378c06b38",
+      "avsCount": 0,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758912659",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1000000000000000000000",
+          "strategy": {
+            "id": "0x86ccab8e46a6fe62bd1ff48b16a70a88354bb9cc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd0ec028a3d21533fdd200838f39c85b03679285d",
+              "symbol": "NEWT",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xa3ff1491088715d140bc821a28287cb3f71b43e4",
+      "avsCount": 6,
+      "strategyCount": 11,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758885491",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "12835703375711490356168603",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "93584154242148073332",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "9726495159489082669",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "6525401590535179268",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "465837178440776865579",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5184052421724000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "167236040955341173",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "13500000000000000000",
+          "strategy": {
+            "id": "0x71cb984bbcbae0e85c8d59db131246fa694e100d",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "105000000000000000",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "305694973096674210777",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x801c1c2dfab0a6821ca38a08b78a7c7cc81d64d1",
+      "avsCount": 0,
+      "strategyCount": 0,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758845159",
+      "slashings": [],
+      "strategies": []
+    },
+    {
+      "id": "0x7f784beb3d923b545e4b1f745d931078a8ccd732",
+      "avsCount": 0,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758829223",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1000000000000000000000",
+          "strategy": {
+            "id": "0x86ccab8e46a6fe62bd1ff48b16a70a88354bb9cc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd0ec028a3d21533fdd200838f39c85b03679285d",
+              "symbol": "NEWT",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x9659b1bd2ec1d04b0f517f5f8ae7018bd39b5d75",
+      "avsCount": 0,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758828563",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1000000000000000000000",
+          "strategy": {
+            "id": "0x86ccab8e46a6fe62bd1ff48b16a70a88354bb9cc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd0ec028a3d21533fdd200838f39c85b03679285d",
+              "symbol": "NEWT",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xf1b26eccb7a160280b691eaffa54f621aaf15bfc",
+      "avsCount": 0,
+      "strategyCount": 3,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758821243",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "6800057100000000000000",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "230100000000000000000",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "199998408734946",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x8feb56c8802bda01f3cc1802d44f6cb469ac9b22",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+              "symbol": "sUSDe",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xc27b425dd56827145d28ef5b5eebab867e338278",
+      "avsCount": 0,
+      "strategyCount": 7,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758821243",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "6184906238916865958736",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "199932220831285350180",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "19921090190808799017",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "326",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1620869270980796763",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "20627133037058737815",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "17423383210287417476",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x033bfb405e809a303df875a6e018f1a64e5dbae9",
+      "avsCount": 0,
+      "strategyCount": 7,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758821243",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "4796056800542629440469",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x73a18a6304d05b495ecb161dbf1ab496461bbf2e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb",
+              "symbol": "ALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "44832245095205574183",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "11014064288187557148",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "235",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "17413601570080179773",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1561666378855657727",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "13751421738009865686",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x804f37f602645273a273cabac41c7fb64db12567",
+      "avsCount": 4,
+      "strategyCount": 3,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758356411",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "33630436014500636048",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "80000000000000000000",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "9427694752133276",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xc6811a69d75c6f42e8c47f3d22b0328c74fd9d46",
+      "avsCount": 4,
+      "strategyCount": 2,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758308279",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "4867239678213993547179369",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5621102941633000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x9a26cc3d49d7ed75f79671c59537459968f9bb84",
+      "avsCount": 3,
+      "strategyCount": 7,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758300515",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "3133021728962000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "998258405494199269524",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "35094422666394852111",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "28614933664480557124",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "39367356677952733884",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1386634937465532155220",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x5accc90436492f24e6af278569691e2c942a676d",
+      "avsCount": 33,
+      "strategyCount": 44,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758263555",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "398495941825600190194522",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "573395023526947274762769",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "8457310457816495939642579",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1905233248445204882863",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2491784456034361492780",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "218602326734311424070",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2596467279536649096",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "572341749",
+          "strategy": {
+            "id": "0x752c665ae29bf52f3a162a944ae26882d03321e3",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "symbol": "USDC",
+              "decimals": 6
+            }
+          }
+        },
+        {
+          "totalShares": "2558282171369103498622",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "470210550862064749429127",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "46592722208763901377901",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "133175816921819193731719",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1985095352792880542232",
+          "strategy": {
+            "id": "0x465094e3e031941b921bbb3fbf90ae28cd8879a7",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+              "symbol": "ZRO",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "12014727014201386264337",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "760382527610995512066941345",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "890886368564441898133",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5976142",
+          "strategy": {
+            "id": "0xeb6cc669971d5310bea32291d5d2087474d710ec",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8236a87084f8b84306f72007f36f2618a5634494",
+              "symbol": "LBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "2043407972623736896",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "28409281539642098822151",
+          "strategy": {
+            "id": "0x73a18a6304d05b495ecb161dbf1ab496461bbf2e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb",
+              "symbol": "ALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "161819192017448243545",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "7848943555651964488",
+          "strategy": {
+            "id": "0x71cb984bbcbae0e85c8d59db131246fa694e100d",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "84967",
+          "strategy": {
+            "id": "0x6c6e8af98a49bbabcc17ca1dba6b95c5d58a2ccb",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+              "symbol": "WBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "17055120491836571367332",
+          "strategy": {
+            "id": "0x8cc88d612bff8c7eeb7681481667c459c19bc25f",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xbe0ed4138121ecfc5c0e56b40517da27e6c5226b",
+              "symbol": "ATH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "606940990535576574475",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5057251825366982372034",
+          "strategy": {
+            "id": "0x8feb56c8802bda01f3cc1802d44f6cb469ac9b22",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+              "symbol": "sUSDe",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1347217695580847211078",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "43165836046630813904983",
+          "strategy": {
+            "id": "0x66ea956907f7ed2fd816106f2f4d8c384c6d4f92",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xba50933c268f567bdc86e1ac131be072c6b0b71a",
+              "symbol": "ARPA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "650807210570379405968",
+          "strategy": {
+            "id": "0x1faea963dffa4aca3b79700a448acc75b1b63c60",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3f80b1c54ae920be41a77f8b902259d48cf24ccf",
+              "symbol": "KERNEL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "297626328477660235022846",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "21310476893995618844630",
+          "strategy": {
+            "id": "0xa9ba139e8be19529854234b956fa45716ade505a",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x61dbbbb552dc893ab3aad09f289f811e67cef285",
+              "symbol": "SKATE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "376192415488384631",
+          "strategy": {
+            "id": "0xe7fcf77d0a8cbad4819d2806daec2d15816cc6aa",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8",
+              "symbol": "tETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "211237436829158682817",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2496120058302819088607",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "54512",
+          "strategy": {
+            "id": "0x505241696ab63faec03ed7893246de52eb1a8cff",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+              "symbol": "uniBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "1026757427156425640448",
+          "strategy": {
+            "id": "0x0858616b1a07b7c925ba7e8f9a33475887db3a36",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x83f20f44975d03b1b09e64809b757c47f942beea",
+              "symbol": "sDAI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "4072397707050430046",
+          "strategy": {
+            "id": "0xca18116f8ed9081501b14c6af3a7748e52b0e99e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xa663b02cf0a4b149d2ad41910cb81e23e1c41c32",
+              "symbol": "sFRAX",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "14300062444144131967150",
+          "strategy": {
+            "id": "0x5d4d4582b3b55c0e436735221936ab4e21faa803",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x5a666c7d92e5fa7edcb6390e4efd6d0cdd69cf37",
+              "symbol": "MARSH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "8818607136646992412043",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3735771462205605579",
+          "strategy": {
+            "id": "0x1fc0db099e3452b6c20027578ca57722815df98f",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x18084fba666a33d37592fa2633fd49a74dd93a88",
+              "symbol": "tBTC",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x47377fac3ed4a62b2fbf1a9bf826ae5e03514a70",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x4d4574f50dd8b9dbe623cf329dcc78d76935e610",
+              "symbol": "ZEUS",
+              "decimals": 9
+            }
+          }
+        },
+        {
+          "totalShares": "20457315430062558003478",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x96cac3dc20871f39b14c2bc6f64bf18fc6185079",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf27441230eadeac85b764610325cc9a0d7859689",
+              "symbol": "ASTR",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1000000000000000",
+          "strategy": {
+            "id": "0xa190314e7a4261467ff15e660978ac942f2700bc",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x03f5be358fc2c4df88723a63148bd829b8aa5c91",
+              "symbol": "ozETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "193479",
+          "strategy": {
+            "id": "0xad855d1e5dbbffcbf3249209da28beb9a8259ffe",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc96de26018a54d51c097160568752c4e3bd6c364",
+              "symbol": "FBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "505000000000000",
+          "strategy": {
+            "id": "0xdd24550e754e63d16d07881d16d88328d9ee3382",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf6718b2701d4a6498ef77d7c152b2137ab28b8a3",
+              "symbol": "stBTC",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x01f3be8090c3f3a273c9cd598d8cfc94854a45dd",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x853d955acef822db058eb8505911ed77f175b99e",
+              "symbol": "FRAX",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1500000000000000",
+          "strategy": {
+            "id": "0x74acf103148e183c87ed24ae1d2b3b2c6654fc0a",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x7a56e1c57c7475ccf742a1832b028f0456652f97",
+              "symbol": "SolvBTC",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x9f55f922e05438e57e60755ca9670337950b68b1",
+      "avsCount": 1,
+      "strategyCount": 1,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758259307",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "100014990000000000000000",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xfb487f216ca24162119c0c6ae015d680d7569c2f",
+      "avsCount": 14,
+      "strategyCount": 20,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "271854123740525000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "54714904445185130937756",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1009751338927757511650",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "16635242810131815",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "22508245796408698809",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xa9ba139e8be19529854234b956fa45716ade505a",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x61dbbbb552dc893ab3aad09f289f811e67cef285",
+              "symbol": "SKATE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "67021039230827278315",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3939316789199236561",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x8feb56c8802bda01f3cc1802d44f6cb469ac9b22",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+              "symbol": "sUSDe",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "195772663946877287",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2438666997162251315157",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "36610000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "578377050023426419732",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2541971200000000000",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x6c6e8af98a49bbabcc17ca1dba6b95c5d58a2ccb",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+              "symbol": "WBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "1686192054438280008409",
+          "strategy": {
+            "id": "0x71cb984bbcbae0e85c8d59db131246fa694e100d",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1203504072256124976357",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "694000000000000000000",
+          "strategy": {
+            "id": "0x73a18a6304d05b495ecb161dbf1ab496461bbf2e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb",
+              "symbol": "ALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3283222849352670635",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2025284909627859199",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "121008156462737959011",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "480556696850407183",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5000000000000000000",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xea50bb6735703422d2e053452f1f28bff17da51f",
+      "avsCount": 14,
+      "strategyCount": 12,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "105086923946912102",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "261404827195557867047536",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "24940451123932598899820",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "6779179053434334383",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "391903349558726423401",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5670108760590034373",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x752c665ae29bf52f3a162a944ae26882d03321e3",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "symbol": "USDC",
+              "decimals": 6
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "12086000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "266450000000000000000",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2500000000000000",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xeb6cc669971d5310bea32291d5d2087474d710ec",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8236a87084f8b84306f72007f36f2618a5634494",
+              "symbol": "LBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "356374769098085888092",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x505241696ab63faec03ed7893246de52eb1a8cff",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+              "symbol": "uniBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "6361030000374676677792",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "777143219363277026",
+          "strategy": {
+            "id": "0x71cb984bbcbae0e85c8d59db131246fa694e100d",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xe0156ef2905c2ea8b1f7571caee85fdf1657ab38",
+      "avsCount": 12,
+      "strategyCount": 14,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "5909422137602568483246",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "155502491796791000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "148656800806137197965",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3286589712075034784",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1393000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5969099639344920178",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "34945140707077299",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5947367344200000",
+          "strategy": {
+            "id": "0x66ea956907f7ed2fd816106f2f4d8c384c6d4f92",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xba50933c268f567bdc86e1ac131be072c6b0b71a",
+              "symbol": "ARPA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1000000",
+          "strategy": {
+            "id": "0x752c665ae29bf52f3a162a944ae26882d03321e3",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "symbol": "USDC",
+              "decimals": 6
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "197153372760302981",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "6364814472365015886",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "231920000000000000000",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "499809191127984277",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xdcae4faf7c7d0f4a78abe147244c6e9d60cfd202",
+      "avsCount": 15,
+      "strategyCount": 18,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "4239174094938771097320086",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "76930655039224674543",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5500000000000000000000",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5722",
+          "strategy": {
+            "id": "0x6c6e8af98a49bbabcc17ca1dba6b95c5d58a2ccb",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+              "symbol": "WBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "10000000000000000000",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "109474509817290000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "12113857233639798349",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "5908039275950160264",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2107754027680664701",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "813192269957591908",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "100000000000000000000",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1034578879406482543",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x505241696ab63faec03ed7893246de52eb1a8cff",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+              "symbol": "uniBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "53456402420903698432",
+          "strategy": {
+            "id": "0x73a18a6304d05b495ecb161dbf1ab496461bbf2e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb",
+              "symbol": "ALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1825753114535043633438",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "130000000000000000",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "247754651198617719",
+          "strategy": {
+            "id": "0x71cb984bbcbae0e85c8d59db131246fa694e100d",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "100000000",
+          "strategy": {
+            "id": "0x752c665ae29bf52f3a162a944ae26882d03321e3",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "symbol": "USDC",
+              "decimals": 6
+            }
+          }
+        },
+        {
+          "totalShares": "475715215820309824691",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0xd972a58b6a582954e578455e4752b12f2c8fcdbc",
+      "avsCount": 9,
+      "strategyCount": 12,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7aa0b2618daecdcc3a8d74489c9a601204e1e4b7",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xdf217efd8f3ecb5e837aedf203c28c1f06854017",
+              "symbol": "stBTC",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "30003485183283000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "5313619053757688467",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "28543732159519467448724",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "175100000000000000000",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x6c6e8af98a49bbabcc17ca1dba6b95c5d58a2ccb",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+              "symbol": "WBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "15594911562295922502",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "15595749510109683724",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3604000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "64778789514290680",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "20300000000000000",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "215021221251612000925",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "100000000000000",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x0858616b1a07b7c925ba7e8f9a33475887db3a36",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x83f20f44975d03b1b09e64809b757c47f942beea",
+              "symbol": "sDAI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x8e7e7176d3470c6c2efe71004f496a6ef422a56f",
+      "avsCount": 8,
+      "strategyCount": 9,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "11688535641671000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "5460516315972503116000",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "4432697628578248393",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "42502229554813704435",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "415000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x5d4d4582b3b55c0e436735221936ab4e21faa803",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x5a666c7d92e5fa7edcb6390e4efd6d0cdd69cf37",
+              "symbol": "MARSH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3764808580962565312",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3000000000000000000",
+          "strategy": {
+            "id": "0x01f3be8090c3f3a273c9cd598d8cfc94854a45dd",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x853d955acef822db058eb8505911ed77f175b99e",
+              "symbol": "FRAX",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "19203544854731855",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x67943ae8e07bfc9f5c9a90d608f7923d9c21e051",
+      "avsCount": 13,
+      "strategyCount": 16,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "1436100580661964022",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "219161070589483667",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "423589556855329159470910",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "31095191527506240322",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "6461299347126248757507",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "100537458888086814810",
+          "strategy": {
+            "id": "0x8feb56c8802bda01f3cc1802d44f6cb469ac9b22",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+              "symbol": "sUSDe",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "7024444873752156",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3523484920402242684",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "20000000000000000",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1000000",
+          "strategy": {
+            "id": "0x8cc88d612bff8c7eeb7681481667c459c19bc25f",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xbe0ed4138121ecfc5c0e56b40517da27e6c5226b",
+              "symbol": "ATH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "6740000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1000000",
+          "strategy": {
+            "id": "0x752c665ae29bf52f3a162a944ae26882d03321e3",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "symbol": "USDC",
+              "decimals": 6
+            }
+          }
+        },
+        {
+          "totalShares": "344076090771625740722",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1036400000000000000",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "93298021720528941",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x5d4b5ef127c545e5bf8e247f9fcd4e75a0a366b4",
+      "avsCount": 13,
+      "strategyCount": 12,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "144047584539204855928200",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "10105727981326885985953",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "8684666783342170687",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "10108000351142664473590",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1298874639580922061",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2575000000000000000000",
+          "strategy": {
+            "id": "0x73a18a6304d05b495ecb161dbf1ab496461bbf2e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb",
+              "symbol": "ALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1095000000000000000000",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "26704872804457792339",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "248671214019118036944",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "749",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "522472648260181759686",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "0x5b9b3cf0202a1a3dc8f527257b7e6002d23d8c85",
+      "avsCount": 14,
+      "strategyCount": 27,
+      "slashingCount": 0,
+      "lastUpdateBlockTimestamp": "1758207179",
+      "slashings": [],
+      "strategies": [
+        {
+          "totalShares": "231054998219587000000000",
+          "strategy": {
+            "id": "0xbeac0eeeeeeeeeeeeeeeeeeeeeeeeeeeeeebeac0",
+            "exchangeRate": "0",
+            "token": null
+          }
+        },
+        {
+          "totalShares": "402705",
+          "strategy": {
+            "id": "0x6c6e8af98a49bbabcc17ca1dba6b95c5d58a2ccb",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+              "symbol": "WBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "262912168267659092421967",
+          "strategy": {
+            "id": "0xacb55c530acdb2849e6d4f36992cd8c9d50ed8f7",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+              "symbol": "EIGEN",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "84163146298237767510",
+          "strategy": {
+            "id": "0x1bee69b7dfffa4e2d53c2a2df135c388ad25dcd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae78736cd615f374d3085123a210448e74fc6393",
+              "symbol": "rETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "159943024229573145421",
+          "strategy": {
+            "id": "0x0fe4f44bee93503346a3ac9ee5a26b130a5796d6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf951e335afb289353dc249e82926178eac7ded78",
+              "symbol": "swETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1357091536898785344066",
+          "strategy": {
+            "id": "0x93c4b944d05dfe6df7645a86cd2206016c51564d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+              "symbol": "stETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "368271902000000000000",
+          "strategy": {
+            "id": "0x7079a4277eaf578cbe9682ac7bc3efff8635ebbf",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+              "symbol": "ETHFI",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "3257004285548714994188",
+          "strategy": {
+            "id": "0x6075546538c3efbd607ea6afc24149fccfb2edf4",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+              "symbol": "reALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "8330800273027963050",
+          "strategy": {
+            "id": "0x54945180db7943c0ed0fee7edab2bd24620256bc",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+              "symbol": "cbETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "11999658709436985424",
+          "strategy": {
+            "id": "0x13760f50a9d7377e4f20cb8cf9e4c26586c658ff",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xe95a203b1a91a908f9b9ce46459d101078c2c3cb",
+              "symbol": "ankrETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1022949171736837436",
+          "strategy": {
+            "id": "0x57ba429517c3473b6d34ca9acd56c0e735b94c02",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xf1c9acdc66974dfb6decb12aa385b9cd01190e38",
+              "symbol": "osETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "4295997741678415087904",
+          "strategy": {
+            "id": "0xb8312b0b13dc1925b6aa2debb432b4c3b93b1dab",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0a6e7ba5042b38349e437ec6db6214aec7b35676",
+              "symbol": "SWELL",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "2243291359931656516",
+          "strategy": {
+            "id": "0x298afb19a105d59e74658c4c334ff360bade6dd2",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xd5f7838f5c461feff7fe49ea5ebaf7728bb0adfa",
+              "symbol": "mETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "13937608510070808745",
+          "strategy": {
+            "id": "0x9d7ed45ee2e8fc5482fa2428f15c971e6369011d",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa35b1b31ce002fbf2058d22f30f95d405200a15b",
+              "symbol": "ETHx",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "28283599168909815473",
+          "strategy": {
+            "id": "0xa4c637e0f704745d182e4d38cab7e7485321d059",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x856c4efb76c1d1ae02e20ceb03a2a6a08b0b8dc3",
+              "symbol": "OETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "995900000000000000",
+          "strategy": {
+            "id": "0x7ca911e83dabf90c90dd3de5411a10f1a6112184",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+              "symbol": "wBETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1286398809000000000000",
+          "strategy": {
+            "id": "0xa9ba139e8be19529854234b956fa45716ade505a",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x61dbbbb552dc893ab3aad09f289f811e67cef285",
+              "symbol": "SKATE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "32767000000000000000000",
+          "strategy": {
+            "id": "0xdcd1206683adc3d6cc3619c4045cbd7ec179b403",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x0fc2a55d5bd13033f1ee0cdd11f60f7efe66f467",
+              "symbol": "LA",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1569010000000000000000",
+          "strategy": {
+            "id": "0x73a18a6304d05b495ecb161dbf1ab496461bbf2e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8457ca5040ad67fdebbcc8edce889a335bc0fbfb",
+              "symbol": "ALT",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "400000000000000000000000",
+          "strategy": {
+            "id": "0x99a05f4e3fa886a5104630e8a4b01159867ad9a1",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+              "symbol": "PEPE",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "82875560516871420971",
+          "strategy": {
+            "id": "0x8feb56c8802bda01f3cc1802d44f6cb469ac9b22",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+              "symbol": "sUSDe",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "1825420000000000000000",
+          "strategy": {
+            "id": "0xc9ad499c11677ea3815984295dd73c0858757b8e",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x3b50805453023a91a8bf641e279401a0b23fa6f9",
+              "symbol": "REZ",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "100000000000000",
+          "strategy": {
+            "id": "0xa553a8198e0692b4393ac2f64bd2e42a2061c1c5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "symbol": "WETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0x505241696ab63faec03ed7893246de52eb1a8cff",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+              "symbol": "uniBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "444000000000000000000",
+          "strategy": {
+            "id": "0x903a1ff023a35efed333ee9d6bf30629a098b9ed",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0xc43c6bfeda065fe2c4c11765bf838789bd0bb5de",
+              "symbol": "RED",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "786659686406243097",
+          "strategy": {
+            "id": "0x9fafaa81a7c5a6a1d81e371d673401929acb0dd5",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x736ecc5237b31edec6f1ab9a396fae2416b1d96e",
+              "symbol": "GASP",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "0",
+          "strategy": {
+            "id": "0xeb6cc669971d5310bea32291d5d2087474d710ec",
+            "exchangeRate": "1000000000000000000",
+            "token": {
+              "id": "0x8236a87084f8b84306f72007f36f2618a5634494",
+              "symbol": "LBTC",
+              "decimals": 8
+            }
+          }
+        },
+        {
+          "totalShares": "83127380296427120",
+          "strategy": {
+            "id": "0xae60d8180437b5c34bb956822ac2710972584473",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+              "symbol": "LsETH",
+              "decimals": 18
+            }
+          }
+        },
+        {
+          "totalShares": "4616758242439537026",
+          "strategy": {
+            "id": "0x8ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b6",
+            "exchangeRate": "0",
+            "token": {
+              "id": "0xac3e018457b222d93114458476f3e3416abbe38f",
+              "symbol": "sfrxETH",
+              "decimals": 18
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
