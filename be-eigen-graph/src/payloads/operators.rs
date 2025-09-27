@@ -1,4 +1,5 @@
 use crate::models::operator::OperatorRiskRow;
+use crate::models::operators_aggr::{BarItem, GraphEdge, Outliers, TableRow};
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize)]
@@ -49,4 +50,33 @@ impl From<OperatorRiskRow> for OperatorRiskItemView {
                 .collect(),
         }
     }
+}
+
+#[derive(Debug, Deserialize)]
+pub struct AggregatesQuery {
+    pub source: Option<String>,
+    pub first: Option<i32>,
+    pub skip: Option<i32>,
+    pub top_n: Option<usize>,
+    pub hhi_threshold: Option<f64>,
+    pub min_tvl_atomic: Option<String>,
+    pub operator_id: Option<String>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct AggregatesResponse {
+    pub meta: AggregatesMeta,
+    pub table: Vec<TableRow>,
+    pub bar: Vec<BarItem>,
+    pub donut: serde_json::Value,
+    pub graph: Vec<GraphEdge>,
+    pub outliers: Outliers,
+}
+
+#[derive(Debug, Serialize)]
+pub struct AggregatesMeta {
+    pub source: String,
+    pub first: i32,
+    pub skip: i32,
+    pub count: usize,
 }
