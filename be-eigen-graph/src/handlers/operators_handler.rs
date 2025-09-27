@@ -31,6 +31,18 @@ pub async fn snapshot_handler(
     .await
     .expect("subgraph query failed");
 
+    if let Err(e) =
+        crate::services::operators::operators_repo::persist_operators_snapshot_db(&state.db, &data)
+            .await
+    {
+        eprintln!("persist_operators_snapshot_db failed: {e}");
+    }
+
+    crate::services::operators::operators_cache::upsert_operators_snapshot_cache(
+        &state.operators_snapshot,
+        &data,
+    );
+
     Json(data)
 }
 
