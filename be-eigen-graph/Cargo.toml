@@ -16,3 +16,4 @@ num-traits = "0.2.19"
 futures = "0.3.31"
 anyhow = "1.0.100"
 sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio-rustls", "macros", "migrate", "chrono", "uuid", "bigdecimal", "json"] }
+chrono = "0.4.42"
