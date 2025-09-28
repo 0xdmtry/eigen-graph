@@ -138,7 +138,14 @@ fn aggregate_one(op: &UniformOperator) -> OperatorAggregate {
         if p.total_shares == "0" {
             zero_share_flag = true;
         }
-        let tvl = mul_u256(&p.total_shares, &p.exchange_rate).unwrap_or_else(|_| BigUint::zero());
+
+        let rate = if p.exchange_rate.is_empty() || p.exchange_rate == "0" {
+            "1000000000000000000"
+        } else {
+            &p.exchange_rate
+        };
+
+        let tvl = mul_u256(&p.total_shares, rate).unwrap_or_else(|_| BigUint::zero());
         slices.push((p.strategy_id.clone(), tvl));
     }
 
