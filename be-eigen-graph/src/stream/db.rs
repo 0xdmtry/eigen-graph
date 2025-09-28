@@ -1,3 +1,5 @@
+use bigdecimal::BigDecimal;
+use sqlx::Row;
 use sqlx::{Pool, Postgres, QueryBuilder};
 
 pub struct TsDb;
@@ -13,6 +15,87 @@ pub struct DepositRow {
     pub block_number: i64,
     pub block_timestamp: i64,
     pub tx_hash: String,
+}
+
+#[derive(Clone, Debug)]
+pub struct BucketPoint {
+    pub t: i64,
+    pub count: i64,
+    pub sum_shares: String,
+}
+
+pub async fn fetch_buckets(
+    pool: &Pool<Postgres>,
+    token_id: &str,
+    since_ts: i64,
+    bucket_sec: i64,
+) -> Result<Vec<BucketPoint>, sqlx::Error> {
+    let rows = sqlx::query(
+        r#"
+        SELECT
+          ((block_timestamp / $2) * $2)::bigint AS bucket,
+          COUNT(*)::bigint                      AS cnt,
+          COALESCE(SUM(shares), 0)::numeric     AS sum_shares
+        FROM deposits_raw
+        WHERE token_id = $1 AND block_timestamp >= $3
+        GROUP BY bucket
+        ORDER BY bucket
+        "#,
+    )
+    .bind(token_id)
+    .bind(bucket_sec)
+    .bind(since_ts)
+    .fetch_all(pool)
+    .await?;
+
+    let out = rows
+        .into_iter()
+        .map(|r| {
+            let bucket: i64 = r.get("bucket");
+            let cnt: i64 = r.get("cnt");
+            let sum: BigDecimal = r.get("sum_shares");
+            BucketPoint {
+                t: bucket,
+                count: cnt,
+                sum_shares: sum.to_string(),
+            }
+        })
+        .collect();
+
+    Ok(out)
+}
+
+pub async fn fetch_current_bucket(
+    pool: &Pool<Postgres>,
+    token_id: &str,
+    bucket_start: i64,
+    bucket_end: i64,
+) -> Result<BucketPoint, sqlx::Error> {
+    let row = sqlx::query(
+        r#"
+        SELECT
+          COUNT(*)::bigint                  AS cnt,
+          COALESCE(SUM(shares), 0)::numeric AS sum_shares
+        FROM deposits_raw
+        WHERE token_id = $1
+          AND block_timestamp >= $2
+          AND block_timestamp <  $3
+        "#,
+    )
+    .bind(token_id)
+    .bind(bucket_start)
+    .bind(bucket_end)
+    .fetch_one(pool)
+    .await?;
+
+    let cnt: i64 = row.get("cnt");
+    let sum: BigDecimal = row.get("sum_shares");
+
+    Ok(BucketPoint {
+        t: bucket_start,
+        count: cnt,
+        sum_shares: sum.to_string(),
+    })
 }
 
 pub async fn insert_batch_ts(
