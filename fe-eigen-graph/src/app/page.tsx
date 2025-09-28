@@ -11,8 +11,6 @@ import OperatorDonutChart from "@/components/operators/OperatorDonutChart";
 const fetcher = (url: string): Promise<ApiResponse> => fetch(url).then((res) => res.json());
 
 export default function Home() {
-
-    // 1. Apply the ApiResponse type as a generic to the useSWR hook.
     const {data, error, isLoading} = useSWR<ApiResponse>(
         'http://localhost:8000/v1/operators/aggregates',
         fetcher
@@ -22,16 +20,13 @@ export default function Home() {
     if (error) return <div>Error fetching data.</div>;
     if (!data) return <div>No data found.</div>;
 
-    console.log("outliers", JSON.stringify(data.outliers));
-    // console.log("data", data);
-
     return (
         <div className="space-y-6">
             <OperatorDonutChart donutData={data.donut}/>
             <OperatorStrategySankey graphData={data.graph}/>
             <OperatorsTvl barData={data.bar}/>
             <OperatorsTable
-                tableData={data.table}
+                tableData={data.byToken.EIGEN.table}
             />
         </div>
     );
