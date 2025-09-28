@@ -33,6 +33,8 @@ async fn handle_ws(mut socket: WebSocket, stream_state: Arc<StreamState>, q: Str
     );
     let _ = socket.send(Message::Text(Utf8Bytes::from(hello))).await;
 
+    stream_state.register_interest(&q.token, q.since);
+
     loop {
         tokio::select! {
             biased;
