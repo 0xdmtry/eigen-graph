@@ -22,8 +22,5 @@ pub async fn run_ws_server(bind_addr: &str, stream_state: Arc<StreamState>) -> a
 }
 
 pub async fn run_poller(stream_state: Arc<StreamState>) {
-    let _ = stream_state;
-    loop {
-        tokio::time::sleep(std::time::Duration::from_secs(3)).await;
-    }
+    crate::stream::poller::run(stream_state).await;
 }

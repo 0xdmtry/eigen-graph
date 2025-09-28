@@ -54,9 +54,12 @@ pub async fn run(stream_state: Arc<StreamState>) {
                 Ok(v) => v,
                 Err(e) => {
                     eprintln!("[stream] fetch deposits {token_key} err: {e}");
+                    emit_tick(&ts_pool, &stream_state, &token_key, &token_id).await;
                     continue;
                 }
             };
+
+            emit_tick(&ts_pool, &stream_state, &token_key, &token_id).await;
 
             if deposits.is_empty() {
                 continue;
@@ -155,5 +158,35 @@ pub async fn run(stream_state: Arc<StreamState>) {
         }
 
         tokio::time::sleep(Duration::from_secs(3)).await;
+    }
+}
+
+async fn emit_tick(
+    ts_pool: &sqlx::Pool<sqlx::Postgres>,
+    stream_state: &StreamState,
+    token_key: &str,
+    token_id: &str,
+) {
+    let now = chrono::Utc::now().timestamp();
+    let bucket_sec = std::env::var("DEPOSITS_BUCKET_SEC")
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(300i64);
+
+    let bucket_start = (now / bucket_sec) * bucket_sec;
+    let bucket_end = bucket_start + bucket_sec;
+
+    match fetch_current_bucket(ts_pool, token_id, bucket_start, bucket_end).await {
+        Ok(bp) => {
+            let payload = serde_json::json!({
+                "type": "tick",
+                "token": token_key,
+                "token_id": token_id,
+                "bucket": { "t": bp.t, "count": bp.count, "sum_shares": bp.sum_shares }
+            });
+            let _ =
+                stream_state.publish(token_key, crate::stream::state::Event(payload.to_string()));
+        }
+        Err(e) => eprintln!("[stream] tick agg err for {token_key}: {e}"),
     }
 }
