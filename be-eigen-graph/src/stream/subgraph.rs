@@ -14,7 +14,7 @@ query TokensBySymbol($sym: String!, $first: Int!) {
 "#;
 
 const Q_DEPOSITS_BY_TOKEN: &str = r#"
-query DepositsByToken($tokenId: String, $token: String, $since: BigInt!, $first: Int!, $skip: Int!) {
+query DepositsByToken($tokenId: String!, $since: BigInt!, $first: Int!, $skip: Int!) {
   deposits(
     first: $first
     skip: $skip
@@ -23,7 +23,6 @@ query DepositsByToken($tokenId: String, $token: String, $since: BigInt!, $first:
     where: {
       blockTimestamp_gte: $since
       token_: { id: $tokenId }
-      token: $token
     }
   ) {
     id
@@ -85,7 +84,8 @@ pub async fn resolve_token_id(
     symbol_or_addr: &str,
 ) -> Result<(String, String), anyhow::Error> {
     if symbol_or_addr.starts_with("0x") && symbol_or_addr.len() >= 42 {
-        return Ok((symbol_or_addr.to_string(), symbol_or_addr.to_string()));
+        let id = normalize_addr(symbol_or_addr);
+        return Ok((id.clone(), id));
     }
     let body = GraphQLRequest {
         query: Q_TOKENS_BY_SYMBOL,
@@ -104,44 +104,32 @@ pub async fn resolve_token_id(
         .data
         .ok_or_else(|| anyhow::anyhow!("empty token data"))?;
 
-    if let Some(ex) = data
+    let best = data
         .tokens
         .iter()
         .find(|t| t.symbol.eq_ignore_ascii_case(symbol_or_addr))
-    {
-        return Ok((ex.id.clone(), ex.symbol.clone()));
-    }
-    data.tokens
-        .first()
-        .map(|t| (t.id.clone(), t.symbol.clone()))
-        .ok_or_else(|| anyhow::anyhow!("token not found by symbol: {symbol_or_addr}"))
+        .or_else(|| data.tokens.first())
+        .ok_or_else(|| anyhow::anyhow!("token not found by symbol: {symbol_or_addr}"))?;
+
+    Ok((normalize_addr(&best.id), best.symbol.clone()))
 }
 
 pub async fn fetch_deposits_since(
     client: &SubgraphClient,
-    _token_key: &str,
-    token_id_or_addr: &str,
+    token_id: &str,
     since_ts: i64,
     page_size: i32,
 ) -> Result<Vec<DepositDto>, anyhow::Error> {
-    let (token_id, token_field_val, use_id) = if token_id_or_addr.starts_with("0x") {
-        (token_id_or_addr.to_string(), serde_json::Value::Null, true)
-    } else {
-        (
-            String::new(),
-            serde_json::Value::String(token_id_or_addr.to_string()),
-            false,
-        )
-    };
-
     let mut all = Vec::new();
     let mut skip = 0;
     loop {
-        let vars = if use_id {
-            serde_json::json!({ "tokenId": token_id, "since": since_ts.to_string(), "first": page_size, "skip": skip })
-        } else {
-            serde_json::json!({ "token": token_field_val, "since": since_ts.to_string(), "first": page_size, "skip": skip })
-        };
+        let vars = serde_json::json!({
+            "tokenId": token_id,
+            "since": since_ts.to_string(),
+            "first": page_size,
+            "skip": skip
+        });
+
         let body = GraphQLRequest {
             query: Q_DEPOSITS_BY_TOKEN,
             variables: Some(vars),
@@ -174,4 +162,12 @@ pub async fn fetch_deposits_since(
         }
     }
     Ok(all)
+}
+
+fn normalize_addr(s: &str) -> String {
+    if s.starts_with("0x") {
+        s.to_lowercase()
+    } else {
+        format!("0x{s}").to_lowercase()
+    }
 }
