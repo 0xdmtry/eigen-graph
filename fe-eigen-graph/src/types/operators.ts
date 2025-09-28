@@ -54,4 +54,14 @@ export interface ApiResponse {
     donut: Donut;
     graph: GraphItem[];
     outliers: Outliers;
+    byToken: Record<string, TokenSlice>;
+}
+
+export interface TokenSlice {
+    meta: Meta;
+    table: TableItem[];
+    bar: BarItem[];
+    donut: Donut;
+    graph: GraphItem[];
+    outliers: Outliers;
 }
