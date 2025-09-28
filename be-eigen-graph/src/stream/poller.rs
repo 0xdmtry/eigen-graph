@@ -3,9 +3,11 @@ use std::time::Duration;
 
 use crate::api::subgraph::client::SubgraphClient;
 use crate::config::AppConfig;
+use crate::stream::db::fetch_current_bucket;
 use crate::stream::db::{DepositRow, insert_batch_ts};
 use crate::stream::state::StreamState;
 use crate::stream::subgraph::{fetch_deposits_since, resolve_token_id};
+use chrono::Utc;
 
 const PAGE_SIZE: i32 = 500;
 const REFETCH_WINDOW_SECS: i64 = 60 * 10;
@@ -48,14 +50,14 @@ pub async fn run(stream_state: Arc<StreamState>) {
                 cur.last_ts.saturating_sub(REFETCH_WINDOW_SECS),
             );
 
-            let deposits =
-                match fetch_deposits_since(&sg, &token_key, &token_id, since, PAGE_SIZE).await {
-                    Ok(v) => v,
-                    Err(e) => {
-                        eprintln!("[stream] fetch deposits {token_key} err: {e}");
-                        continue;
-                    }
-                };
+            let deposits = match fetch_deposits_since(&sg, &token_id, since, PAGE_SIZE).await {
+                Ok(v) => v,
+                Err(e) => {
+                    eprintln!("[stream] fetch deposits {token_key} err: {e}");
+                    continue;
+                }
+            };
+
             if deposits.is_empty() {
                 continue;
             }
@@ -100,7 +102,7 @@ pub async fn run(stream_state: Arc<StreamState>) {
             }
 
             match insert_batch_ts(&ts_pool, &rows).await {
-                Ok(_n) => { }
+                Ok(_n) => {}
                 Err(e) => {
                     eprintln!("[stream] insert ts err: {e}");
                 }
@@ -125,6 +127,31 @@ pub async fn run(stream_state: Arc<StreamState>) {
             }
 
             stream_state.advance_cursor(&token_key, max_ts, &max_id);
+
+            let now = Utc::now().timestamp();
+            let bucket_sec = env_i64("DEPOSITS_BUCKET_SEC", 300);
+            fn env_i64(name: &str, default: i64) -> i64 {
+                std::env::var(name)
+                    .ok()
+                    .and_then(|v| v.parse().ok())
+                    .unwrap_or(default)
+            }
+            let bucket_start = (now / bucket_sec) * bucket_sec;
+            let bucket_end = bucket_start + bucket_sec;
+
+            match fetch_current_bucket(&ts_pool, &token_id, bucket_start, bucket_end).await {
+                Ok(bp) => {
+                    let payload = serde_json::json!({
+                        "type": "tick",
+                        "token": token_key,
+                        "token_id": token_id,
+                        "bucket": { "t": bp.t, "count": bp.count, "sum_shares": bp.sum_shares }
+                    });
+                    let _ = stream_state
+                        .publish(&token_key, crate::stream::state::Event(payload.to_string()));
+                }
+                Err(e) => eprintln!("[stream] tick agg err for {token_key}: {e}"),
+            }
         }
 
         tokio::time::sleep(Duration::from_secs(3)).await;
