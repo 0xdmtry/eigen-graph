@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-axum = "0.8.4"
+axum = { version = "0.8.4", features = ["ws"] }
 dotenvy = "0.15.7"
 reqwest = { version = "0.12.23", features = ["json"] }
 serde = { version = "1.0.226", features = ["derive"] }
@@ -18,3 +18,4 @@ anyhow = "1.0.100"
 sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio-rustls", "macros", "migrate", "chrono", "uuid", "bigdecimal", "json"] }
 chrono = "0.4.42"
 tower-http = { version = "0.6.6", features = ["cors"] }
+tokio-stream = "0.1.17"
