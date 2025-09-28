@@ -1,18 +1,21 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct UniformPage {
     pub operators: Vec<UniformOperator>,
     pub page_meta: PageMeta,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct PageMeta {
     pub first: i32,
     pub skip: i32,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct UniformOperator {
     pub operator_id: String,
     pub avs_count: i32,
@@ -24,6 +27,7 @@ pub struct UniformOperator {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct UniformPosition {
     pub strategy_id: String,
     pub token_id: String,
@@ -34,6 +38,7 @@ pub struct UniformPosition {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct AggregatorParams {
     pub top_n: usize,
     pub hhi_threshold: f64,
@@ -55,6 +60,7 @@ impl Default for AggregatorParams {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct OperatorAggregate {
     pub operator_id: String,
     pub avs_count: i32,
@@ -73,6 +79,7 @@ pub struct OperatorAggregate {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct StrategySlice {
     pub strategy_id: String,
     pub tvl_atomic: String,
@@ -80,6 +87,7 @@ pub struct StrategySlice {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct TableRow {
     pub operator_id: String,
     pub avs_count: i32,
@@ -93,18 +101,21 @@ pub struct TableRow {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct BarItem {
     pub operator_id: String,
     pub tvl_total_atomic: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Donut {
     pub operator_id: String,
     pub slices: Vec<StrategySlice>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct GraphEdge {
     pub operator_id: String,
     pub strategy_id: String,
@@ -112,6 +123,7 @@ pub struct GraphEdge {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Outliers {
     pub high_concentration: Vec<String>,
     pub zero_share: Vec<String>,
