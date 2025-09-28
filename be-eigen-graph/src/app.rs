@@ -26,7 +26,6 @@ pub async fn app() -> Router {
         .expect("db migrations failed");
 
     let ts_db = if let Some(ts_url) = &config.timescale_database_url {
-
         let pool = PgPoolOptions::new()
             .max_connections(10)
             .acquire_timeout(Duration::from_secs(5))
