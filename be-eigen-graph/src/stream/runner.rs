@@ -9,7 +9,7 @@ use crate::stream::ws;
 
 pub async fn run_ws_server(bind_addr: &str, stream_state: Arc<StreamState>) -> anyhow::Result<()> {
     let router = Router::new()
-        .route("/healthz", get(|| async { "ok" }))
+        .route("/ping", get(|| async { "pong" }))
         .route("/stream/deposits", get(ws::deposits_ws_handler))
         .with_state(stream_state);
 
