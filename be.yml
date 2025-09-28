@@ -8,6 +8,7 @@ services:
     restart: always
     ports:
       - "8000:8000"
+      - "8010:8010"
     volumes:
       - ./be-eigen-graph/src:/app/src
       - ./be-eigen-graph/migrations:/app/migrations
