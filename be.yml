@@ -17,6 +17,8 @@ services:
     depends_on:
       db-eigen-graph:
         condition: service_healthy
+      db-eigen-timescale:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgres://root:root@db-eigen-graph:5432/eigen-graph
       TIMESCALE_DATABASE_URL: postgres://root:root@db-eigen-timescale:5432/eigen-ts
@@ -53,7 +55,7 @@ services:
       POSTGRES_PASSWORD: root
       TIMESCALEDB_TELEMETRY: "off"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U root -d eigen-ts -h localhost -p 5432" ]
+      test: [ "CMD-SHELL", "pg_isready -U root -d eigen-ts" ]
       interval: 5s
       timeout: 3s
       retries: 10
