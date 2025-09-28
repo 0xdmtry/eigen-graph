@@ -1,6 +1,7 @@
 use crate::models::operator::OperatorRiskRow;
 use crate::models::operators_aggr::{BarItem, GraphEdge, Outliers, TableRow};
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -75,6 +76,7 @@ pub struct AggregatesResponse {
     pub donut: serde_json::Value,
     pub graph: Vec<GraphEdge>,
     pub outliers: Outliers,
+    pub by_token: BTreeMap<String, TokenSlice>,
 }
 
 #[derive(Debug, Serialize)]
@@ -84,4 +86,15 @@ pub struct AggregatesMeta {
     pub first: i32,
     pub skip: i32,
     pub count: usize,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TokenSlice {
+    pub meta: AggregatesMeta,
+    pub table: Vec<TableRow>,
+    pub bar: Vec<BarItem>,
+    pub donut: serde_json::Value,
+    pub graph: Vec<GraphEdge>,
+    pub outliers: Outliers,
 }
