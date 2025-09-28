@@ -25,10 +25,30 @@ pub async fn app() -> Router {
         .await
         .expect("db migrations failed");
 
+    let ts_db = if let Some(ts_url) = &config.timescale_database_url {
+
+        let pool = PgPoolOptions::new()
+            .max_connections(10)
+            .acquire_timeout(Duration::from_secs(5))
+            .connect(ts_url)
+            .await
+            .expect("failed to connect to TimescaleDB");
+
+        sqlx::migrate!("./migrations_timescale")
+            .run(&pool)
+            .await
+            .expect("timescale migrations failed");
+
+        Some(pool)
+    } else {
+        None
+    };
+
     let state = AppState {
         subgraph_client: SubgraphClient::new(config.subgraph_url),
         operators_snapshot: Arc::new(Mutex::new(HashMap::new())),
         db,
+        ts_db,
     };
 
     let cors = CorsLayer::new()
