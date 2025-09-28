@@ -13,6 +13,7 @@ pub struct SnapshotQuery {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct OperatorRiskItemView {
     pub operator_id: String,
     pub avs_count: u32,
@@ -24,6 +25,7 @@ pub struct OperatorRiskItemView {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct TvlView {
     pub token: String,
     pub symbol: String,
@@ -53,6 +55,7 @@ impl From<OperatorRiskRow> for OperatorRiskItemView {
 }
 
 #[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct AggregatesQuery {
     pub source: Option<String>,
     pub first: Option<i32>,
@@ -64,6 +67,7 @@ pub struct AggregatesQuery {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct AggregatesResponse {
     pub meta: AggregatesMeta,
     pub table: Vec<TableRow>,
@@ -74,6 +78,7 @@ pub struct AggregatesResponse {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct AggregatesMeta {
     pub source: String,
     pub first: i32,
