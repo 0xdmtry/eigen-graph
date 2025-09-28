@@ -12,6 +12,10 @@ use axum::{
     response::{IntoResponse, Json},
 };
 
+use crate::payloads::operators::TokenSlice;
+use crate::services::operators::operators_aggr::operators_part::partition_by_token;
+use std::collections::BTreeMap;
+
 pub async fn snapshot_handler(
     State(state): State<AppState>,
     Query(q): Query<SnapshotQuery>,
@@ -124,6 +128,55 @@ pub async fn operators_aggregates_handler(
         now_ts,
     );
 
+    let mut by_token: BTreeMap<String, TokenSlice> = BTreeMap::new();
+    let token_pages = partition_by_token(&uniform);
+    for (symbol, token_page) in token_pages {
+        let aggr_tok = operators_aggregator::aggregate(&token_page, &params, now_ts);
+
+        let table_tok = operators_aggregator::to_table_rows(&aggr_tok);
+        let bar_tok = operators_aggregator::to_bar_series(&aggr_tok, params.top_n);
+        let donuts_tok = operators_aggregator::to_donuts(&aggr_tok, &params.focus_operator_id);
+        let donut_tok = if params.focus_operator_id.is_some() {
+            if let Some(d) = donuts_tok.into_iter().next() {
+                serde_json::to_value(d).unwrap_or(serde_json::json!({}))
+            } else {
+                serde_json::json!({})
+            }
+        } else {
+            let map = donuts_tok
+                .into_iter()
+                .map(|d| (d.operator_id.clone(), d))
+                .collect::<BTreeMap<_, _>>();
+            serde_json::to_value(map).unwrap_or(serde_json::json!({}))
+        };
+        let graph_tok = operators_aggregator::to_graph_edges(&aggr_tok);
+        let out_tok = operators_aggregator::detect_outliers(
+            &aggr_tok,
+            params.hhi_threshold,
+            params.recent_window_s,
+            now_ts,
+        );
+
+        let meta_tok = AggregatesMeta {
+            source: source.to_string(),
+            first,
+            skip,
+            count: aggr_tok.len(),
+        };
+
+        by_token.insert(
+            symbol,
+            TokenSlice {
+                meta: meta_tok,
+                table: table_tok,
+                bar: bar_tok,
+                donut: donut_tok,
+                graph: graph_tok,
+                outliers: out_tok,
+            },
+        );
+    }
+
     let resp = AggregatesResponse {
         meta: AggregatesMeta {
             source: source.to_string(),
@@ -136,6 +189,7 @@ pub async fn operators_aggregates_handler(
         donut,
         graph,
         outliers,
+        by_token,
     };
 
     Json(resp)
