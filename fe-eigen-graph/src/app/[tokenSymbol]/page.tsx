@@ -42,18 +42,19 @@ export default function TokenPage() {
 
     const selectedTokenSymbol = params.tokenSymbol.toUpperCase();
     const tableDataForSelectedToken = data.byToken[selectedTokenSymbol]?.table || [];
+    const barDataForSelectedToken = data.byToken[selectedTokenSymbol]?.bar || [];
 
     return (
         <div className="space-y-6">
-            <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8  shadow-md">
+            <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 shadow-md">
                 <TokenPanel tokens={tokensForPanel}/>
+                <OperatorsTvl barData={barDataForSelectedToken}/>
                 <OperatorsTable
                     tableData={tableDataForSelectedToken}
                 />
             </main>
             {/*<OperatorDonutChart donutData={data.byToken.EIGEN.donut}/>*/}
             {/*<OperatorStrategySankey graphData={data.graph}/>*/}
-            {/*<OperatorsTvl barData={data.bar}/>*/}
         </div>
     );
 }
