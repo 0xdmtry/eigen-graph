@@ -13,6 +13,7 @@ use sqlx::postgres::PgPoolOptions;
 
 use crate::api::subgraph::client::SubgraphClient;
 use crate::config::AppConfig;
+use crate::stream::db::load_cursor;
 use crate::stream::db::{BucketPoint, fetch_buckets};
 use crate::stream::subgraph::resolve_token_id;
 
@@ -103,7 +104,19 @@ async fn handle_ws(mut socket: WebSocket, stream_state: Arc<StreamState>, q: Str
         .send(Message::Text(Utf8Bytes::from(hello.to_string())))
         .await;
 
-    let last_bucket_ts = series.last().map(|p| p.t).unwrap_or(start_ts);
+    let _last_bucket_ts = series.last().map(|p| p.t).unwrap_or(start_ts);
+    let persisted_cursor = match load_cursor(&ts_pool, &token_id).await {
+        Ok(c) => c,
+        Err(e) => {
+            eprintln!("[stream] load_cursor in ws err: {e}");
+            None
+        }
+    };
+    let (cursor_ts, cursor_id) = persisted_cursor.unwrap_or((
+        series.last().map(|p| p.t).unwrap_or(start_ts),
+        String::new(),
+    ));
+
     let init = serde_json::json!({
       "type":"init",
       "token": q.token,
@@ -111,7 +124,7 @@ async fn handle_ws(mut socket: WebSocket, stream_state: Arc<StreamState>, q: Str
       "window_sec": window_sec,
       "bucket_sec": bucket_sec,
       "series": series.iter().map(|p| serde_json::json!({"t": p.t, "count": p.count, "sum_shares": p.sum_shares})).collect::<Vec<_>>(),
-      "cursor": { "last_ts": last_bucket_ts, "last_id": "" }
+      "cursor": { "last_ts": cursor_ts, "last_id": cursor_id }
     });
     let _ = socket
         .send(Message::Text(Utf8Bytes::from(init.to_string())))

@@ -37,6 +37,30 @@ query DepositsByToken($tokenId: String!, $since: BigInt!, $first: Int!, $skip: I
 }
 "#;
 
+const Q_DEPOSITS_BY_TOKEN_DESC: &str = r#"
+query DepositsByTokenDesc($tokenId: String!, $since: BigInt!, $first: Int!, $skip: Int!) {
+  deposits(
+    first: $first
+    skip: $skip
+    orderBy: blockTimestamp
+    orderDirection: desc
+    where: {
+      blockTimestamp_gte: $since
+      token_: { id: $tokenId }
+    }
+  ) {
+    id
+    token { id symbol }
+    staker { id }
+    strategy { id }
+    shares
+    blockNumber
+    blockTimestamp
+    transactionHash
+  }
+}
+"#;
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TokenLite {
@@ -162,6 +186,45 @@ pub async fn fetch_deposits_since(
         }
     }
     Ok(all)
+}
+
+pub async fn fetch_deposits_since_desc(
+    client: &SubgraphClient,
+    token_id: &str,
+    since_ts: i64,
+    page_size: i32,
+    start_skip: i32,
+) -> Result<Vec<DepositDto>, anyhow::Error> {
+    let vars = serde_json::json!({
+        "tokenId": token_id,
+        "since": since_ts.to_string(),
+        "first": page_size,
+        "skip": start_skip
+    });
+
+    let body = crate::models::subgraph::GraphQLRequest {
+        query: Q_DEPOSITS_BY_TOKEN_DESC,
+        variables: Some(vars),
+    };
+
+    let resp = client
+        .http
+        .post(client.endpoint.clone())
+        .json(&body)
+        .send()
+        .await?
+        .error_for_status()?
+        .json::<crate::models::subgraph::GraphQLResponse<DepositsData>>()
+        .await?;
+
+    if let Some(errs) = resp.errors {
+        return Err(anyhow::anyhow!("graphql errors: {errs:?}"));
+    }
+    let data = resp
+        .data
+        .ok_or_else(|| anyhow::anyhow!("empty deposits data"))?;
+
+    Ok(data.deposits)
 }
 
 fn normalize_addr(s: &str) -> String {

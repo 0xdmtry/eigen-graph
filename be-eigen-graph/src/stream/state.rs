@@ -87,6 +87,15 @@ impl StreamState {
         let guard = self.inner.lock().unwrap_or_else(|p| p.into_inner());
         guard.get(token).map(|tx| tx.receiver_count()).unwrap_or(0)
     }
+
+    pub fn seed_cursor_if_empty(&self, token: &str, last_ts: i64, last_id: &str) {
+        let mut c = self.cursors.lock().unwrap_or_else(|p| p.into_inner());
+        let e = c.entry(token.to_string()).or_default();
+        if e.last_ts == 0 && e.last_id.is_empty() {
+            e.last_ts = last_ts;
+            e.last_id = last_id.to_string();
+        }
+    }
 }
 
 impl Default for StreamState {
