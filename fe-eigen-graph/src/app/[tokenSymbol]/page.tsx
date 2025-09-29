@@ -35,23 +35,25 @@ export default function TokenPage() {
     if (error) return <div>Error fetching data.</div>;
     if (!data) return <div>No data found.</div>;
 
-    let tokens: Record<string, TableItem[]> = {};
-
+    const tokensForPanel: Record<string, TableItem[]> = {};
     Object.keys(data.byToken).forEach((token) => {
-        tokens[token] = data.byToken[token].table;
-    })
+        tokensForPanel[token] = data.byToken[token].table;
+    });
+
+    const selectedTokenSymbol = params.tokenSymbol.toUpperCase();
+    const tableDataForSelectedToken = data.byToken[selectedTokenSymbol]?.table || [];
 
     return (
         <div className="space-y-6">
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8  shadow-md">
-                <TokenPanel tokens={tokens}/>
+                <TokenPanel tokens={tokensForPanel}/>
+                <OperatorsTable
+                    tableData={tableDataForSelectedToken}
+                />
             </main>
-            {/*<OperatorDonutChart donutData={data.donut}/>*/}
+            {/*<OperatorDonutChart donutData={data.byToken.EIGEN.donut}/>*/}
             {/*<OperatorStrategySankey graphData={data.graph}/>*/}
             {/*<OperatorsTvl barData={data.bar}/>*/}
-            {/*<OperatorsTable*/}
-            {/* tableData={data.byToken.EIGEN.table}*/}
-            {/*/>*/}
         </div>
     );
 }
