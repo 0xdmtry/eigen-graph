@@ -2,14 +2,14 @@
 import OperatorsTable from "@/components/operators/OperatorsTable";
 import React from "react";
 import useSWR from 'swr';
-import {notFound} from 'next/navigation'; // IMPORT NOTFOUND
+import {notFound, useParams} from 'next/navigation';
 import type {ApiResponse, TableItem} from "@/types/operators";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorStrategySankey from "@/components/operators/OperatorStrategySankey";
 import OperatorDonutChart from "@/components/operators/OperatorDonutChart";
 import TokenPanel from "@/components/operators/TokenPanel";
 import TokenAutocomplete from "@/components/operators/TokenAutocomplete";
-import {baseTokenCards} from "@/data/tokens"; // IMPORT TOKEN LIST FOR VALIDATION
+import {baseTokenCards} from "@/data/tokens";
 
 const fetcher = (url: string): Promise<ApiResponse> => fetch(url).then((res) => res.json());
 
@@ -19,7 +19,8 @@ const isValidToken = (symbol: string): boolean => {
     return baseTokenCards.some(token => token.symbol.toUpperCase() === upperCaseSymbol);
 };
 
-export default function TokenPage({params}: { params: { tokenSymbol: string } }) {
+export default function TokenPage() {
+    const params = useParams<{ tokenSymbol: string }>();
 
     if (!isValidToken(params.tokenSymbol)) {
         notFound();
@@ -49,7 +50,7 @@ export default function TokenPage({params}: { params: { tokenSymbol: string } })
             {/*<OperatorStrategySankey graphData={data.graph}/>*/}
             {/*<OperatorsTvl barData={data.bar}/>*/}
             {/*<OperatorsTable*/}
-            {/*    tableData={data.byToken.EIGEN.table}*/}
+            {/* tableData={data.byToken.EIGEN.table}*/}
             {/*/>*/}
         </div>
     );

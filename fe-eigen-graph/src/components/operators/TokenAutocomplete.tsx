@@ -139,7 +139,7 @@ const TokenAutocomplete: React.FC = () => {
                         <li
                             key={token.symbol}
                             onClick={() => handleSuggestionClick(token)}
-                            className={`flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5 ${index === activeIndex ? 'bg-gray-100 dark:bg-white/5' : ''}`}
+                            className={`flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5 ${token.symbol.toLowerCase() === selectedTokenSymbol?.toLowerCase() ? 'bg-gray-100 dark:bg-white/5' : ''}`}
                         >
                             <div
                                 className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
