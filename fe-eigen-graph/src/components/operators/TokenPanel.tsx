@@ -1,58 +1,48 @@
 "use client";
 import TokenCard from "./TokenCard";
 import {TableItem} from "@/types/operators";
-import React from "react";
+import React, {useMemo, useState} from "react";
 import {TokenCardType} from "@/types/tokens";
 import TokenAutocomplete from "@/components/operators/TokenAutocomplete";
 import Badge from "@/components/ui/badge/Badge";
 import {baseTokenCards} from "@/data/tokens";
-import {useMemo, useState} from "react";
+import {useToken} from "@/context/TokenContext";
 
 interface TokensProps {
     tokens: Record<string, TableItem[]>;
 }
 
-const TokenPanel: React.FC<TokensProps> = ({tokens}) => {
+const createUpdatedTokenCards = (
+    baseCards: TokenCardType[],
+    tokenDataFromServer: Record<string, TableItem[]>
+): TokenCardType[] => {
+    return baseCards.map(card => {
+        const dataForToken = tokenDataFromServer[card.symbol];
+        if (!dataForToken || dataForToken.length === 0) return card;
 
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const CARDS_SHOWN_COLLAPSED = 6;
-
-
-    const createUpdatedTokenCards = ({tokenDataFromServer}: {
-        tokenDataFromServer: Record<string, TableItem[]>
-    }): TokenCardType[] => {
-        return baseTokenCards.map(card => {
-            const dataForToken = tokenDataFromServer[card.symbol];
-
-            if (!dataForToken || dataForToken.length === 0) {
-                return card;
+        const operators = dataForToken.length;
+        const totalTvl = dataForToken.reduce((sum, item) => {
+            try {
+                return sum + BigInt(item.tvlTotalAtomic);
+            } catch {
+                return sum;
             }
+        }, BigInt(0));
 
-            const operators = dataForToken.length;
+        return {...card, operators, tvl: totalTvl.toString()};
+    });
+};
 
-            const totalTvl = dataForToken.reduce((sum, item) => {
-                try {
-                    return sum + BigInt(item.tvlTotalAtomic);
-                } catch {
-                    return sum;
-                }
-            }, BigInt(0));
+const TokenPanel: React.FC<TokensProps> = ({tokens}) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const {selectedTokenSymbol, setSelectedTokenSymbol} = useToken();
 
-            return {
-                ...card,
-                operators,
-                tvl: totalTvl.toString(),
-            };
-        });
-    }
-
-    const updatedTokenCards = React.useMemo(() => {
-        return createUpdatedTokenCards({tokenDataFromServer: tokens});
+    const updatedTokenCards = useMemo(() => {
+        return createUpdatedTokenCards(baseTokenCards, tokens);
     }, [tokens]);
 
+    const CARDS_SHOWN_COLLAPSED = 6;
     const canExpand = updatedTokenCards.length > CARDS_SHOWN_COLLAPSED;
-
 
     return (
         <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
@@ -68,8 +58,7 @@ const TokenPanel: React.FC<TokensProps> = ({tokens}) => {
             </div>
             <div className="border-t border-gray-100 dark:border-gray-800">
                 <div
-                    className={`overflow-hidden transition-[max-height] duration-700 ease-in-out ${
-                        isExpanded || !canExpand ? 'max-h-[4000px]' : 'max-h-[240px]'
+                    className={`overflow-hidden transition-[max-height] duration-700 ease-in-out ${isExpanded || !canExpand ? 'max-h-[4000px]' : 'max-h-[240px]'
                     }`}
                 >
                     <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 sm:gap-6 sm:p-6 xl:grid-cols-3">
@@ -81,6 +70,8 @@ const TokenPanel: React.FC<TokensProps> = ({tokens}) => {
                                 icon={item.icon}
                                 tvl={item.tvl}
                                 operators={item.operators}
+                                isActive={item.symbol.toUpperCase() === selectedTokenSymbol?.toUpperCase()}
+                                onSelect={() => setSelectedTokenSymbol(item.symbol)}
                             />
                         ))}
                     </div>
@@ -108,6 +99,5 @@ const TokenPanel: React.FC<TokensProps> = ({tokens}) => {
         </div>
     );
 }
-
 
 export default TokenPanel;
