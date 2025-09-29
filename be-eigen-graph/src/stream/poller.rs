@@ -86,7 +86,7 @@ pub async fn run(stream_state: Arc<StreamState>) {
                         Err(e) => eprintln!("[stream] bootstrap err for {token_key}: {e}"),
                     }
                 }
-                Ok(_) => {  }
+                Ok(_) => {}
                 Err(e) => eprintln!("[stream] count_rows_for_token({token_key}) err: {e}"),
             }
 

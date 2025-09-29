@@ -1,20 +1,21 @@
-use std::sync::Arc;
-
 use crate::stream::state::{Event, StreamState};
 use axum::extract::ws::{Message, Utf8Bytes, WebSocket, WebSocketUpgrade};
 use axum::{
     extract::{Query, State},
     response::IntoResponse,
 };
+use std::sync::Arc;
+use std::time::{SystemTime, UNIX_EPOCH};
 use tokio::sync::broadcast;
+use tokio::time::{Duration, interval};
 
 use chrono::Utc;
 use sqlx::postgres::PgPoolOptions;
 
 use crate::api::subgraph::client::SubgraphClient;
 use crate::config::AppConfig;
-use crate::stream::db::load_cursor;
 use crate::stream::db::{BucketPoint, fetch_buckets};
+use crate::stream::db::{load_cursor, total_shares_text};
 use crate::stream::subgraph::resolve_token_id;
 
 #[derive(Debug, serde::Deserialize)]
@@ -28,9 +29,10 @@ pub async fn deposits_ws_handler(
     Query(q): Query<StreamQuery>,
     ws: WebSocketUpgrade,
 ) -> impl IntoResponse {
-    ws.on_upgrade(move |socket| handle_ws(socket, stream_state, q))
+    ws.on_upgrade(move |socket| handle_ws_with_baseline(socket, stream_state, q))
 }
 
+#[allow(dead_code)]
 async fn handle_ws(mut socket: WebSocket, stream_state: Arc<StreamState>, q: StreamQuery) {
     let window_sec = env_i64("DEPOSITS_WINDOW_SEC", 86_400); // 24h
     let bucket_sec = env_i64("DEPOSITS_BUCKET_SEC", 300); // 5m
@@ -170,6 +172,74 @@ async fn handle_ws(mut socket: WebSocket, stream_state: Arc<StreamState>, q: Str
     }
 }
 
+async fn handle_ws_with_baseline(
+    mut socket: WebSocket,
+    _stream_state: Arc<StreamState>,
+    q: StreamQuery,
+) {
+    let poll_every = env_u64("DEPOSITS_POLL_EVERY_MS", 3_000);
+
+    let cfg = AppConfig::from_env();
+
+    let ts_url = match cfg.timescale_database_url {
+        Some(u) => u,
+        None => {
+            let err = serde_json::json!({"type":"error","reason":"TIMESCALE_DATABASE_URL not set"});
+            let _ = socket
+                .send(Message::Text(Utf8Bytes::from(err.to_string())))
+                .await;
+            return;
+        }
+    };
+    let ts_pool = match PgPoolOptions::new()
+        .max_connections(2)
+        .connect(&ts_url)
+        .await
+    {
+        Ok(p) => p,
+        Err(e) => {
+            let err = serde_json::json!({"type":"error","reason":format!("ts pool failed: {e}")});
+            let _ = socket
+                .send(Message::Text(Utf8Bytes::from(err.to_string())))
+                .await;
+            return;
+        }
+    };
+
+    let baseline = match total_shares_text(&ts_pool.clone(), &q.token).await {
+        Ok(s) => s,
+        Err(_) => "0".to_string().parse().unwrap(),
+    };
+    let t0 = now_ts();
+
+    let init = format!(
+        r#"{{"type":"init","token":"{}","baseline":"{}","t":{},"poll_every_ms":{}}}"#,
+        q.token, baseline, t0, poll_every
+    );
+    if socket.send(Message::Text(init.into())).await.is_err() {
+        return;
+    }
+
+    let mut iv = interval(Duration::from_millis(poll_every));
+    loop {
+        iv.tick().await;
+
+        let value = match total_shares_text(&ts_pool.clone(), &q.token).await {
+            Ok(s) => s,
+            Err(_) => "0".to_string().parse().unwrap(),
+        };
+        let t = now_ts();
+
+        let tick = format!(
+            r#"{{"type":"tick","token":"{}","t":{},"value":"{}"}}"#,
+            q.token, t, value
+        );
+        if socket.send(Message::Text(tick.into())).await.is_err() {
+            break; // client disconnected
+        }
+    }
+}
+
 fn env_i64(name: &str, default: i64) -> i64 {
     std::env::var(name)
         .ok()
@@ -182,6 +252,13 @@ fn env_u64(name: &str, default: u64) -> u64 {
         .ok()
         .and_then(|v| v.parse().ok())
         .unwrap_or(default)
+}
+
+fn now_ts() -> i64 {
+    SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap()
+        .as_secs() as i64
 }
 
 fn zero_fill(mut points: Vec<BucketPoint>, start: i64, end: i64, step: i64) -> Vec<BucketPoint> {

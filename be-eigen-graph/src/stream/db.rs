@@ -1,4 +1,6 @@
+use anyhow::Result;
 use bigdecimal::BigDecimal;
+use sqlx::PgPool;
 use sqlx::Row;
 use sqlx::{Pool, Postgres, QueryBuilder};
 use std::str::FromStr;
@@ -175,6 +177,23 @@ pub async fn count_rows_for_token(
         .await?;
 
     Ok(row.get::<i64, _>("c"))
+}
+
+pub async fn total_shares_text(pool: &PgPool, token_id: &str) -> Result<i128> {
+    let row: (Option<String>,) = sqlx::query_as(
+        r#"
+        SELECT CAST(COALESCE(SUM(shares), 0) AS TEXT)
+        FROM deposits_raw
+        WHERE token_symbol = $1
+        "#,
+    )
+    .bind(token_id)
+    .fetch_one(pool)
+    .await?;
+
+    let s = row.0.unwrap_or_else(|| "0".to_string());
+    let total_i128 = s.parse::<i128>().unwrap_or(0);
+    Ok(total_i128)
 }
 
 impl TsDb {
