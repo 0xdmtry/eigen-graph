@@ -43,8 +43,6 @@ const OperatorsTable: React.FC<OperatorsTableProps> = ({tableData}) => {
         {key: "lastUpdateBlockTs", label: "Last Update"},
     ];
 
-    console.log("tableData", tableData);
-
     const sortedAndPaginatedItems = useMemo(() => {
         const sorted = [...tableData].sort((a, b) => {
             if (!sort.column) return 0;
