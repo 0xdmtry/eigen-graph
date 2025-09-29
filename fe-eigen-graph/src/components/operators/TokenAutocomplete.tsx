@@ -4,12 +4,27 @@ import React, {useState, useEffect, useRef} from 'react';
 import Image from 'next/image';
 import {baseTokenCards} from "@/data/tokens";
 import {TokenCardType} from "@/types/tokens";
+import {useToken} from '@/context/TokenContext';
 
 const TokenAutocomplete: React.FC = () => {
+    const {selectedTokenSymbol, setSelectedTokenSymbol} = useToken();
     const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState<TokenCardType[]>([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
+    const listRef = useRef<HTMLUListElement>(null);
+
+    useEffect(() => {
+        if (selectedTokenSymbol) {
+            const currentToken = baseTokenCards.find(
+                token => token.symbol.toUpperCase() === selectedTokenSymbol.toUpperCase()
+            );
+            if (currentToken && inputValue !== currentToken.name) {
+                setInputValue(currentToken.name);
+            }
+        }
+    }, [selectedTokenSymbol]);
 
     const filterTokens = (query: string) => {
         if (!query) {
@@ -35,6 +50,15 @@ const TokenAutocomplete: React.FC = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (activeIndex >= 0 && listRef.current) {
+            const activeItem = listRef.current.children[activeIndex] as HTMLLIElement;
+            if (activeItem) {
+                activeItem.scrollIntoView({block: 'nearest'});
+            }
+        }
+    }, [activeIndex]);
+
     const handleFocus = () => {
         setSuggestions(baseTokenCards);
         setIsDropdownOpen(true);
@@ -45,15 +69,42 @@ const TokenAutocomplete: React.FC = () => {
         setInputValue(query);
         setSuggestions(filterTokens(query));
         setIsDropdownOpen(true);
+        setActiveIndex(-1);
     };
 
     const handleSuggestionClick = (token: TokenCardType) => {
+        setSelectedTokenSymbol(token.symbol);
         setInputValue(token.name);
         setIsDropdownOpen(false);
+        setActiveIndex(-1);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (!isDropdownOpen || suggestions.length === 0) return;
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                setActiveIndex(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                setActiveIndex(prev => (prev > -1 ? prev - 1 : -1));
+                break;
+            case 'Enter':
+                if (activeIndex >= 0) {
+                    e.preventDefault();
+                    handleSuggestionClick(suggestions[activeIndex]);
+                }
+                break;
+            case 'Escape':
+                setIsDropdownOpen(false);
+                break;
+        }
     };
 
     return (
-        <div className="relative w-full max-w-xs" ref={containerRef}>
+        <div className="relative w-full max-w-xs" ref={containerRef} onKeyDown={handleKeyDown}>
             <div className="relative">
                 <button
                     className="absolute text-gray-500 -translate-y-1/2 left-4 top-1/2 dark:text-gray-400">
@@ -80,33 +131,15 @@ const TokenAutocomplete: React.FC = () => {
                     placeholder="Select Token..."
                     className="h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 px-12 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                 />
-                <button
-                    className="absolute items-center justify-center w-full gap-2 px-4 py-3 text-sm font-medium text-white rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600 sm:w-auto">
-                    <svg
-                        className="duration-200 ease-in-out stroke-current rotate-270"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M4.79199 7.396L10.0003 12.6043L15.2087 7.396"
-                            stroke=""
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </button>
             </div>
             {isDropdownOpen && suggestions.length > 0 && (
-                <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-gray-200 bg-white p-2 shadow-theme-lg dark:border-gray-800 dark:bg-[#1E2635]">
-                    {suggestions.map((token) => (
+                <ul ref={listRef}
+                    className="absolute z-10 mt-1 max-h-55 w-full overflow-auto rounded-lg border border-gray-200 bg-white p-2 shadow-theme-lg dark:border-gray-800 dark:bg-[#1E2635]">
+                    {suggestions.map((token, index) => (
                         <li
                             key={token.symbol}
                             onClick={() => handleSuggestionClick(token)}
-                            className="flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5"
+                            className={`flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5 ${index === activeIndex ? 'bg-gray-100 dark:bg-white/5' : ''}`}
                         >
                             <div
                                 className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
