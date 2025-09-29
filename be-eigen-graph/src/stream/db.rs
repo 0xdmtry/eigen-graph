@@ -1,6 +1,7 @@
 use bigdecimal::BigDecimal;
 use sqlx::Row;
 use sqlx::{Pool, Postgres, QueryBuilder};
+use std::str::FromStr;
 
 pub struct TsDb;
 
@@ -115,15 +116,65 @@ pub async fn insert_batch_ts(
             .push_bind(&r.token_symbol)
             .push_bind(&r.staker)
             .push_bind(&r.strategy_id)
-            .push_bind(&r.shares)
+            .push_bind(
+                bigdecimal::BigDecimal::from_str(&r.shares).expect("invalid decimal in shares"),
+            )
             .push_bind(r.block_number)
             .push_bind(r.block_timestamp)
             .push_bind(&r.tx_hash);
     });
 
-    qb.push(" ON CONFLICT ON CONSTRAINT ux_deposits_tx_block DO NOTHING");
+    qb.push(" ON CONFLICT (tx_hash, block_timestamp) DO NOTHING");
     let res = qb.build().execute(pool).await?;
     Ok(res.rows_affected())
+}
+
+pub async fn load_cursor(
+    pool: &Pool<Postgres>,
+    token_id: &str,
+) -> Result<Option<(i64, String)>, sqlx::Error> {
+    let row = sqlx::query(r#"SELECT last_ts, last_id FROM stream_cursors WHERE token_id = $1"#)
+        .bind(token_id)
+        .fetch_optional(pool)
+        .await?;
+
+    Ok(row.map(|r| (r.get::<i64, _>("last_ts"), r.get::<String, _>("last_id"))))
+}
+
+pub async fn upsert_cursor(
+    pool: &Pool<Postgres>,
+    token_id: &str,
+    last_ts: i64,
+    last_id: &str,
+) -> Result<(), sqlx::Error> {
+    sqlx::query(
+        r#"
+        INSERT INTO stream_cursors (token_id, last_ts, last_id)
+        VALUES ($1, $2, $3)
+        ON CONFLICT (token_id) DO UPDATE
+        SET last_ts = EXCLUDED.last_ts,
+            last_id = EXCLUDED.last_id,
+            updated_at = now()
+        "#,
+    )
+    .bind(token_id)
+    .bind(last_ts)
+    .bind(last_id)
+    .execute(pool)
+    .await?;
+    Ok(())
+}
+
+pub async fn count_rows_for_token(
+    pool: &Pool<Postgres>,
+    token_id: &str,
+) -> Result<i64, sqlx::Error> {
+    let row = sqlx::query(r#"SELECT COUNT(*)::BIGINT AS c FROM deposits_raw WHERE token_id = $1"#)
+        .bind(token_id)
+        .fetch_one(pool)
+        .await?;
+
+    Ok(row.get::<i64, _>("c"))
 }
 
 impl TsDb {
