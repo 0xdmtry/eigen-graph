@@ -223,4 +223,16 @@ Example of expected output
 
 ![Integration Test](docs/images/integration-test.png "Integration Test")
 
+#### E2E Test
+
+Inside of `fe-eigen-graph`
+
+```bash
+npm run test:e2e
+```
+
+Example of expected output
+
+![E2E Test](docs/images/e2e-tests.png "E2E Test")
+
 
