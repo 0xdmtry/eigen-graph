@@ -579,3 +579,13 @@ contracts-exposed
 .last_confs
 certora_*
 .zip-output-url.txt
+
+# =============================================================================
+# PLAYWRIGHT
+# =============================================================================
+
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
