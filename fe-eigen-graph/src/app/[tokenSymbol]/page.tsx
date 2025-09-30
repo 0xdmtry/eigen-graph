@@ -3,7 +3,7 @@ import OperatorsTable from "@/components/operators/OperatorsTable";
 import React from "react";
 import useSWR from 'swr';
 import {notFound, useParams} from 'next/navigation';
-import type {ApiResponse, TableItem} from "@/types/operators";
+import {ApiResponse, GraphItem, TableItem} from "@/types/operators";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorStrategySankey from "@/components/operators/OperatorStrategySankey";
 import TokenPanel from "@/components/operators/TokenPanel";
@@ -35,8 +35,10 @@ export default function TokenPage() {
     if (!data) return <div>No data found.</div>;
 
     const tokensForPanel: Record<string, TableItem[]> = {};
+    const graphDataByToken: Record<string, GraphItem[]> = {};
     Object.keys(data.byToken).forEach((token) => {
         tokensForPanel[token] = data.byToken[token].table;
+        graphDataByToken[token] = data.byToken[token].graph;
     });
 
     const selectedTokenSymbol = params.tokenSymbol.toUpperCase();
@@ -51,13 +53,11 @@ export default function TokenPage() {
                 <TokenPanel tokens={tokensForPanel}/>
                 <OperatorsTvl barData={barDataForSelectedToken}/>
                 <OperatorAvsDonutChart tableData={tableDataForSelectedToken}/>
-
                 <OperatorsTable
                     tableData={tableDataForSelectedToken}
                 />
+                <OperatorStrategySankey graphData={data.graph} graphDataByToken={graphDataByToken}/>
             </main>
-            {/*<OperatorStrategySankey graphData={data.graph}/>*/}
-
         </div>
     );
 }
