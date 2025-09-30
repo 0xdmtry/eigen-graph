@@ -30,7 +30,9 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
             };
         }
 
-        const sortedData = [...barData].sort((a, b) => {
+        const nonZeroData = barData.filter(item => BigInt(item.tvlTotalAtomic) > BigInt(0));
+
+        const sortedData = [...nonZeroData].sort((a, b) => {
             const valA = BigInt(a.tvlTotalAtomic);
             const valB = BigInt(b.tvlTotalAtomic);
             if (valB > valA) return 1;
@@ -40,15 +42,14 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
 
         const slicedData = sortedData.slice(0, topN);
 
-        const seriesValues = slicedData.map(item => {
-            const val = BigInt(item.tvlTotalAtomic);
-            return val > BigInt(0) ? Math.log10(Number(val)) : 0;
-        });
+        if (slicedData.length === 0) {
+            return {isEmpty: true, categories: [], seriesData: [], originalData: []};
+        }
 
         return {
             isEmpty: false,
             categories: slicedData.map(item => shortenId(item.operatorId)),
-            seriesData: seriesValues,
+            seriesData: slicedData.map(item => Number(item.tvlTotalAtomic)),
             originalData: slicedData,
         };
     }, [barData, topN]);
@@ -83,7 +84,7 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
         yaxis: {
             logarithmic: true,
             title: {
-                text: "TVL × 10⁰⁰",
+                text: "TVL × 10⁰⁰  Logarithmic",
                 style: {
                     fontWeight: 500
                 }
@@ -92,24 +93,29 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
             labels: {
                 formatter: (val: number): string => {
                     if (val <= 0) {
-                        return "0";
+                        return "";
                     }
 
                     const exponential = val.toExponential(2);
                     const [mantissa, exponent] = exponential.split('e');
 
-                    const superscriptMap: Record<string, string> = {
-                        '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-                        '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
-                        '+': '', '-': '⁻'
-                    };
+                    if (Number(exponent) % 5 === 0) {
 
-                    const formattedExponent = exponent
-                        .split('')
-                        .map(char => superscriptMap[char])
-                        .join('');
+                        const superscriptMap: Record<string, string> = {
+                            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+                            '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+                            '+': '', '-': '⁻'
+                        };
 
-                    return `${mantissa} × 10${formattedExponent}`;
+                        const formattedExponent = exponent
+                            .split('')
+                            .map(char => superscriptMap[char])
+                            .join('');
+
+                        return `${mantissa} × 10${formattedExponent}`;
+                    }
+
+                    return "";
                 }
             }
         },
@@ -148,7 +154,7 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
         <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
             <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-                    Top {topN} Operators by TVL
+                    Top Operators by TVL
                 </h3>
             </div>
             <div id="operator-tvl-chart">
