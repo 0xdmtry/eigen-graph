@@ -11,11 +11,13 @@ components are synchronized through a global state reflected in the URL path.
 ---
 
 > ### Sources of inspiration
-> * [Blocks Signing and Streaming Service](https://github.com/0xdmtry/blocks-signer) — blocks signing service leveraging a event-driven solution
-> * [Ethereum Blocks Service](https://github.com/0xdmtry/eth-block-api) — service for fetching and preserving Ethereum blocks
+> * [Blocks Signing and Streaming Service](https://github.com/0xdmtry/blocks-signer) — blocks signing service leveraging
+    a event-driven solution
+> * [Ethereum Blocks Service](https://github.com/0xdmtry/eth-block-api) — service for fetching and preserving Ethereum
+    blocks
 > * [Uniswap Graph](https://github.com/0xdmtry/eth-graph) — service to retrieve data on Uniswap v3 through The Graph
-> 
-> 
+>
+>
 
 ---
 
@@ -70,6 +72,8 @@ to manage vertical space, especially when a large number of tokens are displayed
 * **Conditional Rendering:** The toggle control is only rendered if the total number of tokens exceeds the number of
   cards visible in the collapsed state.
 
+---
+
 ### Top Operators by TVL (Bar Chart)
 
 ![TVL Bar Chart](docs/images/tvl-chart.gif "TVL Bar Chart")
@@ -93,6 +97,8 @@ among the top-performing operators for the currently selected token.
   operator's full, un-shortened ID and their exact TVL, also formatted in the "power of ten" style for detailed
   inspection.
 
+---
+
 ### Operator Distribution by AVS Count (Donut Chart)
 
 ![AVS Donut Chart](docs/images/avs-chart.gif "AVS Donut Chart")
@@ -115,6 +121,8 @@ meaningful proportional comparison where values fall within a tighter range, unl
 
 * **Legendless Design:** The chart is intentionally designed without a legend to maintain a clean and focused
   visualization, relying on the interactive hover effects for data exploration.
+
+---
 
 ### Operators Data Table
 
@@ -141,6 +149,8 @@ currently selected token.
 * **Readability Formatting:** Data within the table is formatted for clarity. Operator IDs are shortened, TVL values are
   displayed in "power of ten" notation, and timestamps are converted to a human-readable date format (e.g.,
   `Sep 30, 2025`).
+
+---
 
 ### Operator → Strategy Allocation (Sankey Chart)
 
@@ -176,6 +186,8 @@ The component is designed to be a self-contained module for analyzing allocation
   it, returning the chart to the default aggregate view.
 * **Rendering:** The visualization is rendered using the `react-google-charts` library. Node labels for operators and
   strategies are shortened for a cleaner presentation.
+
+---
 
 ### Commands
 
