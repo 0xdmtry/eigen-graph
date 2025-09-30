@@ -584,8 +584,27 @@ certora_*
 # PLAYWRIGHT
 # =============================================================================
 
+test-results
+test-results/
+./test-results
+./test-results/
+/test-results
 /test-results/
+playwright-report/
+playwright-report
+./playwright-report/
+./playwright-report
 /playwright-report/
+/playwright-report
+blob-report/
+blob-report
+./blob-report/
+./blob-report
 /blob-report/
+/blob-report
+playwright/.cache/
+playwright/.auth/
+./playwright/.cache/
+./playwright/.auth/
 /playwright/.cache/
 /playwright/.auth/
