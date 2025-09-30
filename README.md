@@ -8,11 +8,16 @@ components include a detailed operator data table with filtering and sorting, a 
 distribution, a donut chart showing AVS counts, and a Sankey diagram for operator-to-strategy weight allocation. All
 components are synchronized through a global state reflected in the URL path.
 
-> ### Sources of inspiration
-> * **[Blocks Signing and Streaming Service](https://github.com/0xdmtry/blocks-signer)** — blocks signing service leveraging a event-driven / microservices solution
-> * **[Ethereum Blocks Service](https://github.com/0xdmtry/eth-block-api)** — service for fetching and preserving Ethereum blocks
-> * **[Uniswap Graph](https://github.com/0xdmtry/eth-graph)** — service to retrieve data on Uniswap v3 through The Graph
+---
 
+> ### Sources of inspiration
+> * [Blocks Signing and Streaming Service](https://github.com/0xdmtry/blocks-signer) — blocks signing service leveraging a event-driven solution
+> * [Ethereum Blocks Service](https://github.com/0xdmtry/eth-block-api) — service for fetching and preserving Ethereum blocks
+> * [Uniswap Graph](https://github.com/0xdmtry/eth-graph) — service to retrieve data on Uniswap v3 through The Graph
+> 
+> 
+
+---
 
 ### Token Panel
 
