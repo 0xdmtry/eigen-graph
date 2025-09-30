@@ -87,7 +87,7 @@ const OperatorStrategySankey: React.FC<OperatorStrategySankeyProps> = ({
     return (
         <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">
-                Operator → Strategy Allocation
+                Operator → Strategy Allocation: {(selectedToken) ? selectedToken : "All Tokens"}
             </h3>
 
             {
@@ -112,7 +112,7 @@ const OperatorStrategySankey: React.FC<OperatorStrategySankeyProps> = ({
             <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-200 pt-4 dark:border-gray-800">
                 {baseTokenCards.map((item, i) => (
                     <button key={item.symbol ?? i} onClick={() => handleBadgeClick(item.symbol)}
-                            className="flex-none rounded-full focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                            className={`flex-none rounded-full ${(item.symbol === selectedToken) ? 'opacity-50' : ''}`}>
                         <Badge variant="solid">
                             <div
                                 className="flex h-[20px] w-[20px] flex-shrink-0 items-center justify-center rounded-xl">
