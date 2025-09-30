@@ -6,10 +6,9 @@ import {notFound, useParams} from 'next/navigation';
 import type {ApiResponse, TableItem} from "@/types/operators";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorStrategySankey from "@/components/operators/OperatorStrategySankey";
-import OperatorDonutChart from "@/components/operators/OperatorDonutChart";
 import TokenPanel from "@/components/operators/TokenPanel";
-import TokenAutocomplete from "@/components/operators/TokenAutocomplete";
 import {baseTokenCards} from "@/data/tokens";
+import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
 
 const fetcher = (url: string): Promise<ApiResponse> => fetch(url).then((res) => res.json());
 
@@ -44,17 +43,21 @@ export default function TokenPage() {
     const tableDataForSelectedToken = data.byToken[selectedTokenSymbol]?.table || [];
     const barDataForSelectedToken = data.byToken[selectedTokenSymbol]?.bar || [];
 
+    console.log("data.byToken.ATH.donut", JSON.stringify(data.byToken.ATH.table));
+
     return (
         <div className="space-y-6">
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 shadow-md">
                 <TokenPanel tokens={tokensForPanel}/>
                 <OperatorsTvl barData={barDataForSelectedToken}/>
+                <OperatorAvsDonutChart tableData={tableDataForSelectedToken}/>
+
                 <OperatorsTable
                     tableData={tableDataForSelectedToken}
                 />
             </main>
-            {/*<OperatorDonutChart donutData={data.byToken.EIGEN.donut}/>*/}
             {/*<OperatorStrategySankey graphData={data.graph}/>*/}
+
         </div>
     );
 }
