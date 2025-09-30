@@ -1,8 +1,9 @@
 "use client";
-import React, {useMemo, useState} from "react";
+import React, {useMemo} from "react";
 import {ApexOptions} from "apexcharts";
 import dynamic from "next/dynamic";
 import {BarItem} from "@/types/operators";
+import {formatPowerOfTen} from "@/utils/number-utils";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
@@ -18,37 +19,7 @@ const shortenId = (id: string, chars = 6): string => {
     return `${id.substring(0, chars + 2)}...${id.substring(id.length - chars)}`;
 };
 
-const shouldDefaultToLogScale = (data: BarItem[], skewFactor: number = 10): boolean => {
-    if (!data || data.length < 2) {
-        return false;
-    }
-
-    const values = data.map(item => BigInt(item.tvlTotalAtomic));
-
-    let maxVal = 0n;
-    let secondMaxVal = 0n;
-
-    for (const val of values) {
-        if (val > maxVal) {
-            secondMaxVal = maxVal;
-            maxVal = val;
-        } else if (val > secondMaxVal) {
-            secondMaxVal = val;
-        }
-    }
-
-    if (secondMaxVal === 0n) {
-        return false;
-    }
-
-    return maxVal > secondMaxVal * BigInt(skewFactor);
-};
-
-const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN = 10}) => {
-
-    const [isLogScale, setIsLogScale] = useState(() => shouldDefaultToLogScale(barData));
-
-
+const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN = 5}) => {
     const chartData = useMemo(() => {
         if (!barData || barData.length === 0) {
             return {
@@ -60,28 +31,36 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
         }
 
         const sortedData = [...barData].sort((a, b) => {
-            return BigInt(b.tvlTotalAtomic) > BigInt(a.tvlTotalAtomic) ? 1 : -1;
+            const valA = BigInt(a.tvlTotalAtomic);
+            const valB = BigInt(b.tvlTotalAtomic);
+            if (valB > valA) return 1;
+            if (valB < valA) return -1;
+            return 0;
         });
 
         const slicedData = sortedData.slice(0, topN);
 
+        const seriesValues = slicedData.map(item => {
+            const val = BigInt(item.tvlTotalAtomic);
+            return val > BigInt(0) ? Math.log10(Number(val)) : 0;
+        });
+
         return {
             isEmpty: false,
             categories: slicedData.map(item => shortenId(item.operatorId)),
-            seriesData: slicedData.map(item => Number(BigInt(item.tvlTotalAtomic) / BigInt(10 ** 18))),
+            seriesData: seriesValues,
             originalData: slicedData,
         };
     }, [barData, topN]);
 
     const options: ApexOptions = {
-        colors: ["#465fff", "#0abde3"],
+        colors: ["#465fff"],
         chart: {
             fontFamily: "Outfit, sans-serif",
             type: "bar",
             height: 350,
             toolbar: {show: false},
         },
-
         plotOptions: {
             bar: {
                 horizontal: false,
@@ -98,24 +77,41 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
                     fontSize: '12px',
                 }
             },
-            axisBorder: {
-                show: false,
-            },
-            axisTicks: {
-                show: false,
-            },
+            axisBorder: {show: false},
+            axisTicks: {show: false},
         },
         yaxis: {
+            logarithmic: true,
             title: {
-                text: "TVL (in ETH-equivalent units)",
+                text: "TVL × 10⁰⁰",
                 style: {
                     fontWeight: 500
                 }
             },
-            axisBorder: {
-                show: false,
-            },
-            ...(isLogScale && {logarithmic: true}),
+            axisBorder: {show: false},
+            labels: {
+                formatter: (val: number): string => {
+                    if (val <= 0) {
+                        return "0";
+                    }
+
+                    const exponential = val.toExponential(2);
+                    const [mantissa, exponent] = exponential.split('e');
+
+                    const superscriptMap: Record<string, string> = {
+                        '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+                        '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+                        '+': '', '-': '⁻'
+                    };
+
+                    const formattedExponent = exponent
+                        .split('')
+                        .map(char => superscriptMap[char])
+                        .join('');
+
+                    return `${mantissa} × 10${formattedExponent}`;
+                }
+            }
         },
         fill: {opacity: 1},
         tooltip: {
@@ -123,11 +119,11 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
                 const originalItem = chartData.originalData[dataPointIndex];
                 if (!originalItem) return '';
 
-                const tvl = BigInt(originalItem.tvlTotalAtomic).toLocaleString();
+                const tvl = formatPowerOfTen(originalItem.tvlTotalAtomic);
                 return `
-                    <div class="p-2 bg-gray-700 text-white rounded-md shadow-lg">
-                        <div class="font-bold text-xs mb-1">Operator: ${originalItem.operatorId}</div>
-                        <div><strong>TVL:</strong> ${tvl} (atomic units)</div>
+                    <div class="p-2 bg-gray-700 text-white rounded-md shadow-lg text-xs">
+                        <div class="font-bold mb-1">Operator: ${originalItem.operatorId}</div>
+                        <div><strong>TVL:</strong> ${tvl}</div>
                     </div>
                 `;
             },
@@ -154,23 +150,10 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
                     Top {topN} Operators by TVL
                 </h3>
-                <button
-                    onClick={() => setIsLogScale(!isLogScale)}
-                    className="rounded-md bg-gray-200 px-3 py-1 text-xs font-medium text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-                >
-                    {isLogScale ? "Use Linear Scale" : "Use Log Scale"}
-                </button>
             </div>
-
             <div id="operator-tvl-chart">
                 <ReactApexChart options={options} series={series} type="bar" height={350}/>
             </div>
-
-            {barData.length > topN && (
-                <div className="mt-2 text-center text-sm text-gray-500">
-                    + {barData.length - topN} more operators
-                </div>
-            )}
         </div>
     );
 };
