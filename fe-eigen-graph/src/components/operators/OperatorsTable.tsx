@@ -14,6 +14,8 @@ interface OperatorsTableProps {
     tableData: TableItem[];
 }
 
+const ITEMS_PER_PAGE = 10;
+
 const shortenId = (id: string, chars = 6) => {
     if (id.length <= chars * 2 + 2) {
         return id;
@@ -45,7 +47,7 @@ const OperatorsTable: React.FC<OperatorsTableProps> = ({tableData}) => {
     });
     const [page, setPage] = useState<number>(1);
     const [searchTerm, setSearchTerm] = useState("");
-    const perPage: number = 10;
+    const perPage: number = ITEMS_PER_PAGE;
 
     const headers: { key: keyof TableItem; label: string; sortable: boolean }[] = [
         {key: "operatorId", label: "Operator ID", sortable: false},

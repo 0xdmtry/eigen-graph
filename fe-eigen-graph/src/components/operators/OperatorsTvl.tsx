@@ -14,12 +14,15 @@ interface OperatorTvlBarChartProps {
     topN?: number;
 }
 
+const ITEMS_PER_CHART = 5;
+const Y_AXIS_TICK = 5;
+
 const shortenId = (id: string, chars = 6): string => {
     if (id.length <= chars * 2 + 2) return id;
     return `${id.substring(0, chars + 2)}...${id.substring(id.length - chars)}`;
 };
 
-const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN = 5}) => {
+const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN = ITEMS_PER_CHART}) => {
     const chartData = useMemo(() => {
         if (!barData || barData.length === 0) {
             return {
@@ -99,7 +102,7 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
                     const exponential = val.toExponential(2);
                     const [mantissa, exponent] = exponential.split('e');
 
-                    if (Number(exponent) % 5 === 0) {
+                    if (Number(exponent) % Y_AXIS_TICK === 0) {
 
                         const superscriptMap: Record<string, string> = {
                             '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',

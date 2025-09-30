@@ -3,7 +3,7 @@ import TokenCard from "./TokenCard";
 import {TableItem} from "@/types/operators";
 import React, {useMemo, useState} from "react";
 import {TokenCardType} from "@/types/tokens";
-import TokenAutocomplete from "@/components/operators/TokenAutocomplete";
+import TokenAutocomplete from "@/components/tokens/TokenAutocomplete";
 import Badge from "@/components/ui/badge/Badge";
 import {baseTokenCards} from "@/data/tokens";
 import {useToken} from "@/context/TokenContext";
@@ -11,6 +11,8 @@ import {useToken} from "@/context/TokenContext";
 interface TokensProps {
     tokens: Record<string, TableItem[]>;
 }
+
+const CARDS_SHOWN_COLLAPSED = 6;
 
 const createUpdatedTokenCards = (
     baseCards: TokenCardType[],
@@ -41,7 +43,6 @@ const TokenPanel: React.FC<TokensProps> = ({tokens}) => {
         return createUpdatedTokenCards(baseTokenCards, tokens);
     }, [tokens]);
 
-    const CARDS_SHOWN_COLLAPSED = 6;
     const canExpand = updatedTokenCards.length > CARDS_SHOWN_COLLAPSED;
 
     return (

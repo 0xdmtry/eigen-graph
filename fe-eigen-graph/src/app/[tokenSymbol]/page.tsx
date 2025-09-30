@@ -6,7 +6,7 @@ import {notFound, useParams} from 'next/navigation';
 import {ApiResponse, GraphItem, TableItem} from "@/types/operators";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorStrategySankey from "@/components/operators/OperatorStrategySankey";
-import TokenPanel from "@/components/operators/TokenPanel";
+import TokenPanel from "@/components/tokens/TokenPanel";
 import {baseTokenCards} from "@/data/tokens";
 import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
 
@@ -25,8 +25,10 @@ export default function TokenPage() {
         notFound();
     }
 
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/v1/operators/aggregates`;
+
     const {data, error, isLoading} = useSWR<ApiResponse>(
-        'http://localhost:8000/v1/operators/aggregates',
+        apiUrl,
         fetcher
     );
 
@@ -45,17 +47,21 @@ export default function TokenPage() {
     const tableDataForSelectedToken = data.byToken[selectedTokenSymbol]?.table || [];
     const barDataForSelectedToken = data.byToken[selectedTokenSymbol]?.bar || [];
 
-    console.log("data.byToken.ATH.donut", JSON.stringify(data.byToken.ATH.table));
-
     return (
         <div className="space-y-6">
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 shadow-md">
                 <TokenPanel tokens={tokensForPanel}/>
-                <OperatorsTvl barData={barDataForSelectedToken}/>
-                <OperatorAvsDonutChart tableData={tableDataForSelectedToken}/>
-                <OperatorsTable
-                    tableData={tableDataForSelectedToken}
-                />
+                <div className="min-h-[445px]">
+                    <OperatorsTvl barData={barDataForSelectedToken}/>
+                </div>
+                <div className="min-h-[385px]">
+                    <OperatorAvsDonutChart tableData={tableDataForSelectedToken}/>
+                </div>
+                <div className="min-h-[735px]">
+                    <OperatorsTable
+                        tableData={tableDataForSelectedToken}
+                    />
+                </div>
                 <OperatorStrategySankey graphData={data.graph} graphDataByToken={graphDataByToken}/>
             </main>
         </div>
