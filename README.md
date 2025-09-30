@@ -195,3 +195,32 @@ The component is designed to be a self-contained module for analyzing allocation
 docker compose -f be.yml up --build
 ```
 
+---
+
+### Test
+
+#### Unit Test
+
+Inside of `fe-eigen-graph`
+
+```bash
+npm test
+```
+
+Example of expected output
+
+![Unit Test](docs/images/unit-tests.png "Unit Tests")
+
+#### Integration Test
+
+Inside of `fe-eigen-graph`
+
+```bash
+npm test
+```
+
+Example of expected output
+
+![Integration Test](docs/images/integration-test.png "Integration Test")
+
+
