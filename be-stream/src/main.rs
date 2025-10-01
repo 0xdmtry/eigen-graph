@@ -7,7 +7,7 @@ use tokio::net::TcpListener;
 async fn main() {
     let listener = TcpListener::bind("0.0.0.0:8001")
         .await
-        .expect("Cannot bind port 8000");
+        .expect("Cannot bind port 8001");
     let app = app()
         .await
         .into_make_service_with_connect_info::<SocketAddr>();
