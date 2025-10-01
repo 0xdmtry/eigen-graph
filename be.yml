@@ -8,7 +8,6 @@ services:
     restart: always
     ports:
       - "8000:8000"
-      - "8010:8010"
     volumes:
       - ./be-eigen-graph/src:/app/src
       - ./be-eigen-graph/migrations:/app/migrations
@@ -18,10 +17,30 @@ services:
     depends_on:
       db-eigen-graph:
         condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://root:root@db-eigen-graph:5432/eigen-graph
+    networks:
+      - be-eigen-graph-net
+
+
+  be-stream:
+    container_name: be-stream
+    build:
+      context: ./be-stream
+      dockerfile: Stream.dev.dockerfile
+    restart: always
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./be-stream/src:/app/src
+      - ./be-stream/migrations:/app/migrations
+      - ./be-stream/Cargo.toml:/app/Cargo.toml
+      - ./be-stream/Cargo.lock:/app/Cargo.lock
+      - /app/target
+    depends_on:
       db-eigen-timescale:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://root:root@db-eigen-graph:5432/eigen-graph
       TIMESCALE_DATABASE_URL: postgres://root:root@db-eigen-timescale:5432/eigen-ts
     networks:
       - be-eigen-graph-net
