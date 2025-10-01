@@ -194,7 +194,7 @@ The component is designed to be a self-contained module for analyzing allocation
 
 ### Price Stream Chart
 
-![Real-Time Chart](docs/images/real-time-chart.gif "Real-Time Chart")
+![Real-Time Chart](docs/images/price-stream.gif "Real-Time Chart")
 
 The `LineChart` component renders a real-time area chart visualizing the price fluctuations.
 
