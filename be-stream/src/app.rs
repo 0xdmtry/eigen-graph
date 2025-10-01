@@ -8,6 +8,7 @@ use sqlx::postgres::PgPoolOptions;
 use std::time::Duration;
 use std::{collections::HashMap, sync::Arc};
 use tokio::sync::RwLock;
+use tokio::sync::mpsc;
 use tower_http::cors::Any;
 use tower_http::cors::CorsLayer;
 
@@ -32,13 +33,17 @@ pub async fn app() -> Router {
         None
     };
 
+    let (control_tx, control_rx) = mpsc::channel(64);
+
     let state = AppState {
         config: config.clone(),
         ts_db,
         broadcasters: Arc::new(RwLock::new(HashMap::new())),
+        sub_counts: Arc::new(RwLock::new(HashMap::new())),
+        control_tx,
     };
 
-    coinbase::spawn_coinbase_client(state.clone());
+    coinbase::spawn_coinbase_client(state.clone(), control_rx);
 
     let cors = CorsLayer::new()
         .allow_origin(Any)

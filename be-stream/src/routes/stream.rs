@@ -1,14 +1,17 @@
 use axum::extract::ws::Utf8Bytes;
 use axum::{
     Router,
-    extract::ws::{Message, WebSocket},
-    extract::{Query, State, WebSocketUpgrade},
+    extract::{
+        Query, State, WebSocketUpgrade,
+        ws::{Message, WebSocket},
+    },
     response::IntoResponse,
     routing::get,
 };
 use serde::Deserialize;
+use tokio::sync::broadcast;
 
-use crate::{models::tick::Tick, state::AppState};
+use crate::{models::tick::Tick, services::coinbase::Control, state::AppState};
 
 #[derive(Deserialize)]
 struct StreamQuery {
@@ -28,23 +31,44 @@ async fn ws_route(
 }
 
 async fn handle_ws(mut socket: WebSocket, state: AppState, symbol: String) {
+    let mut just_created = false;
+
     let tx = {
         let map = state.broadcasters.read().await;
         map.get(&symbol).cloned()
     };
 
-    let mut rx = if let Some(tx) = tx {
-        tx.subscribe()
+    let tx = if let Some(tx) = tx {
+        tx
     } else {
-        let (tx_new, rx_new) = tokio::sync::broadcast::channel::<Tick>(1024);
+        let (tx_new, _rx) = broadcast::channel::<Tick>(1024);
         {
             let mut map = state.broadcasters.write().await;
-            map.entry(symbol.clone()).or_insert(tx_new);
+            map.entry(symbol.clone()).or_insert(tx_new.clone());
         }
-        rx_new
+        just_created = true;
+        tx_new
     };
 
-    while let Ok(tick) = rx.recv().await {
+    {
+        let mut counts = state.sub_counts.write().await;
+        let c = counts.entry(symbol.clone()).or_default();
+        *c += 1;
+        if *c == 1 {
+            let _ = state
+                .control_tx
+                .send(Control::Subscribe(symbol.clone()))
+                .await;
+        }
+    }
+
+    let mut rx = tx.subscribe();
+
+    loop {
+        let tick = match rx.recv().await {
+            Ok(t) => t,
+            Err(_) => break,
+        };
         if tick.product_id != symbol {
             continue;
         }
@@ -56,6 +80,30 @@ async fn handle_ws(mut socket: WebSocket, state: AppState, symbol: String) {
             .is_err()
         {
             break;
+        }
+    }
+
+    {
+        let mut counts = state.sub_counts.write().await;
+        if let Some(c) = counts.get_mut(&symbol) {
+            if *c > 0 {
+                *c -= 1;
+            }
+            if *c == 0 {
+                let _ = state
+                    .control_tx
+                    .send(Control::Unsubscribe(symbol.clone()))
+                    .await;
+            }
+        }
+    }
+
+    if just_created {
+        let mut map = state.broadcasters.write().await;
+        if let Some(tx_current) = map.get(&symbol) {
+            if tx_current.receiver_count() == 0 {
+                map.remove(&symbol);
+            }
         }
     }
 }
