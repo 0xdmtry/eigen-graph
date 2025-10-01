@@ -11,13 +11,128 @@
 			"name": "v1",
 			"item": [
 				{
-					"name": "operator",
+					"name": "ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/v1/ping",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ping_ws",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8010/ping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "operators_snapshot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/v1/operators/snapshot",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"operators",
+								"snapshot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "operators_aggregator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/v1/operators/aggregates",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"operators",
+								"aggregates"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subgraph",
+			"item": [
+				{
+					"name": "operators_snapshot",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"query { operators(first: 5) { id avsCount strategyCount slashingCount } }\"\n}",
+							"raw": "{\n  \"query\": \"query OperatorsSnapshot($first: Int!, $skip: Int!, $orderBy: Operator_orderBy!, $orderDirection: OrderDirection!, $hasSlashing: Int) { operators(first: $first, skip: $skip, orderBy: $orderBy, orderDirection: $orderDirection, where: { slashingCount_gte: $hasSlashing }) { id avsCount strategyCount slashingCount slashings(first: 1, orderBy: blockTimestamp, orderDirection: desc) { blockTimestamp } strategies(first: 100, orderBy: lastUpdateBlockTimestamp, orderDirection: desc) { totalShares strategy { id exchangeRate token { id symbol decimals } } } lastUpdateBlockTimestamp } }\",\n  \"variables\": {\n    \"first\": 25,\n    \"skip\": 0,\n    \"orderBy\": \"lastUpdateBlockTimestamp\",\n    \"orderDirection\": \"desc\",\n    \"hasSlashing\": 0\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://subgraph.satsuma-prod.com/027e731a6242/eigenlabs/eigen-graph-mainnet/api",
+							"protocol": "https",
+							"host": [
+								"subgraph",
+								"satsuma-prod",
+								"com"
+							],
+							"path": [
+								"027e731a6242",
+								"eigenlabs",
+								"eigen-graph-mainnet",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query DepositsBySymbol($first: Int!, $skip: Int!, $since: BigInt!, $symbol: String!) { deposits(first: $first, skip: $skip, orderBy: blockTimestamp, orderDirection: desc, where: { blockTimestamp_gte: $since, token_: { symbol_contains_nocase: $symbol } }) { id token { id symbol } staker { id } strategy { id } shares blockNumber blockTimestamp transactionHash } }\",\n  \"variables\": {\n    \"first\": 50,\n    \"skip\": 0,\n    \"since\": \"0\",\n    \"symbol\": \"EIGEN\"\n  }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,29 +158,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "subgraph",
-			"item": []
-		},
-		{
-			"name": "ping",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8000/v1/ping",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"v1",
-						"ping"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
