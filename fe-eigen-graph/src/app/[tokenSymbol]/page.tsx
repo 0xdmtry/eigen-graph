@@ -9,6 +9,8 @@ import OperatorStrategySankey from "@/components/operators/OperatorStrategySanke
 import TokenPanel from "@/components/tokens/TokenPanel";
 import {baseTokenCards} from "@/data/tokens";
 import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
+import TokenPrice from "@/components/tokens/TokenPrice";
+import {useWebSocket} from "@/hooks/useWebSocket";
 
 const fetcher = (url: string): Promise<ApiResponse> => fetch(url).then((res) => res.json());
 
@@ -24,6 +26,15 @@ export default function TokenPage() {
     if (!isValidToken(params.tokenSymbol)) {
         notFound();
     }
+
+    const seriesData = useWebSocket();
+
+    const series = [
+        {
+            name: "ETH-USD",
+            data: seriesData,
+        },
+    ];
 
     const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/v1/operators/aggregates`;
 
@@ -51,17 +62,14 @@ export default function TokenPage() {
         <div className="space-y-6">
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 shadow-md">
                 <TokenPanel tokens={tokensForPanel}/>
-                <div className="min-h-[445px]">
-                    <OperatorsTvl barData={barDataForSelectedToken}/>
+                <OperatorsTvl barData={barDataForSelectedToken}/>
+                <div className="grid grid-cols-10 gap-4">
+                    <div className="col-span-4"><OperatorAvsDonutChart tableData={tableDataForSelectedToken}/></div>
+                    <div className="col-span-6"><TokenPrice series={series}/></div>
                 </div>
-                <div className="min-h-[385px]">
-                    <OperatorAvsDonutChart tableData={tableDataForSelectedToken}/>
-                </div>
-                <div className="min-h-[735px]">
-                    <OperatorsTable
-                        tableData={tableDataForSelectedToken}
-                    />
-                </div>
+                <OperatorsTable
+                    tableData={tableDataForSelectedToken}
+                />
                 <OperatorStrategySankey graphData={data.graph} graphDataByToken={graphDataByToken}/>
             </main>
         </div>
