@@ -20,5 +20,5 @@ chrono = "0.4.42"
 tower-http = { version = "0.6.6", features = ["cors"] }
 tokio-stream = "0.1.17"
 bigdecimal = "0.4.8"
-tokio-tungstenite = "0.28.0"
+tokio-tungstenite = { version = "0.28.0", features = ["rustls-tls-webpki-roots"] }
 futures-util = "0.3.31"

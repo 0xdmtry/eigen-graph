@@ -37,14 +37,27 @@ pub fn spawn_coinbase_client(state: AppState) {
 }
 
 async fn connect_and_stream(state: &AppState) -> anyhow::Result<()> {
-    let (mut ws, _resp) = connect_async(&state.config.source_url).await?;
+    let (mut ws, _resp) = match connect_async(&state.config.source_url).await {
+        Ok(v) => v,
+        Err(e) => {
+            println!("ERROR::ws::connect: {:?}", e);
+            return Ok(());
+        }
+    };
+    
     let sub = serde_json::json!({
         "type": "subscribe",
         "product_ids": ["EIGEN-USD"],
         "channels": ["matches"]
     });
-    ws.send(Message::Text(Utf8Bytes::from(sub.to_string())))
-        .await?;
+
+    match ws.send(Message::Text(Utf8Bytes::from(sub.to_string()))).await {
+        Ok(_) => {}
+        Err(e) => {
+            println!("ERROR::ws::send: {:?}", e);
+            return Ok(());
+        }
+    }
 
     while let Some(frame) = ws.next().await {
         let text = match frame {
