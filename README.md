@@ -189,19 +189,71 @@ The component is designed to be a self-contained module for analyzing allocation
 
 ---
 
-### Commands
+## Getting Started
 
-```bash
-docker compose -f be.yml up --build
-```
+### Prerequisites
+
+* **Node.js:** `v22.15.0` or later
+* **npm:** `11.3.0` or later
+* **Docker:** Docker Desktop
+
+### Running the Project
+
+1. **Configure Backend Environment:**
+   Before starting the Docker services, create a `.env` file in the `be-eigen-graph`. This file provides the necessary
+   configuration for the backend containers.
+
+   **File: `.env`**
+
+   ```
+   SUBGRAPH_URL=https://subgraph.satsuma-prod.com/000x000x0000/eigenlabs/eigen-graph-mainnet/api
+   DATABASE_URL=postgres://root:root@db-eigen-graph:5432/eigen-graph
+   TIMESCALE_DATABASE_URL=postgres://root:root@db-eigen-timescale:5432/eigen-ts
+   ```
+
+   > **Note:** The `SUBGRAPH_URL` provided above is a placeholder. A valid, functional Subgraph URL must be used for the
+   backend to operate correctly.
+
+2. **Start the Backend Service:**
+   Open a terminal and run the following command to build and start the backend container.
+
+   ```sh
+   docker compose -f be.yml up --build
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env.local` file in the `fe-eigen-graph`. This file provides the application with the URL for the local
+   backend API.
+
+   **File: `.env.local`**
+
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:8000
+   ```
+
+4. **Install Frontend Dependencies:**
+   In a separate terminal, navigate to the `fe-eigen-graph` root and install the necessary packages.
+
+   ```sh
+   npm install
+   ```
+
+5. **Start the Frontend Development Server:**
+   Once the dependencies are installed, in the `fe-eigen-graph`, start the Next.js application.
+
+   ```sh
+   npm run dev
+   ```
+
+The application will be accessible at `http://localhost:4040`.
 
 ---
 
-### Test
+### Tests
 
-#### Unit Test
+#### Unit Tests
 
-Inside of `fe-eigen-graph`
+Inside of `fe-eigen-graph` run:
 
 ```bash
 npm test
@@ -211,9 +263,9 @@ Example of expected output
 
 ![Unit Test](docs/images/unit-tests.png "Unit Tests")
 
-#### Integration Test
+#### Integration Tests
 
-Inside of `fe-eigen-graph`
+Inside of `fe-eigen-graph` run:
 
 ```bash
 npm test
@@ -223,9 +275,11 @@ Example of expected output
 
 ![Integration Test](docs/images/integration-test.png "Integration Test")
 
-#### E2E Test
+#### E2E Tests
 
-Inside of `fe-eigen-graph`
+Prior of running the E2E tests, make sure the `npm run dev` is stopped and port `4040` is available.
+
+Inside of `fe-eigen-graph` run:
 
 ```bash
 npm run test:e2e
