@@ -11,82 +11,93 @@
 			"name": "v1",
 			"item": [
 				{
-					"name": "ping",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/v1/ping",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"v1",
-								"ping"
-							]
+					"name": "be",
+					"item": [
+						{
+							"name": "ping_be",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/v1/ping",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"ping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "operators_snapshot",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/v1/operators/snapshot",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"operators",
+										"snapshot"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "operators_aggregator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/v1/operators/aggregates",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"operators",
+										"aggregates"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "ping_ws",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8010/ping",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8010",
-							"path": [
-								"ping"
-							]
+					"name": "stream",
+					"item": [
+						{
+							"name": "ping_stream",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8001/v1/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"v1",
+										"ping"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "operators_snapshot",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/v1/operators/snapshot",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"v1",
-								"operators",
-								"snapshot"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "operators_aggregator",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/v1/operators/aggregates",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"v1",
-								"operators",
-								"aggregates"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
