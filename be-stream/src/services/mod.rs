@@ -1,1 +1,1 @@
-
+pub mod coinbase;

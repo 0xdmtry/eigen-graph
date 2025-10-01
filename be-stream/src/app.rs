@@ -1,5 +1,6 @@
 use crate::config::AppConfig;
 use crate::routes::v1;
+use crate::services::coinbase;
 use crate::state::AppState;
 use axum::Router;
 use axum::http::Method;
@@ -29,7 +30,9 @@ pub async fn app() -> Router {
         None
     };
 
-    let state = AppState { ts_db };
+    coinbase::spawn_coinbase_client(config.clone());
+
+    let state = AppState { config, ts_db };
 
     let cors = CorsLayer::new()
         .allow_origin(Any)
