@@ -11,10 +11,13 @@ components are synchronized through a global state reflected in the URL path.
 ---
 
 > ### Sources of inspiration
-> * [Blocks Signing and Streaming Service](https://github.com/0xdmtry/blocks-signer) — blocks signing service leveraging
-    a event-driven solution
-> * [Ethereum Blocks Service](https://github.com/0xdmtry/eth-block-api) — service for fetching and preserving Ethereum
-    blocks
+> * [Streaming Service](https://github.com/0xdmtry/blocks-signer) — distributed streaming service with Next.js
+    frontend
+> * [Fullstack Distributed System](https://github.com/0xdmtry/fi) — Next.js single-page application with distributed
+    system behind it
+> * [Ethereum Blocks Streamer](https://github.com/0xdmtry/eth-block-api) — service for fetching Ethereum blocks
+> * [TypeScript Streamer](https://github.com/0xdmtry/serverless-rtp-streamer) — TypeScript distributed
+    cloud-native streamer
 > * [Uniswap Graph](https://github.com/0xdmtry/eth-graph) — service to retrieve data on Uniswap v3 through The Graph
 >
 >
