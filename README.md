@@ -192,6 +192,28 @@ The component is designed to be a self-contained module for analyzing allocation
 
 ---
 
+### Price Stream Chart
+
+![Real-Time Chart](docs/images/real-time-chart.gif "Real-Time Chart")
+
+The `LineChart` component renders a real-time area chart visualizing the price fluctuations.
+
+* **Real-Time Data Feed:** The chart establishes a connection to a WebSocket stream to receive live price data. The
+  visualization updates dynamically, appending new data points as they arrive.
+
+* **Time-Series Visualization:** Price is plotted on the Y-axis against time on the X-axis, providing a clear
+  representation of price movements.
+
+* **Localized Time Axis:** Timestamps are received in UTC and are automatically rendered on the X-axis.
+
+* **Interactive Tooltip:** Hovering the cursor over the chart displays a tooltip containing the precise price and the
+  full date for that data point.
+
+* **Gradient Area Fill:** The area beneath the price line is filled with a subtle gradient, enhancing the visual
+  representation of the data.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
