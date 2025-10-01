@@ -6,6 +6,8 @@ use axum::Router;
 use axum::http::Method;
 use sqlx::postgres::PgPoolOptions;
 use std::time::Duration;
+use std::{collections::HashMap, sync::Arc};
+use tokio::sync::RwLock;
 use tower_http::cors::Any;
 use tower_http::cors::CorsLayer;
 
@@ -30,9 +32,13 @@ pub async fn app() -> Router {
         None
     };
 
-    coinbase::spawn_coinbase_client(config.clone());
+    let state = AppState {
+        config: config.clone(),
+        ts_db,
+        broadcasters: Arc::new(RwLock::new(HashMap::new())),
+    };
 
-    let state = AppState { config, ts_db };
+    coinbase::spawn_coinbase_client(state.clone());
 
     let cors = CorsLayer::new()
         .allow_origin(Any)
