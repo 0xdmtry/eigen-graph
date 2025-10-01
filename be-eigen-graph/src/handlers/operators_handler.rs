@@ -59,7 +59,7 @@ pub async fn operators_aggregates_handler(
     State(state): State<AppState>,
     Query(q): Query<AggregatesQuery>,
 ) -> impl IntoResponse {
-    let source = q.source.as_deref().unwrap_or("db");
+    let source = q.source.as_deref().unwrap_or("live");
     let first = q.first.unwrap_or(25);
     let skip = q.skip.unwrap_or(0);
 
