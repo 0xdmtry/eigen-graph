@@ -3,6 +3,7 @@
 import type React from "react";
 import {createContext, useContext} from "react";
 import {useParams, useRouter} from "next/navigation";
+import {canonicalSymbol} from "@/features/tokens/market";
 
 type TokenContextType = {
     selectedTokenSymbol: string | null;
@@ -14,10 +15,7 @@ const TokenContext = createContext<TokenContextType | undefined>(undefined);
 export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
     const router = useRouter();
     const params = useParams();
-
-    const currentSymbol = typeof params.tokenSymbol === 'string'
-        ? params.tokenSymbol.toUpperCase()
-        : null;
+    const currentSymbol = typeof params.tokenSymbol === "string" ? canonicalSymbol(params.tokenSymbol) : null;
 
     const setSelectedTokenSymbol = (symbol: string) => {
         router.push(`/${symbol.toLowerCase()}`, {scroll: false});

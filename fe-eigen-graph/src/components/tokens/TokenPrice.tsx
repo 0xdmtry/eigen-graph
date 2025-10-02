@@ -13,6 +13,17 @@ interface LineChartProps {
 }
 
 export default function TokenPrice({series}: LineChartProps) {
+    const empty = !series?.length || !series[0]?.data?.length;
+    if (empty) {
+        return (
+            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+                <div className="flex h-[335px] items-center justify-center">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Live price data not available</span>
+                </div>
+            </div>
+        );
+    }
+
     const options: ApexOptions = {
         legend: {show: false, position: "top", horizontalAlign: "left"},
         colors: ["#465FFF"],
@@ -42,7 +53,7 @@ export default function TokenPrice({series}: LineChartProps) {
     return (
         <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
             <div className="max-w-full overflow-x-auto custom-scrollbar">
-                <div id="chartEight" className="min-w-[1000px] xl:min-w-full">
+                <div className="min-w-[1000px] xl:min-w-full">
                     <ReactApexChart options={options} series={series} type="area" height={335}/>
                 </div>
             </div>
