@@ -57,7 +57,6 @@ const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData,
         tooltip: {enabled: true, y: {formatter: v => `${v} AVSs`, title: {formatter: n => n}}},
         stroke: {width: 0},
         legend: {show: false},
-        responsive: [{breakpoint: 480, options: {chart: {width: "100%"}}}]
     };
 
     return (
