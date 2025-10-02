@@ -6,8 +6,7 @@ import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorStrategySankey from "@/components/operators/OperatorStrategySankey";
 import TokenPanel from "@/components/tokens/TokenPanel";
 import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
-import TokenPrice from "@/components/tokens/TokenPrice";
-import {useWebSocket} from "@/hooks/useWebSocket";
+import TokenPriceLive from "@/components/tokens/TokenPriceLive";
 
 export default function TokenPageClient({
                                             tokensForPanel,
@@ -22,9 +21,6 @@ export default function TokenPageClient({
     barDataForSelectedToken: BarItem[];
     graph: GraphItem[];
 }) {
-    const seriesData = useWebSocket();
-    const series = [{name: "ETH-USD", data: seriesData}];
-
     return (
         <div className="space-y-6">
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 shadow-md">
@@ -35,7 +31,7 @@ export default function TokenPageClient({
                         <OperatorAvsDonutChart tableData={tableDataForSelectedToken}/>
                     </div>
                     <div className="col-span-6">
-                        <TokenPrice series={series}/>
+                        <TokenPriceLive/>
                     </div>
                 </div>
                 <OperatorsTable tableData={tableDataForSelectedToken}/>
