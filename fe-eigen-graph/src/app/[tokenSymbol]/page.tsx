@@ -1,7 +1,8 @@
 import {notFound} from "next/navigation";
 import {baseTokenCards} from "@/data/tokens";
 import TokenPageClient from "@/components/page/TokenPageClient";
-import {ApiResponse, GraphItem, TableItem} from "@/types/operators";
+import {GraphItem, TableItem} from "@/types/operators";
+import {fetchAggregates} from "@/server/operators";
 
 export default async function Page({params}: { params: Promise<{ tokenSymbol: string }> }) {
     const {tokenSymbol} = await params;
@@ -9,11 +10,7 @@ export default async function Page({params}: { params: Promise<{ tokenSymbol: st
     const isValid = !!symbol && baseTokenCards.some(t => t.symbol.toUpperCase() === symbol);
     if (!isValid) notFound();
 
-    const base = process.env.NEXT_PUBLIC_API_URL;
-    if (!base) throw new Error("API URL is not configured");
-    const res = await fetch(`${base}/v1/operators/aggregates`, {cache: "no-store"});
-    if (!res.ok) throw new Error("Failed to fetch operators");
-    const data: ApiResponse = await res.json();
+    const data = await fetchAggregates();
 
     const tokensForPanel: Record<string, TableItem[]> = {};
     const graphDataByToken: Record<string, GraphItem[]> = {};
