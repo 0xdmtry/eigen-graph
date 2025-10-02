@@ -2,7 +2,7 @@ import {notFound} from "next/navigation";
 import {GraphItem, TableItem} from "@/types/operators";
 import {fetchAggregates} from "@/server/operators";
 import TokenPageClient from "@/components/page/TokenPageClient";
-import {isValidToken, normalizeToken} from "@/lib/tokens";
+import {isValidToken, normalizeToken} from "@/modules/tokens";
 
 export default async function Page({params}: { params: Promise<{ tokenSymbol: string }> }) {
     const {tokenSymbol} = await params;
