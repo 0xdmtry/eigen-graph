@@ -3,8 +3,9 @@ import {baseTokenCards} from "@/data/tokens";
 import TokenPageClient from "@/components/page/TokenPageClient";
 import {ApiResponse, GraphItem, TableItem} from "@/types/operators";
 
-export default async function Page({params}: { params: { tokenSymbol: string } }) {
-    const symbol = params.tokenSymbol?.toUpperCase();
+export default async function Page({params}: { params: Promise<{ tokenSymbol: string }> }) {
+    const {tokenSymbol} = await params;
+    const symbol = tokenSymbol?.toUpperCase();
     const isValid = !!symbol && baseTokenCards.some(t => t.symbol.toUpperCase() === symbol);
     if (!isValid) notFound();
 
