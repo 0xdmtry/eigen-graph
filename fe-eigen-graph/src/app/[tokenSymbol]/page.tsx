@@ -1,14 +1,13 @@
 import {notFound} from "next/navigation";
-import {baseTokenCards} from "@/data/tokens";
-import TokenPageClient from "@/components/page/TokenPageClient";
 import {GraphItem, TableItem} from "@/types/operators";
 import {fetchAggregates} from "@/server/operators";
+import TokenPageClient from "@/components/page/TokenPageClient";
+import {isValidToken, normalizeToken} from "@/lib/tokens";
 
 export default async function Page({params}: { params: Promise<{ tokenSymbol: string }> }) {
     const {tokenSymbol} = await params;
-    const symbol = tokenSymbol?.toUpperCase();
-    const isValid = !!symbol && baseTokenCards.some(t => t.symbol.toUpperCase() === symbol);
-    if (!isValid) notFound();
+    if (!isValidToken(tokenSymbol)) notFound();
+    const symbol = normalizeToken(tokenSymbol);
 
     const data = await fetchAggregates();
 
@@ -19,8 +18,8 @@ export default async function Page({params}: { params: Promise<{ tokenSymbol: st
         graphDataByToken[token] = data.byToken[token].graph;
     });
 
-    const tableDataForSelectedToken = data.byToken[symbol!]?.table || [];
-    const barDataForSelectedToken = data.byToken[symbol!]?.bar || [];
+    const tableDataForSelectedToken = data.byToken[symbol]?.table || [];
+    const barDataForSelectedToken = data.byToken[symbol]?.bar || [];
 
     return (
         <TokenPageClient
