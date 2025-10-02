@@ -10,14 +10,12 @@ import TokenPrice from "@/components/tokens/TokenPrice";
 import {useWebSocket} from "@/hooks/useWebSocket";
 
 export default function TokenPageClient({
-                                            tokenSymbol,
                                             tokensForPanel,
                                             graphDataByToken,
                                             tableDataForSelectedToken,
                                             barDataForSelectedToken,
                                             graph,
                                         }: {
-    tokenSymbol: string;
     tokensForPanel: Record<string, TableItem[]>;
     graphDataByToken: Record<string, GraphItem[]>;
     tableDataForSelectedToken: TableItem[];

@@ -26,7 +26,6 @@ export default async function Page({params}: { params: { tokenSymbol: string } }
 
     return (
         <TokenPageClient
-            tokenSymbol={symbol!}
             tokensForPanel={tokensForPanel}
             graphDataByToken={graphDataByToken}
             tableDataForSelectedToken={tableDataForSelectedToken}
