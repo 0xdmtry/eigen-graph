@@ -1,37 +1,31 @@
 "use client";
 import OperatorsTable from "@/components/operators/OperatorsTable";
 import React from "react";
-import useSWR from "swr";
-import {ApiResponse, GraphItem, TableItem} from "@/types/operators";
+import {GraphItem, TableItem, BarItem} from "@/types/operators";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorStrategySankey from "@/components/operators/OperatorStrategySankey";
 import TokenPanel from "@/components/tokens/TokenPanel";
-import {baseTokenCards} from "@/data/tokens";
 import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
 import TokenPrice from "@/components/tokens/TokenPrice";
 import {useWebSocket} from "@/hooks/useWebSocket";
 
-const fetcher = (url: string): Promise<ApiResponse> => fetch(url).then(res => res.json());
-
-export default function TokenPageClient({tokenSymbol}: { tokenSymbol: string }) {
+export default function TokenPageClient({
+                                            tokenSymbol,
+                                            tokensForPanel,
+                                            graphDataByToken,
+                                            tableDataForSelectedToken,
+                                            barDataForSelectedToken,
+                                            graph,
+                                        }: {
+    tokenSymbol: string;
+    tokensForPanel: Record<string, TableItem[]>;
+    graphDataByToken: Record<string, GraphItem[]>;
+    tableDataForSelectedToken: TableItem[];
+    barDataForSelectedToken: BarItem[];
+    graph: GraphItem[];
+}) {
     const seriesData = useWebSocket();
     const series = [{name: "ETH-USD", data: seriesData}];
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/v1/operators/aggregates`;
-    const {data, error, isLoading} = useSWR<ApiResponse>(apiUrl, fetcher);
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error fetching data.</div>;
-    if (!data) return <div>No data found.</div>;
-
-    const tokensForPanel: Record<string, TableItem[]> = {};
-    const graphDataByToken: Record<string, GraphItem[]> = {};
-    Object.keys(data.byToken).forEach(token => {
-        tokensForPanel[token] = data.byToken[token].table;
-        graphDataByToken[token] = data.byToken[token].graph;
-    });
-
-    const selectedTokenSymbol = tokenSymbol.toUpperCase();
-    const tableDataForSelectedToken = data.byToken[selectedTokenSymbol]?.table || [];
-    const barDataForSelectedToken = data.byToken[selectedTokenSymbol]?.bar || [];
 
     return (
         <div className="space-y-6">
@@ -47,7 +41,7 @@ export default function TokenPageClient({tokenSymbol}: { tokenSymbol: string }) 
                     </div>
                 </div>
                 <OperatorsTable tableData={tableDataForSelectedToken}/>
-                <OperatorStrategySankey graphData={data.graph} graphDataByToken={graphDataByToken}/>
+                <OperatorStrategySankey graphData={graph} graphDataByToken={graphDataByToken}/>
             </main>
         </div>
     );
