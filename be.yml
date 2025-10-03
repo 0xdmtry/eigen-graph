@@ -1,5 +1,6 @@
 services:
 
+  #  Backend
   be-eigen-graph:
     container_name: be-eigen-graph
     build:
@@ -17,12 +18,44 @@ services:
     depends_on:
       db-eigen-graph:
         condition: service_healthy
+      redis-eigen-graph:
+        condition: service_started
     environment:
       DATABASE_URL: postgres://root:root@db-eigen-graph:5432/eigen-graph
     networks:
-      - be-eigen-graph-net
+      - eigen-net
 
+  db-eigen-graph:
+    container_name: db-eigen-graph
+    image: postgres:17.4
+    restart: always
+    environment:
+      POSTGRES_DB: eigen-graph
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root -d eigen-graph" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - .dbdata/postgres/dev/db-eigen-graph/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - eigen-net
 
+  redis-eigen-graph:
+    image: 'redis:alpine'
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - .dbdata/redis/:/data
+    networks:
+      - eigen-net
+
+  #  Streamer
   be-stream:
     container_name: be-stream
     build:
@@ -43,27 +76,7 @@ services:
     environment:
       TIMESCALE_DATABASE_URL: postgres://root:root@db-eigen-timescale:5432/eigen-ts
     networks:
-      - be-eigen-graph-net
-
-  db-eigen-graph:
-    container_name: db-eigen-graph
-    image: postgres:17.4
-    restart: always
-    environment:
-      POSTGRES_DB: eigen-graph
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U root -d eigen-graph" ]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-    volumes:
-      - .dbdata/postgres/dev/db-eigen-graph/:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    networks:
-      - be-eigen-graph-net
+      - eigen-net
 
   db-eigen-timescale:
     container_name: db-eigen-timescale
@@ -84,8 +97,9 @@ services:
     ports:
       - "5442:5432"
     networks:
-      - be-eigen-graph-net
+      - eigen-net
 
+  #  Observability
   prometheus:
     container_name: prometheus
     image: prom/prometheus:latest
@@ -96,7 +110,7 @@ services:
     ports:
       - "9090:9090"
     networks:
-      - be-eigen-graph-net
+      - eigen-net
 
   grafana:
     container_name: grafana
@@ -106,18 +120,8 @@ services:
     depends_on:
       - prometheus
     networks:
-      - be-eigen-graph-net
-
-  redis:
-    image: 'redis:alpine'
-    ports:
-      - "6379:6379"
-    restart: always
-    volumes:
-      - .dbdata/redis/:/data
-    networks:
-      - be-eigen-graph-net
+      - eigen-net
 
 networks:
-  be-eigen-graph-net:
+  eigen-net:
     driver: bridge
