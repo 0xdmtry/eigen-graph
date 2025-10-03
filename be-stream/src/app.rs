@@ -23,10 +23,10 @@ pub async fn app() -> Router {
             .await
             .expect("failed to connect to TimescaleDB");
 
-        // sqlx::migrate!()
-        //     .run(&pool)
-        //     .await
-        //     .expect("timescale migrations failed");
+        sqlx::migrate!()
+            .run(&pool)
+            .await
+            .expect("timescale migrations failed");
 
         Some(pool)
     } else {

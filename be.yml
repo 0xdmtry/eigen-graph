@@ -114,10 +114,10 @@ services:
       - "6379:6379"
     restart: always
     volumes:
-      - ./db-data/redis/:/data
+      - .dbdata/redis/:/data
     networks:
       - be-eigen-graph-net
 
 networks:
-  be-eigen-net:
+  be-eigen-graph-net:
     driver: bridge
