@@ -233,11 +233,20 @@ The `LineChart` component renders a real-time area chart visualizing the price f
    ```
    SUBGRAPH_URL=https://subgraph.satsuma-prod.com/000x000x0000/eigenlabs/eigen-graph-mainnet/api
    DATABASE_URL=postgres://root:root@db-eigen-graph:5432/eigen-graph
-   TIMESCALE_DATABASE_URL=postgres://root:root@db-eigen-timescale:5432/eigen-ts
    ```
 
    > **Note:** The `SUBGRAPH_URL` provided above is a placeholder. A valid, functional Subgraph URL must be used for the
    backend to operate correctly.
+
+   Furthermore, create a `.env` file in the `be-stream`. This file provides the necessary
+   configuration for the streaming containers.
+
+   **File: `.env`**
+
+   ```
+   SOURCE_URL=wss://ws-feed.exchange.coinbase.com
+   TIMESCALE_DATABASE_URL: postgres://root:root@db-eigen-timescale:5432/eigen-ts
+   ```
 
 2. **Start the Backend Service:**
    Open a terminal and run the following command to build and start the backend container.
@@ -245,6 +254,10 @@ The `LineChart` component renders a real-time area chart visualizing the price f
    ```sh
    docker compose -f be.yml up --build
    ```
+   
+    Example of running containers in Docker Desktop:
+
+    ![Docker Desktop](docs/images/docker-desktop.png "Docker Desktop")
 
 3. **Configure Environment Variables:**
    Create a `.env.local` file in the `fe-eigen-graph`. This file provides the application with the URL for the local
