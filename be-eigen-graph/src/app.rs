@@ -4,6 +4,8 @@ use crate::routes::v1;
 use crate::state::AppState;
 use axum::Router;
 use axum::http::Method;
+use redis::Client;
+use redis::aio::ConnectionManager;
 use sqlx::postgres::PgPoolOptions;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
@@ -25,10 +27,16 @@ pub async fn app() -> Router {
         .await
         .expect("db migrations failed");
 
+    let redis = match Client::open(config.redis_url.as_str()) {
+        Ok(client) => ConnectionManager::new(client).await.ok(),
+        Err(_) => None,
+    };
+
     let state = AppState {
         subgraph_client: SubgraphClient::new(config.subgraph_url),
         operators_snapshot: Arc::new(Mutex::new(HashMap::new())),
         db,
+        redis,
     };
 
     let cors = CorsLayer::new()

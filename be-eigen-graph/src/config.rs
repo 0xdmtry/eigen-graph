@@ -6,6 +6,8 @@ use std::str::FromStr;
 pub struct AppConfig {
     pub subgraph_url: Url,
     pub database_url: String,
+    pub redis_url: String,
+    pub redis_ttl_seconds: u64,
 }
 
 impl AppConfig {
@@ -15,10 +17,18 @@ impl AppConfig {
         let subgraph = env::var("SUBGRAPH_URL").unwrap_or_default();
         let subgraph_url = Url::from_str(&subgraph).unwrap();
         let database_url = env::var("DATABASE_URL").unwrap_or_default();
+        let redis_url =
+            env::var("REDIS_URL").unwrap_or_else(|_| "redis://redis-eigen-graph:6379".to_string());
+        let redis_ttl_seconds = env::var("REDIS_TTL_SECONDS")
+            .ok()
+            .and_then(|s| s.parse::<u64>().ok())
+            .unwrap_or(60);
 
         Self {
             subgraph_url,
             database_url,
+            redis_url,
+            redis_ttl_seconds,
         }
     }
 
