@@ -254,19 +254,19 @@ The `LineChart` component renders a real-time area chart visualizing the price f
    ```sh
    docker compose -f be.yml up --build
    ```
-   
-    Example of running containers in Docker Desktop:
 
-    ![Docker Desktop](docs/images/docker-desktop.png "Docker Desktop")
+   Example of running containers in Docker Desktop:
+
+   ![Docker Desktop](docs/images/docker-desktop.png "Docker Desktop")
 
 3. **Configure Environment Variables:**
-   Create a `.env.local` file in the `fe-eigen-graph`. This file provides the application with the URL for the local
+   Create a `.env` file in the `fe-eigen-graph`. This file provides the application with the URL for the local
    backend API.
 
-   **File: `.env.local`**
+   **File: `.env`**
 
    ```
-   NEXT_PUBLIC_API_URL=http://localhost:8000
+   API_URL=http://localhost:8000
    ```
 
 4. **Install Frontend Dependencies:**
