@@ -12,4 +12,5 @@ pub struct AppState {
     pub broadcasters: Arc<RwLock<HashMap<String, broadcast::Sender<Tick>>>>,
     pub sub_counts: Arc<RwLock<HashMap<String, usize>>>,
     pub control_tx: mpsc::Sender<crate::services::coinbase::Control>,
+    pub writer_tx: Option<mpsc::Sender<Tick>>,
 }

@@ -1,6 +1,6 @@
 use crate::config::AppConfig;
 use crate::routes::v1;
-use crate::services::coinbase;
+use crate::services::{coinbase, writer};
 use crate::state::AppState;
 use axum::Router;
 use axum::http::Method;
@@ -35,12 +35,16 @@ pub async fn app() -> Router {
 
     let (control_tx, control_rx) = mpsc::channel(64);
 
+    let (writer_tx, writer_rx) = mpsc::channel(2048);
+    writer::spawn_writer(ts_db.clone(), writer_rx);
+
     let state = AppState {
         config: config.clone(),
         ts_db,
         broadcasters: Arc::new(RwLock::new(HashMap::new())),
         sub_counts: Arc::new(RwLock::new(HashMap::new())),
         control_tx,
+        writer_tx: Some(writer_tx),
     };
 
     coinbase::spawn_coinbase_client(state.clone(), control_rx);
