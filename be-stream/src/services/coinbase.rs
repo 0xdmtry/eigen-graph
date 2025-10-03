@@ -113,7 +113,13 @@ async fn connect_and_stream(
                         | CbMsg::LastMatch { product_id, price, time } => {
                             let tick = Tick { product_id: product_id.clone(), price, time };
                             if let Some(tx) = get_or_create_sender(state, &product_id).await {
-                                let _ = tx.send(tick);
+                                let _ = tx.send(tick.clone());
+                            }
+
+                            if let Some(ref wtx) = state.writer_tx {
+                                if let Err(e) = wtx.try_send(tick.clone()) {
+                                    eprintln!("[writer] try_send dropped tick {tick:?}: {e}");
+                                }
                             }
                         }
                         CbMsg::Other => {}
