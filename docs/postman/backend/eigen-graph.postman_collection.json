@@ -53,6 +53,26 @@
 							"response": []
 						},
 						{
+							"name": "operators_snapshot_cached",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/v1/operators/snapshot_cached",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"operators",
+										"snapshot_cached"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "operators_aggregator",
 							"request": {
 								"method": "GET",
@@ -67,6 +87,26 @@
 										"v1",
 										"operators",
 										"aggregates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "operators_aggregator_cached",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/v1/operators/aggregates_cached",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"operators",
+										"aggregates_cached"
 									]
 								}
 							},
