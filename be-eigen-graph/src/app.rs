@@ -37,6 +37,7 @@ pub async fn app() -> Router {
         operators_snapshot: Arc::new(Mutex::new(HashMap::new())),
         db,
         redis,
+        redis_ttl_seconds: config.redis_ttl_seconds,
     };
 
     let cors = CorsLayer::new()

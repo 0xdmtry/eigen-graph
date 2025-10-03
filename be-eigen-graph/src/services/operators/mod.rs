@@ -4,3 +4,4 @@ pub mod operators_fetcher;
 pub mod operators_filter;
 pub mod operators_mapper;
 pub mod operators_repo;
+pub mod operators_snapshot_cached;

@@ -1,3 +1,4 @@
+pub mod cached;
 pub mod ids;
 pub mod operator;
 pub mod operators_aggr;

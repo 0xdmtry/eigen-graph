@@ -1,6 +1,6 @@
 pub mod api;
 pub mod app;
-pub mod cache;
+pub mod caching;
 pub mod config;
 pub mod handlers;
 pub mod models;

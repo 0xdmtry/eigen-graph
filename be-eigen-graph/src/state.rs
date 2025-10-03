@@ -10,4 +10,5 @@ pub struct AppState {
     pub operators_snapshot: Arc<Mutex<HashMap<String, OperatorDto>>>,
     pub db: sqlx::Pool<sqlx::Postgres>,
     pub redis: Option<ConnectionManager>,
+    pub redis_ttl_seconds: u64,
 }
