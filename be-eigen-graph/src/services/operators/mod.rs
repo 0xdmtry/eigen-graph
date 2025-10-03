@@ -1,4 +1,5 @@
 pub mod operators_aggr;
+pub mod operators_aggregates_cached;
 pub mod operators_cache;
 pub mod operators_fetcher;
 pub mod operators_filter;
