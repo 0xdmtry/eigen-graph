@@ -1,3 +1,4 @@
+// src/components/tokens/TokenPanelDnD.tsx
 "use client";
 import React, {useEffect, useMemo, useState} from "react";
 import {DndContext, PointerSensor, KeyboardSensor, useSensor, useSensors, closestCenter} from "@dnd-kit/core";
@@ -14,9 +15,9 @@ import {useToken} from "@/context/TokenContext";
 import TokenCardDnD from "./TokenCardDnD";
 import {TokenCardDnDType} from "@/types/tokens";
 
-type Props = {
-    tokens: Record<string, TableItem[]>;
-};
+type Props = { tokens: Record<string, TableItem[]> };
+
+const STORAGE_KEY = "tokenPanelOrder:v1";
 
 export default function TokenPanelDnD({tokens}: Props) {
     const {selectedTokenSymbol, setSelectedTokenSymbol} = useToken();
@@ -46,16 +47,29 @@ export default function TokenPanelDnD({tokens}: Props) {
     }, [tokens, baseMap]);
 
     const symbols = useMemo(() => cards.map(c => c.symbol), [cards]);
-
     const [order, setOrder] = useState<string[]>([]);
+
+    const reconcile = (saved: string[], current: string[]) => {
+        const kept = saved.filter(s => current.includes(s));
+        const added = current.filter(s => !saved.includes(s)).sort((a, b) => a.localeCompare(b));
+        return kept.concat(added);
+    };
+
     useEffect(() => {
-        setOrder(prev => {
-            if (!prev.length) return [...symbols].sort((a, b) => a.localeCompare(b));
-            const kept = prev.filter(s => symbols.includes(s));
-            const added = symbols.filter(s => !prev.includes(s)).sort((a, b) => a.localeCompare(b));
-            return kept.concat(added);
-        });
+        const saved = (() => {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]") as string[];
+            } catch {
+                return [];
+            }
+        })();
+        const next = saved.length ? reconcile(saved, symbols) : [...symbols].sort((a, b) => a.localeCompare(b));
+        setOrder(next);
     }, [symbols]);
+
+    useEffect(() => {
+        if (order.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    }, [order]);
 
     const orderedCards = useMemo(
         () => order.map(s => cards.find(c => c.symbol === s)).filter(Boolean) as TokenCardDnDType[],
@@ -76,9 +90,7 @@ export default function TokenPanelDnD({tokens}: Props) {
             transition,
             setActivatorNodeRef,
             isDragging
-        } = useSortable({
-            id: card.id,
-        });
+        } = useSortable({id: card.id});
         const style: React.CSSProperties = {
             transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
             transition,
@@ -120,9 +132,7 @@ export default function TokenPanelDnD({tokens}: Props) {
                     >
                         <SortableContext items={order} strategy={verticalListSortingStrategy}>
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                                {orderedCards.map(card => (
-                                    <SortableItem key={card.id} card={card}/>
-                                ))}
+                                {orderedCards.map(card => <SortableItem key={card.id} card={card}/>)}
                             </div>
                         </SortableContext>
                     </DndContext>
