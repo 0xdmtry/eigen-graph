@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {DndContext, PointerSensor, KeyboardSensor, useSensor, useSensors, closestCenter} from "@dnd-kit/core";
 import {
     SortableContext,
@@ -21,63 +21,69 @@ type Props = { tokens: Record<string, TableItem[]> };
 const STORAGE_KEY = "tokenPanelOrder:v1";
 const CARDS_SHOWN_COLLAPSED = 6;
 
+const sortByOpsThenSymbol = (cards: TokenCardDnDType[]) =>
+    [...cards].sort((a, b) => (b.operators - a.operators) || a.symbol.localeCompare(b.symbol)).map(c => c.symbol);
+
+function buildCards(tokens: Record<string, TableItem[]>): TokenCardDnDType[] {
+    return baseTokenCards.map(({symbol, name, icon}) => {
+        const rows = tokens[symbol] || [];
+        const operators = rows.length;
+        const tvl = rows.reduce((s, r) => {
+            try {
+                return s + BigInt(r.tvlTotalAtomic);
+            } catch {
+                return s;
+            }
+        }, BigInt(0)).toString();
+        return {id: symbol, symbol, name, icon, tvl, operators};
+    });
+}
+
 export default function TokenPanelDnD({tokens}: Props) {
     const {selectedTokenSymbol, setSelectedTokenSymbol} = useToken();
     const [isExpanded, setIsExpanded] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const initializedRef = useRef(false);
 
-    const baseMap = useMemo(() => {
-        const m = new Map<string, { name: string; icon: string }>();
-        baseTokenCards.forEach(t => m.set(t.symbol, {name: t.name, icon: t.icon}));
-        return m;
-    }, []);
+    useEffect(() => setMounted(true), []);
 
-    const cards = useMemo<TokenCardDnDType[]>(() => {
-        return baseTokenCards.map(({symbol}) => {
-            const rows = tokens[symbol] || [];
-            const operators = rows.length;
-            const tvl = rows.reduce((s, r) => {
-                try {
-                    return s + BigInt(r.tvlTotalAtomic);
-                } catch {
-                    return s;
-                }
-            }, BigInt(0)).toString();
-            const meta = baseMap.get(symbol) || {name: symbol, icon: ""};
-            return {id: symbol, symbol, name: meta.name, icon: meta.icon, tvl, operators};
-        });
-    }, [tokens, baseMap]);
+    const cards = useMemo(() => buildCards(tokens), [tokens]);
 
-    const symbols = useMemo(() => cards.map(c => c.symbol), [cards]);
-
-    const [order, setOrder] = useState<string[]>(
-        () => [...symbols].sort((a, b) => a.localeCompare(b))
-    );
+    const [order, setOrder] = useState<string[]>(() => sortByOpsThenSymbol(buildCards(tokens)));
 
     useEffect(() => {
-        setOrder(prev => {
-            if (!prev.length) return [...symbols].sort((a, b) => a.localeCompare(b));
-            const kept = prev.filter(s => symbols.includes(s));
-            const added = symbols.filter(s => !prev.includes(s)).sort((a, b) => a.localeCompare(b));
-            return kept.concat(added);
-        });
-    }, [symbols]);
-
-    useEffect(() => {
+        if (!mounted || initializedRef.current) return;
         try {
             const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]") as string[];
+            const current = new Set(cards.map(c => c.symbol));
             if (Array.isArray(saved) && saved.length) {
-                const kept = saved.filter(s => symbols.includes(s));
-                const added = symbols.filter(s => !saved.includes(s)).sort((a, b) => a.localeCompare(b));
-                const next = kept.concat(added);
-                if (next.join(",") !== order.join(",")) setOrder(next);
+                const kept = saved.filter(s => current.has(s));
+                const rest = cards.filter(c => !kept.includes(c.symbol));
+                setOrder(kept.concat(sortByOpsThenSymbol(rest)));
+            } else {
+                setOrder(sortByOpsThenSymbol(cards));
             }
         } catch {
+            setOrder(sortByOpsThenSymbol(cards));
         }
-    }, [symbols]);
+        initializedRef.current = true;
+    }, [mounted, cards]);
 
     useEffect(() => {
-        if (order.length) localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
-    }, [order]);
+        if (!mounted) return;
+        const currentSet = new Set(cards.map(c => c.symbol));
+        setOrder(prev => {
+            const filtered = prev.filter(s => currentSet.has(s));
+            const existing = new Set(filtered);
+            const additions = cards.filter(c => !existing.has(c.symbol));
+            return additions.length ? filtered.concat(sortByOpsThenSymbol(additions)) : filtered;
+        });
+    }, [mounted, cards]);
+
+    useEffect(() => {
+        if (!mounted || !order.length) return;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    }, [mounted, order]);
 
     const orderedCards = useMemo(
         () => order.map(s => cards.find(c => c.symbol === s)).filter(Boolean) as TokenCardDnDType[],
@@ -141,23 +147,44 @@ export default function TokenPanelDnD({tokens}: Props) {
                 <div
                     className={`overflow-hidden transition-[max-height] duration-700 ease-in-out ${isExpanded || !canExpand ? "max-h-[4000px]" : "max-h-[220px]"}`}>
                     <div className="p-4 sm:p-6">
-                        <DndContext
-                            sensors={sensors}
-                            collisionDetection={closestCenter}
-                            onDragEnd={({active, over}) => {
-                                if (!over || active.id === over.id) return;
-                                const oldIndex = order.indexOf(String(active.id));
-                                const newIndex = order.indexOf(String(over.id));
-                                if (oldIndex === -1 || newIndex === -1) return;
-                                setOrder(o => arrayMove(o, oldIndex, newIndex));
-                            }}
-                        >
-                            <SortableContext items={order} strategy={rectSwappingStrategy}>
-                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                                    {orderedCards.map(card => <SortableItem key={card.id} card={card}/>)}
-                                </div>
-                            </SortableContext>
-                        </DndContext>
+                        {!mounted ? (
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                                {orderedCards.map(card => (
+                                    <TokenCardDnD
+                                        key={card.id}
+                                        id={card.id}
+                                        symbol={card.symbol}
+                                        name={card.name}
+                                        icon={card.icon}
+                                        tvl={card.tvl}
+                                        operators={card.operators}
+                                        isActive={card.symbol.toUpperCase() === (selectedTokenSymbol || "").toUpperCase()}
+                                        onSelect={() => setSelectedTokenSymbol(card.symbol)}
+                                        dragHandleRef={undefined as unknown as React.Ref<HTMLButtonElement>}
+                                        dragHandleAttributes={{} as any}
+                                        dragHandleListeners={undefined as any}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <DndContext
+                                sensors={sensors}
+                                collisionDetection={closestCenter}
+                                onDragEnd={({active, over}) => {
+                                    if (!over || active.id === over.id) return;
+                                    const oldIndex = order.indexOf(String(active.id));
+                                    const newIndex = order.indexOf(String(over.id));
+                                    if (oldIndex === -1 || newIndex === -1) return;
+                                    setOrder(o => arrayMove(o, oldIndex, newIndex));
+                                }}
+                            >
+                                <SortableContext items={order} strategy={rectSwappingStrategy}>
+                                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                                        {orderedCards.map(card => <SortableItem key={card.id} card={card}/>)}
+                                    </div>
+                                </SortableContext>
+                            </DndContext>
+                        )}
                     </div>
                 </div>
                 {canExpand && (
