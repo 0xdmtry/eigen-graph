@@ -58,6 +58,17 @@ and select tokens.
   token updates the URL. Conversely, navigating directly to a valid token URL (e.g., `/stETH`) will automatically
   populate the autocomplete input with the corresponding token's name.
 
+#### Drag-and-Drop Ordering
+
+![Drag-and-Drop](docs/images/dnd-tokens-cards.gif "Drag-and-Drop")
+
+Reorder tokens by dragging cards in the panel.
+
+* **How to use:** Drag via the **left handle** before the logo. Click still selects a token.
+* **Persistence:** Order is saved to `localStorage` under `tokenPanelOrder:v1`.
+* **Reconciliation:** If tokens change, saved order is merged with current set.
+* **Collapsible:** “Show More / Show Less” behavior is preserved; drag-and-drop works in both states.
+
 #### Collapsible Interface
 
 ![Tokens Panel](docs/images/tokens-panel-002.gif "Tokens Panel")
