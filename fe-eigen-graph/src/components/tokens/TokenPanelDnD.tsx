@@ -139,7 +139,7 @@ export default function TokenPanelDnD({tokens}: Props) {
             </div>
             <div className="border-t border-gray-100 dark:border-gray-800">
                 <div
-                    className={`overflow-hidden transition-[max-height] duration-700 ease-in-out ${isExpanded || !canExpand ? "max-h-[4000px]" : "max-h-[240px]"}`}>
+                    className={`overflow-hidden transition-[max-height] duration-700 ease-in-out ${isExpanded || !canExpand ? "max-h-[4000px]" : "max-h-[220px]"}`}>
                     <div className="p-4 sm:p-6">
                         <DndContext
                             sensors={sensors}
