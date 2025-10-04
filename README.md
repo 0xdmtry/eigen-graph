@@ -1,6 +1,6 @@
 # Eigen Graph
 
-![Schema](docs/images/schema-v3.gif "Schema")
+![Schema](docs/images/schema-v4.gif "Schema")
 
 This application is a data visualization dashboard for analyzing operator metrics within the EigenLayer Subgraph. It
 features an interactive, token-centric interface where selecting a token dynamically updates all data views. Key

@@ -17,3 +17,7 @@ Allows unused code
 ```bash
 cargo clippy --all-targets --all-features -- -D warnings -A unused -A dead_code
 ```
+
+```bash
+cargo test -q
+```
