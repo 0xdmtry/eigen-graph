@@ -1,37 +1,25 @@
 "use client";
 
-import type React from "react";
-import {createContext, useContext} from "react";
-import {useParams, useRouter} from "next/navigation";
-import {canonicalSymbol} from "@/features/tokens/market";
+import React, {createContext, useContext, useState} from "react";
 
 type TokenContextType = {
-    selectedTokenSymbol: string | null;
+    selectedTokenSymbol: string;
     setSelectedTokenSymbol: (symbol: string) => void;
 };
 
-const TokenContext = createContext<TokenContextType | undefined>(undefined);
+export const TokenContext = createContext<TokenContextType | undefined>(undefined);
 
 export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
-    const router = useRouter();
-    const params = useParams();
-    const currentSymbol = typeof params.tokenSymbol === "string" ? canonicalSymbol(params.tokenSymbol) : null;
-
-    const setSelectedTokenSymbol = (symbol: string) => {
-        router.push(`/${symbol.toLowerCase()}`, {scroll: false});
-    };
-
+    const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("EIGEN");
     return (
-        <TokenContext.Provider value={{selectedTokenSymbol: currentSymbol, setSelectedTokenSymbol}}>
+        <TokenContext.Provider value={{selectedTokenSymbol, setSelectedTokenSymbol}}>
             {children}
         </TokenContext.Provider>
     );
 };
 
 export const useToken = () => {
-    const context = useContext(TokenContext);
-    if (context === undefined) {
-        throw new Error("useToken must be used within a TokenProvider");
-    }
-    return context;
+    const ctx = useContext(TokenContext);
+    if (!ctx) throw new Error("useToken must be used within a TokenProvider");
+    return ctx;
 };

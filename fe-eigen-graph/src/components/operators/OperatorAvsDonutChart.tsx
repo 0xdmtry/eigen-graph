@@ -9,6 +9,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     loading: () => <div className="flex h-[350px] items-center justify-center"/>
 });
 
+
 interface OperatorAvsDonutChartProps {
     tableData: TableItem[];
     topN?: number;
@@ -20,6 +21,8 @@ const shortenId = (id: string, chars = 4): string => {
 };
 
 const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData, topN = 6}) => {
+
+    console.log("tableData", tableData);
     const chartData = useMemo(() => {
         if (!tableData || tableData.length === 0) return {series: [], labels: []};
         const sortedByAvs = [...tableData].filter(i => i.avsCount > 0).sort((a, b) => b.avsCount - a.avsCount);
@@ -35,6 +38,9 @@ const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData,
         }
         return {series: finalSlices.map(s => s.value), labels: finalSlices.map(s => s.label)};
     }, [tableData, topN]);
+
+    console.log("chartData", chartData);
+
 
     const options: ApexOptions = {
         chart: {fontFamily: "Outfit, sans-serif", type: "donut", height: 350},
@@ -59,13 +65,23 @@ const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData,
         legend: {show: false},
     };
 
+    const chartKey = useMemo(
+        () => `${chartData.labels.join("|")}::${chartData.series.join(",")}`,
+        [chartData.labels, chartData.series]
+    );
+
     return (
         <div className="rounded-xl  p-4">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">Operator Distribution by AVS
                 Count</h3>
             {chartData.series.length > 0 ? (
                 <div id="avs-donut-chart" className="flex justify-center">
-                    <ReactApexChart options={options} series={chartData.series} type="donut" height={350}/>
+                    <ReactApexChart
+                        key={chartKey}
+                        options={options}
+                        series={chartData.series}
+                        type="donut"
+                        height={350}/>
                 </div>
             ) : (
                 <div className="flex h-[250px] items-center justify-center">
