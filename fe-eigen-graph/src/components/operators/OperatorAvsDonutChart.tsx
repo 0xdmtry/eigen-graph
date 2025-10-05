@@ -22,7 +22,6 @@ const shortenId = (id: string, chars = 4): string => {
 
 const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData, topN = 6}) => {
 
-    console.log("tableData", tableData);
     const chartData = useMemo(() => {
         if (!tableData || tableData.length === 0) return {series: [], labels: []};
         const sortedByAvs = [...tableData].filter(i => i.avsCount > 0).sort((a, b) => b.avsCount - a.avsCount);
@@ -38,9 +37,6 @@ const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData,
         }
         return {series: finalSlices.map(s => s.value), labels: finalSlices.map(s => s.label)};
     }, [tableData, topN]);
-
-    console.log("chartData", chartData);
-
 
     const options: ApexOptions = {
         chart: {fontFamily: "Outfit, sans-serif", type: "donut", height: 350},
