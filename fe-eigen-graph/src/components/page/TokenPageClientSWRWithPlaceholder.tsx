@@ -3,7 +3,7 @@ import React, {useMemo, useState} from "react";
 import {ApiResponse, GraphItem, TokenSlice} from "@/types/operators";
 import {TokenContext} from "@/context/TokenContext";
 import {useAggregates} from "@/hooks/useAggregates";
-import TokenPanelDnD from "@/components/tokens/TokenPanelDnD";
+import TokenPanelDeferred from "@/components/tokens/TokenPanelDeferred";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
 import TokenPriceLive from "@/components/tokens/TokenPriceLive";
@@ -24,7 +24,7 @@ function TopSection({byToken, symbol}: { byToken: ByToken; symbol: string }) {
     return (
         <>
             <div className="min-h-[350px]">
-                <TokenPanelDnD tokens={tokensForPanel}/>
+                <TokenPanelDeferred tokens={tokensForPanel}/>
             </div>
             <div className="h-[445px] dark:border-gray-800 dark:bg-white/[0.03]">
                 <OperatorsTvl barData={barData}/>

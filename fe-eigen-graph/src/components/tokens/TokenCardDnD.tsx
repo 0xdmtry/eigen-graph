@@ -45,7 +45,7 @@ export default function TokenCardDnD({
             }`}
         >
             <div
-                className="flex h-full items-center justify-between rounded-2xl  py-4 pl-4 pr-4 dark:border-gray-800 dark:bg-white/[0.03] xl:pr-5">
+                className="flex h-full items-center justify-between rounded-2xl  py-4 pl-4 pr-4 border-gray-800 bg-white/[0.03] xl:pr-5">
                 <div className="flex items-center gap-3 overflow-hidden">
                     <button
                         type="button"
