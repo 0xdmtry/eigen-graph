@@ -61,12 +61,14 @@ export default function TokenCardDnD({
                         </svg>
                     </button>
                     <div className="flex h-[52px] w-[52px] flex-shrink-0 items-center justify-center rounded-xl">
-                        {icon ? (
-                            <Image src={`/images/tokens/${icon}.png`} alt={name} width={32} height={32}/>
-                        ) : (
-                            <span
-                                className="text-xs font-bold text-gray-500 dark:text-gray-400">{symbol.charAt(0).toUpperCase()}</span>
-                        )}
+                        <span
+                            role="img"
+                            aria-label={`${symbol} logo`}
+                            className={`token-logo ${icon ? "token-logo--has" : ""}`}
+                            style={icon ? { backgroundImage: `url(/images/tokens/${icon}.png)` } : undefined}
+                        >
+                            {symbol.charAt(0).toUpperCase()}
+                        </span>
                     </div>
                     <div className="overflow-hidden">
                         <h4 className="mb-1 truncate text-sm font-medium text-gray-800 dark:text-white/90">{symbol}</h4>

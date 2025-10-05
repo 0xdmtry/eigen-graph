@@ -905,3 +905,26 @@ pre[class*="language-"] {
 pre[class*="language-"].line-numbers {
     padding-left: 2.8em !important;
 }
+
+/*Token Logos*/
+
+.token-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    width: 52px;
+    border-radius: 0.75rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(107 114 128);
+}
+.dark .token-logo {
+    color: rgb(156 163 175);
+}
+.token-logo--has {
+    color: transparent;
+}
