@@ -91,15 +91,11 @@ const OperatorStrategySankey: React.FC<OperatorStrategySankeyProps> = ({
             </h3>
 
             {
-                (sankeyData.length <= 1) ? (<div
-                    className="rounded-xl border p-4 dark:border-gray-800 dark:bg-white/[0.03]">
-                    <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">
-                        Operator → Strategy Allocation
-                    </h3>
-                    <div className="flex h-96 items-center justify-center h-[500px]">
+                (sankeyData.length <= 1) ? (
+                    <div className="flex items-center justify-center h-[500px]">
                         <p className="text-gray-500">No significant operator allocations to display.</p>
                     </div>
-                </div>) : (
+                ) : (
 
                     <div className="h-[500px]"><Chart
                         chartType="Sankey"
