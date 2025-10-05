@@ -132,7 +132,7 @@ export default function TokenPanelDnD({tokens}: Props) {
     const canExpand = orderedCards.length > CARDS_SHOWN_COLLAPSED;
 
     return (
-        <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+        <div className="rounded-2xl dark:border-gray-800 dark:bg-white/[0.03]">
             <div className="px-4 py-4 sm:pl-6 sm:pr-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
@@ -143,7 +143,7 @@ export default function TokenPanelDnD({tokens}: Props) {
                     </div>
                 </div>
             </div>
-            <div className="border-t border-gray-100 dark:border-gray-800">
+            <div className=" dark:border-gray-800">
                 <div
                     className={`overflow-hidden transition-[max-height] duration-700 ease-in-out ${isExpanded || !canExpand ? "max-h-[4000px]" : "max-h-[220px]"}`}>
                     <div className="p-4 sm:p-6">
@@ -188,7 +188,7 @@ export default function TokenPanelDnD({tokens}: Props) {
                     </div>
                 </div>
                 {canExpand && (
-                    <div className="border-t border-gray-100 p-2 dark:border-gray-800">
+                    <div className="  p-2 dark:border-gray-800">
                         <button
                             onClick={() => setIsExpanded(v => !v)}
                             className="flex w-full items-center justify-center gap-2 rounded-lg py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5"

@@ -99,14 +99,14 @@ const OperatorTvlBarChart: React.FC<OperatorTvlBarChartProps> = ({barData, topN 
     if (chartData.isEmpty) {
         return (
             <div
-                className="flex h-80 items-center justify-center rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+                className="flex h-80 items-center justify-center rounded-xl ">
                 <p className="text-gray-500">No data available to display chart.</p>
             </div>
         );
     }
 
     return (
-        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+        <div className="rounded-xl  p-4 dark:border-gray-800 dark:bg-white/[0.03]">
             <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">Top Operators by TVL</h3>
             </div>

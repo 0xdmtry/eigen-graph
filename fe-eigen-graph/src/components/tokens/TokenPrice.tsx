@@ -16,7 +16,7 @@ export default function TokenPrice({series}: LineChartProps) {
     const empty = !series?.length || !series[0]?.data?.length;
     if (empty) {
         return (
-            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+            <div className="rounded-xl ">
                 <div className="flex h-[335px] items-center justify-center">
                     <span className="text-sm text-gray-500 dark:text-gray-400">Live price data not available</span>
                 </div>

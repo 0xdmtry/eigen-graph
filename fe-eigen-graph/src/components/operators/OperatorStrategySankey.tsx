@@ -85,31 +85,33 @@ const OperatorStrategySankey: React.FC<OperatorStrategySankeyProps> = ({
     };
 
     return (
-        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+        <div className="rounded-xl   p-4 dark:border-gray-800 dark:bg-white/[0.03]">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">
                 Operator → Strategy Allocation: {(selectedToken) ? selectedToken : "All Tokens"}
             </h3>
 
             {
                 (sankeyData.length <= 1) ? (<div
-                    className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+                    className="rounded-xl border p-4 dark:border-gray-800 dark:bg-white/[0.03]">
                     <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">
                         Operator → Strategy Allocation
                     </h3>
-                    <div className="flex h-96 items-center justify-center">
+                    <div className="flex h-96 items-center justify-center h-[500px]">
                         <p className="text-gray-500">No significant operator allocations to display.</p>
                     </div>
-                </div>) : (<Chart
-                    chartType="Sankey"
-                    width="100%"
-                    height="500px"
-                    data={sankeyData}
-                    options={options}
-                    loader={<div>Loading Chart...</div>}
-                />)
+                </div>) : (
+
+                    <div className="h-[500px]"><Chart
+                        chartType="Sankey"
+                        width="100%"
+                        height="500px"
+                        data={sankeyData}
+                        options={options}
+                        loader={<div>Loading Chart...</div>}
+                    /></div>)
             }
 
-            <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-200 pt-4 dark:border-gray-800">
+            <div className="mt-4 flex flex-wrap items-center gap-2 pt-4 dark:border-gray-800">
                 {baseTokenCards.map((item, i) => (
                     <button key={item.symbol ?? i} onClick={() => handleBadgeClick(item.symbol)}
                             className={`flex-none rounded-full ${(item.symbol === selectedToken) ? 'opacity-50' : ''}`}>

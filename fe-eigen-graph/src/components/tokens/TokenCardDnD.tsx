@@ -41,11 +41,11 @@ export default function TokenCardDnD({
                 }
             }}
             className={`w-full text-left rounded-2xl transition-all duration-200 focus:outline-none ${
-                isActive ? "ring-2 ring-brand-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900" : "ring-0"
+                isActive ? "ring-2 ring-brand-500 ring-offset-2  ring-offset-gray-900" : "ring-0"
             }`}
         >
             <div
-                className="flex h-full items-center justify-between rounded-2xl border border-gray-100 bg-white py-4 pl-4 pr-4 dark:border-gray-800 dark:bg-white/[0.03] xl:pr-5">
+                className="flex h-full items-center justify-between rounded-2xl  py-4 pl-4 pr-4 dark:border-gray-800 dark:bg-white/[0.03] xl:pr-5">
                 <div className="flex items-center gap-3 overflow-hidden">
                     <button
                         type="button"
@@ -53,7 +53,7 @@ export default function TokenCardDnD({
                         ref={dragHandleRef}
                         {...dragHandleAttributes}
                         {...dragHandleListeners}
-                        className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border border-gray-300 bg-transparent text-gray-500 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-white/5"
+                        className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md   bg-transparent text-gray-500 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-white/5"
                     >
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path

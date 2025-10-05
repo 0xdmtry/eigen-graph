@@ -60,7 +60,7 @@ const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData,
     };
 
     return (
-        <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+        <div className="rounded-xl  p-4">
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">Operator Distribution by AVS
                 Count</h3>
             {chartData.series.length > 0 ? (
@@ -68,7 +68,7 @@ const OperatorAvsDonutChart: React.FC<OperatorAvsDonutChartProps> = ({tableData,
                     <ReactApexChart options={options} series={chartData.series} type="donut" height={350}/>
                 </div>
             ) : (
-                <div className="flex h-[350px] items-center justify-center">
+                <div className="flex h-[250px] items-center justify-center">
                     <p className="text-gray-500">No AVS distribution data available.</p>
                 </div>
             )}
