@@ -6,7 +6,7 @@ This application is a data visualization dashboard for analyzing operator metric
 features an interactive, token-centric interface where selecting a token dynamically updates all data views. Key
 components include a detailed operator data table with filtering and sorting, a logarithmic bar chart for TVL
 distribution, a donut chart showing AVS counts, and a Sankey diagram for operator-to-strategy weight allocation. All
-components are synchronized through a global state reflected in the URL path.
+components are synchronized through a global state.
 
 ---
 
@@ -40,8 +40,8 @@ supported tokens. It serves as the primary entry point for users to interact wit
   More" / "Show Less" control allows for the smooth expansion and collapse of the grid, ensuring a clean and manageable
   layout.
 * **Global State Integration:** The panel is connected to a global `TokenContext`. Each `TokenCard` is interactive;
-  clicking a card updates the application's state by setting the selected token. This state change is immediately
-  reflected in the URL path (e.g., `/EIGEN`), and the currently active `TokenCard` is visually highlighted.
+  clicking a card updates the application's state by setting the selected token. The currently active `TokenCard` is
+  visually highlighted.
 
 #### Token Autocomplete
 
@@ -54,9 +54,7 @@ and select tokens.
   matches against both the token's symbol (e.g., `ALT`) and its full name (e.g., `AltLayer`).
 * **Keyboard Navigation:** Full keyboard control is implemented for accessibility. Users can navigate the suggestion
   dropdown using `ArrowUp` and `ArrowDown` keys and make a selection using the `Enter` key.
-* **Bidirectional State Synchronization:** The component is fully synchronized with the `TokenContext`. Selecting a
-  token updates the URL. Conversely, navigating directly to a valid token URL (e.g., `/stETH`) will automatically
-  populate the autocomplete input with the corresponding token's name.
+* **Bidirectional State Synchronization:** The component is fully synchronized with the `TokenContext`.
 
 #### Drag-and-Drop Ordering
 
@@ -146,7 +144,7 @@ The `OperatorsTable` component presents a comprehensive and interactive data gri
 currently selected token.
 
 * **Dynamic Content:** The table's data is directly tied to the global `TokenContext`. When a new token is selected (via
-  the URL, Token Panel, or Autocomplete), the table automatically updates to display the corresponding set of operators.
+  Token Panel, or Autocomplete), the table automatically updates to display the corresponding set of operators.
 
 * **Filtering by Operator ID:** A search input is located in the table's header, enabling case-insensitive filtering of
   the data based on the `operatorId`. Applying a filter resets the view to the first page of results.
@@ -271,14 +269,21 @@ The `LineChart` component renders a real-time area chart visualizing the price f
    ![Docker Desktop](docs/images/docker-desktop.png "Docker Desktop")
 
 3. **Configure Environment Variables:**
-   Create a `.env` file in the `fe-eigen-graph`. This file provides the application with the URL for the local
-   backend API.
+   Create a `.env` and `.env.local` file in the `fe-eigen-graph`. These files provide the application with the URL for the local
+   backend API and cache time.
 
    **File: `.env`**
 
    ```
    API_URL=http://localhost:8000
    ```
+
+   **File: `.env.local`**
+
+   ```
+   NEXT_PUBLIC_STALE_TIME_MS=10000
+   ```
+
 
 4. **Install Frontend Dependencies:**
    In a separate terminal, navigate to the `fe-eigen-graph` root and install the necessary packages.
