@@ -104,10 +104,10 @@ const OperatorsTable: React.FC<OperatorsTableProps> = ({tableData}) => {
 
     return (
         <div
-            className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+            className="overflow-hidden rounded-xl border-gray-800 bg-white/[0.03]">
             <div
-                className="flex flex-col gap-4 border-b border-gray-200 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5 dark:border-gray-800">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">Operators</h3>
+                className="flex flex-col gap-4 border-b  px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5 border-gray-800">
+                <h3 className="text-lg font-semibold  text-white/90">Operators</h3>
                 <div className="relative">
                     <input
                         type="text"
@@ -122,14 +122,14 @@ const OperatorsTable: React.FC<OperatorsTableProps> = ({tableData}) => {
             <div className="custom-scrollbar overflow-x-auto">
                 <Table className="w-full min-w-[1000px] table-auto">
                     <TableHeader>
-                        <TableRow className="border-b border-gray-200 dark:border-gray-800">
+                        <TableRow className="border-b border-gray-800">
                             {headers.map((header) => (
                                 <TableCell key={header.key} isHeader
                                            className={`p-4 ${header.sortable ? 'cursor-pointer' : ''}`}
                                 >
                                     <div className="flex items-center gap-2"
                                          onClick={() => header.sortable && sortBy(header.key)}>
-                                        <p className="text-xs font-medium text-gray-500 dark:text-gray-400">{header.label}</p>
+                                        <p className="text-xs font-medium text-gray-400">{header.label}</p>
                                         {header.sortable && (
                                             <div className="flex flex-col">
                                                 <SortArrow direction="asc"
@@ -148,32 +148,32 @@ const OperatorsTable: React.FC<OperatorsTableProps> = ({tableData}) => {
                             <TableRow key={item.operatorId}
                                       className="transition hover:bg-gray-50 dark:hover:bg-gray-900">
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-400">{shortenId(item.operatorId)}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm font-medium text-gray-400">{shortenId(item.operatorId)}</TableCell>
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm text-gray-800 dark:text-white/90">{formatPowerOfTen(item.tvlTotalAtomic)}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm text-white/90">{formatPowerOfTen(item.tvlTotalAtomic)}</TableCell>
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm text-gray-700 dark:text-white/90">{item.avsCount}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm text-white/90">{item.avsCount}</TableCell>
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm text-gray-700 dark:text-white/90">{item.strategyCount}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm text-white/90">{item.strategyCount}</TableCell>
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm text-gray-700 dark:text-white/90">{item.slashingCount}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm text-white/90">{item.slashingCount}</TableCell>
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm text-gray-700 dark:text-white/90">{formatTimestamp(item.lastSlashAt)}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm text-white/90">{formatTimestamp(item.lastSlashAt)}</TableCell>
                                 <TableCell
-                                    className="p-4 whitespace-nowrap text-sm text-gray-700 dark:text-white/90">{formatTimestamp(item.lastUpdateBlockTs)}</TableCell>
+                                    className="p-4 whitespace-nowrap text-sm text-white/90">{formatTimestamp(item.lastUpdateBlockTs)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </div>
             <div
-                className="flex flex-col items-center justify-between border-t border-gray-200 px-5 py-4 sm:flex-row dark:border-gray-800">
+                className="flex flex-col items-center justify-between border-t  px-5 py-4 sm:flex-row border-gray-800">
                 <div className="pb-3 sm:pb-0">
-                    <span className="block text-sm font-medium text-gray-500 dark:text-gray-400">
+                    <span className="block text-sm font-medium text-gray-400">
                         Showing <span
-                        className="text-gray-800 dark:text-white/90">{filteredAndSortedItems.length > 0 ? startRow + 1 : 0}</span> to <span
-                        className="text-gray-800 dark:text-white/90">{Math.min(startRow + perPage, filteredAndSortedItems.length)}</span> of <span
-                        className="text-gray-800 dark:text-white/90">{filteredAndSortedItems.length}</span>
+                        className="text-white/90">{filteredAndSortedItems.length > 0 ? startRow + 1 : 0}</span> to <span
+                        className="text-white/90">{Math.min(startRow + perPage, filteredAndSortedItems.length)}</span> of <span
+                        className="text-white/90">{filteredAndSortedItems.length}</span>
                     </span>
                 </div>
                 <div className="flex items-center gap-3">

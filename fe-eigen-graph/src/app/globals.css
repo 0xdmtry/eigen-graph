@@ -177,7 +177,7 @@
     }
 
     body {
-        @apply relative font-normal font-outfit z-1 bg-gray-800;
+        @apply relative font-normal font-outfit z-1 bg-gray-900;
     }
 }
 
