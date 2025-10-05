@@ -1,8 +1,8 @@
-// src/components/page/TokenPageClient.tsx
 "use client";
 import React, {useMemo, useState} from "react";
-import {GraphItem, TokenSlice} from "@/types/operators";
+import {ApiResponse, GraphItem, TokenSlice} from "@/types/operators";
 import {TokenContext} from "@/context/TokenContext";
+import {useAggregates} from "@/hooks/useAggregates";
 import TokenPanelDnD from "@/components/tokens/TokenPanelDnD";
 import OperatorsTvl from "@/components/operators/OperatorsTvl";
 import OperatorAvsDonutChart from "@/components/operators/OperatorAvsDonutChart";
@@ -50,37 +50,42 @@ function BottomTable({byToken, symbol}: { byToken: ByToken; symbol: string }) {
     return <OperatorsTable tableData={tableData}/>;
 }
 
-export default function TokenPageClient({
-                                            byToken,
-                                            graphDataByToken,
-                                            graph,
-                                        }: {
-    byToken: ByToken;
-    graphDataByToken: GraphByToken;
-    graph: GraphItem[];
-}) {
-    const [selectedTokenSymbol, setSelectedTokenSymbol] = useState("EIGEN");
-    const ctx = useMemo(() => ({selectedTokenSymbol, setSelectedTokenSymbol}), [selectedTokenSymbol]);
-    const symbol = selectedTokenSymbol || "EIGEN";
+export default function TokenPageClientSWR({initialData}: { initialData: ApiResponse }) {
+    const {data, meta, mutate} = useAggregates({fallbackData: initialData});
+    const snapshot = data ?? initialData;
 
-    const stableByToken = useMemo(() => byToken, [byToken]);
-    const stableGraphByToken = useMemo(() => graphDataByToken, [graphDataByToken]);
-    const stableGraph = useMemo(() => graph, [graph]);
+    const [selectedTokenSymbol, _set] = useState("EIGEN");
+    const symbol = selectedTokenSymbol || "EIGEN";
+    const staleTimeMs = Number(process.env.NEXT_PUBLIC_STALE_TIME_MS ?? "60000");
+
+    const setSelectedTokenSymbol = (s: string) => {
+        _set(s);
+        if (Date.now() - (meta.fetchedAt || 0) > staleTimeMs) mutate();
+    };
+
+    const ctx = useMemo(() => ({selectedTokenSymbol, setSelectedTokenSymbol}), [selectedTokenSymbol]);
+
+    const byToken: ByToken = snapshot.byToken;
+    const graph: GraphItem[] = snapshot.graph;
+    const graphDataByToken: GraphByToken = useMemo(
+        () => Object.fromEntries(Object.entries(byToken).map(([k, v]) => [k, v.graph])),
+        [byToken]
+    );
 
     return (
         <div className="space-y-6">
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 shadow-md">
                 <div className="grid gap-4">
                     <TokenContext.Provider value={ctx}>
-                        <TopSection byToken={stableByToken} symbol={symbol}/>
+                        <TopSection byToken={byToken} symbol={symbol}/>
                     </TokenContext.Provider>
 
                     <div className="h-[740px] dark:border-gray-800 dark:bg-white/[0.03]">
-                        <OperatorStrategySankey graphData={stableGraph} graphDataByToken={stableGraphByToken}/>
+                        <OperatorStrategySankey graphData={graph} graphDataByToken={graphDataByToken}/>
                     </div>
 
                     <TokenContext.Provider value={ctx}>
-                        <BottomTable byToken={stableByToken} symbol={symbol}/>
+                        <BottomTable byToken={byToken} symbol={symbol}/>
                     </TokenContext.Provider>
                 </div>
             </main>
