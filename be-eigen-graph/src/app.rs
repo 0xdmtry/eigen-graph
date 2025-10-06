@@ -1,9 +1,11 @@
 use crate::api::subgraph::client::SubgraphClient;
 use crate::config::AppConfig;
+use crate::metrics;
 use crate::routes::v1;
 use crate::state::AppState;
 use axum::Router;
 use axum::http::Method;
+use axum::routing::get;
 use redis::Client;
 use redis::aio::ConnectionManager;
 use sqlx::postgres::PgPoolOptions;
@@ -53,6 +55,8 @@ pub async fn app() -> Router {
 
     Router::new()
         .nest("/v1", v1::routes())
+        .route("/metrics", get(metrics::export))
+        .layer(axum::middleware::from_fn(metrics::track_http_metrics))
         .layer(cors)
         .with_state(state)
 }
