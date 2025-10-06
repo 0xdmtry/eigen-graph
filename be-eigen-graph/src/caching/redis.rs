@@ -1,3 +1,4 @@
+use crate::metrics::cache_inc;
 use crate::models::operators_snapshot::{OperatorOrderBy, OperatorsSnapshotVars, OrderDirection};
 use redis::AsyncCommands;
 use redis::aio::ConnectionManager;
@@ -27,8 +28,22 @@ pub fn key_snapshot_page(first: i32, skip: i32) -> String {
 }
 
 pub async fn get_json<T: DeserializeOwned>(conn: &mut ConnectionManager, key: &str) -> Option<T> {
-    let bytes: Option<Vec<u8>> = conn.get(key).await.ok();
-    bytes.and_then(|b| serde_json::from_slice(&b).ok())
+    let res: Result<Option<Vec<u8>>, _> = conn.get(key).await;
+    match res {
+        Ok(Some(b)) => {
+            let v = serde_json::from_slice(&b).ok();
+            cache_inc("get", "hit");
+            v
+        }
+        Ok(None) => {
+            cache_inc("get", "miss");
+            None
+        }
+        Err(_) => {
+            cache_inc("get", "err");
+            None
+        }
+    }
 }
 
 pub async fn set_json<T: Serialize>(
@@ -39,5 +54,10 @@ pub async fn set_json<T: Serialize>(
 ) -> Result<(), redis::RedisError> {
     let buf = serde_json::to_vec(value)
         .map_err(|_| redis::RedisError::from((redis::ErrorKind::TypeError, "serialize")))?;
-    conn.set_ex(key, buf, ttl_secs as usize as u64).await
+    let res = conn.set_ex(key, buf, ttl_secs as usize as u64).await;
+    match &res {
+        Ok(_) => cache_inc("set", "ok"),
+        Err(_) => cache_inc("set", "err"),
+    }
+    res
 }

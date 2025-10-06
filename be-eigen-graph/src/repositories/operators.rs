@@ -1,3 +1,4 @@
+use crate::metrics::DbTimer;
 use crate::models::operators_snapshot::OperatorsSnapshotData;
 use sqlx::{PgPool, Postgres, Transaction};
 
@@ -8,11 +9,11 @@ pub async fn upsert_operators_snapshot_page(
     let mut tx: Transaction<Postgres> = pool.begin().await?;
 
     for op in &page.operators {
+        let _t = DbTimer::new("upsert_operator");
         let last_slash_at = op
             .slashings
             .first()
             .and_then(|s| s.block_timestamp.parse::<i64>().ok());
-
         sqlx::query(
             r#"
                 INSERT INTO operators_snapshot
@@ -36,6 +37,7 @@ pub async fn upsert_operators_snapshot_page(
             .execute(tx.as_mut())
             .await?;
 
+        let _t2 = DbTimer::new("delete_positions");
         sqlx::query("DELETE FROM operator_strategy WHERE operator_id = $1")
             .bind(&op.id)
             .execute(tx.as_mut())
@@ -45,7 +47,7 @@ pub async fn upsert_operators_snapshot_page(
             let Some(token) = link.strategy.token.as_ref() else {
                 continue;
             };
-
+            let _t3 = DbTimer::new("insert_position");
             sqlx::query(
                 r#"
                     INSERT INTO operator_strategy

@@ -1,3 +1,4 @@
+use crate::metrics::DbTimer;
 use crate::models::operators_aggr::{PageMeta, UniformOperator, UniformPage, UniformPosition};
 use sqlx::Row;
 use sqlx::{Pool, Postgres};
@@ -8,6 +9,7 @@ pub async fn from_db_adapt(
     first: i32,
     skip: i32,
 ) -> Result<UniformPage, sqlx::Error> {
+    let _t = DbTimer::new("select_operators_snapshot");
     let ops_rows = sqlx::query(
         r#"
     SELECT operator_id, avs_count, strategy_count, slashing_count,
@@ -35,6 +37,7 @@ pub async fn from_db_adapt(
         .collect();
     let op_id_refs: Vec<&str> = op_ids.iter().map(AsRef::as_ref).collect();
 
+    let _t2 = DbTimer::new("select_operator_strategy");
     let pos_rows = sqlx::query(
         r#"
     SELECT operator_id, strategy_id, token_id, token_symbol, token_decimals,

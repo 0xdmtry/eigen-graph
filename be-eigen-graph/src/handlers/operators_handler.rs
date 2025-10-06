@@ -1,7 +1,10 @@
+use crate::metrics::error_inc;
 use crate::models::operators_aggr::AggregatorParams;
 use crate::models::operators_snapshot::{OperatorOrderBy, OperatorsSnapshotVars, OrderDirection};
 use crate::payloads::operators::SnapshotQuery;
+use crate::payloads::operators::TokenSlice;
 use crate::payloads::operators::{AggregatesMeta, AggregatesQuery, AggregatesResponse};
+use crate::services::operators::operators_aggr::operators_part::partition_by_token;
 use crate::services::operators::operators_aggr::{
     from_db_adapt, from_subgraph_adapt, operators_aggregator,
 };
@@ -11,9 +14,6 @@ use axum::{
     extract::{Query, State},
     response::{IntoResponse, Json},
 };
-
-use crate::payloads::operators::TokenSlice;
-use crate::services::operators::operators_aggr::operators_part::partition_by_token;
 use std::collections::BTreeMap;
 
 pub async fn snapshot_handler(
@@ -40,11 +40,11 @@ pub async fn snapshot_handler(
     .await
     .expect("subgraph query failed");
 
-    if let Err(e) =
+    if let Err(_e) =
         crate::services::operators::operators_repo::persist_operators_snapshot_db(&state.db, &data)
             .await
     {
-        eprintln!("persist_operators_snapshot_db failed: {e}");
+        error_inc("persist_operators_snapshot_db");
     }
 
     crate::services::operators::operators_cache::upsert_operators_snapshot_cache(

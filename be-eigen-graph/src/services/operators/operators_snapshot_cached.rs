@@ -1,10 +1,12 @@
 use crate::api::subgraph::queries::OPERATORS_SNAPSHOT;
 use crate::caching::redis::{get_json, key_snapshot, set_json};
+use crate::metrics::subgraph_observe;
 use crate::models::cached::{Cached, DataSource};
 use crate::models::operators_snapshot::{OperatorsSnapshotData, OperatorsSnapshotVars};
 use crate::models::subgraph::{GraphQLRequest, GraphQLResponse};
 use redis::aio::ConnectionManager;
 use reqwest::{Client, Url};
+use std::time::Instant;
 
 pub async fn operators_snapshot_cached(
     client: Client,
@@ -24,6 +26,7 @@ pub async fn operators_snapshot_cached(
         }
     }
 
+    let start = Instant::now();
     let body = GraphQLRequest {
         query: OPERATORS_SNAPSHOT,
         variables: Some(vars),
@@ -38,6 +41,7 @@ pub async fn operators_snapshot_cached(
         .json::<GraphQLResponse<OperatorsSnapshotData>>()
         .await?;
     let data = resp.data.ok_or_else(|| anyhow::anyhow!("empty data"))?;
+    subgraph_observe("ok", start.elapsed());
 
     if let Some(rm) = redis.as_ref() {
         let key = key_snapshot(body.variables.as_ref().unwrap());
